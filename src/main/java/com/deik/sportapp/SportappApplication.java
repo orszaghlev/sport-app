@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class SportappApplication {
     @RequestMapping(value = "/bootTest", method = RequestMethod.GET)
-    public String sayHello() {
+    public String bootTest() {
         return "Spring Boot Test";
     }
 
