@@ -16,6 +16,10 @@ class ViewUserComponent extends Component {
             this.setState({user: res.data});
         });
     }
+
+    return() {
+        this.props.history.push('/users');
+    }
     
     render() {
         return (
@@ -36,6 +40,7 @@ class ViewUserComponent extends Component {
                             <label>E-Mail:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.user.email}</div>
                         </div>
+                        <button className="btn btn-danger" onClick={this.return.bind(this)}>Return</button>
                     </div>
                 </div>
             </div>
