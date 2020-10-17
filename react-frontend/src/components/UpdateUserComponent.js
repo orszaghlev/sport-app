@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import UserService from '../services/UserService';
 
-class CreateUserComponent extends Component {
+class UpdateUserComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             firstName: '',
             lastName: '',
             email: ''
@@ -13,7 +14,17 @@ class CreateUserComponent extends Component {
 
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-        this.saveUser = this.saveUser.bind(this);
+        this.updateUser = this.updateUser.bind(this);
+    }
+
+    componentDidMount() {
+        UserService.getUserById(this.state.id).then((res) => {
+            let user = res.data;
+            this.setState({firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            });
+        });
     }
 
     changeFirstNameHandler= (event) => {
@@ -32,12 +43,12 @@ class CreateUserComponent extends Component {
         this.props.history.push('/users');
     }
 
-    saveUser = (u) => {
+    updateUser = (u) => {
         u.preventDefault();
         let user = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
         console.log('user => ' + JSON.stringify(user));
-
-        UserService.createUser(user).then(res => {
+        console.log('id => ' + JSON.stringify(this.state.id));
+        UserService.updateUser(user, this.state.id).then(res => {
             this.props.history.push('/users');
         });
     }
@@ -48,7 +59,7 @@ class CreateUserComponent extends Component {
                 <div className = "container">
                     <div className = "row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Add User</h3>
+                            <h3 className="text-center">Update User</h3>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -67,7 +78,7 @@ class CreateUserComponent extends Component {
                                         value={this.state.email} onChange={this.changeEMailHandler}/>
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveUser}>Save</button>
+                                    <button className="btn btn-success" onClick={this.updateUser}>Update</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
                             </div>
@@ -79,4 +90,4 @@ class CreateUserComponent extends Component {
     }
 }
 
-export default CreateUserComponent;
+export default UpdateUserComponent;

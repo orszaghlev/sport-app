@@ -8,6 +8,11 @@ class UserComponent extends React.Component {
             users:[]
         }
         this.addUser = this.addUser.bind(this);
+        this.editUser = this.editUser.bind(this);
+    }
+
+    editUser(id) {
+        this.props.history.push(`/update-user/${id}`);
     }
 
     componentDidMount() {
@@ -47,6 +52,9 @@ class UserComponent extends React.Component {
                                         <td>{user.firstName}</td>
                                         <td>{user.lastName}</td>
                                         <td>{user.email}</td>
+                                        <td>
+                                            <button onClick={() => this.editUser(user.id)} className="btn btn-info">Update</button>
+                                        </td>
                                     </tr>
                                 )
                             }

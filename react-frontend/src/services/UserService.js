@@ -12,6 +12,14 @@ class UserService {
         return axios.post(USERS_REST_API_URL, user);
     }
 
+    getUserById(id) {
+        return axios.get(USERS_REST_API_URL + '/' + id);
+    }
+
+    updateUser(user, id) {
+        return axios.put(USERS_REST_API_URL + '/' + id, user);
+    }
+
 }
 
 export default new UserService();
