@@ -7,6 +7,7 @@ class UserComponent extends React.Component {
         this.state = {
             users:[]
         }
+        this.addUser = this.addUser.bind(this);
     }
 
     componentDidMount() {
@@ -15,10 +16,17 @@ class UserComponent extends React.Component {
         });
     }
 
+    addUser() {
+        this.props.history.push('/add-user');
+    }
+
     render () {
         return (
             <div>
                 <h2 className="text-center">Users</h2>
+                <div className="row">
+                    <button className="btn btn-primary" onClick={this.addUser}>Add User</button>
+                </div>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
