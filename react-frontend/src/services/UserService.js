@@ -20,6 +20,10 @@ class UserService {
         return axios.put(USERS_REST_API_URL + '/' + id, user);
     }
 
+    deleteUser(id) {
+        return axios.delete(USERS_REST_API_URL + '/' + id);
+    }
+
 }
 
 export default new UserService();
