@@ -12,6 +12,10 @@ class UserComponent extends React.Component {
         this.deleteUser = this.deleteUser.bind(this);
     }
 
+    viewUser(id) {
+        this.props.history.push(`/view-user/${id}`);
+    }
+
     editUser(id) {
         this.props.history.push(`/add-user/${id}`);
     }
@@ -62,6 +66,7 @@ class UserComponent extends React.Component {
                                         <td>
                                             <button onClick={() => this.editUser(user.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={() => this.deleteUser(user.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginLeft: "10px"}} onClick={() => this.viewUser(user.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
