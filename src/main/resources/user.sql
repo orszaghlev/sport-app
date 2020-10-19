@@ -5,12 +5,33 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(250) NOT NULL,
-  `last_name` VARCHAR(250) NOT NULL,
-  `email` VARCHAR(250) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `first_name` VARCHAR(50) NOT NULL,
+  `last_name` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(120) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`email`,`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `role`;
+
+CREATE TABLE `role` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-INSERT INTO `user` VALUES 
-	(1,'Geza','Pelda','gezapelda@gmail.com'),
-	(2,'Aladar','Minta','aladarminta@gmail.com');
+INSERT INTO `role` VALUES
+    (1, 'ROLE_USER'),
+    (2, 'ROLE_ADMIN');
+
+DROP TABLE IF EXISTS `user_role`;
+
+CREATE TABLE `user_role` (
+    `user_id` INT NOT NULL,
+    `role_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `role_id`),
+  FOREIGN KEY (`role_id`) REFERENCES role(`id`),
+  FOREIGN KEY (`user_id`) REFERENCES user(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
