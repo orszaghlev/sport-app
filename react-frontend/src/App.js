@@ -1,29 +1,127 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import UserComponent from './components/UserComponent';
-import HeaderComponent from './components/HeaderComponent';
-import FooterComponent from './components/FooterComponent';
-import CreateUserComponent from './components/CreateUserComponent';
-import ViewUserComponent from './components/ViewUserComponent';
+import {Switch, Route, Link} from 'react-router-dom'
+import AuthService from './services/AuthService.js';
+import LoginComponent from './components/LoginComponent';
+import RegisterComponent from './components/RegisterComponent';
+import HomeComponent from './components/HomeComponent';
+import ProfileComponent from './components/ProfileComponent';
+import BoardUserComponent from './components/BoardUserComponent';
+import BoardAdminComponent from './components/BoardAdminComponent';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <div>
-      <Router>
-          <HeaderComponent/>
-            <div className="container">
-                <Switch>
-                  <Route path = "/" exact component = {UserComponent}></Route>
-                  <Route path = "/users" component = {UserComponent}></Route>
-                  <Route path = "/add-user/:id" component = {CreateUserComponent}></Route>
-                  <Route path = "/view-user/:id" component = {ViewUserComponent}></Route>
-                </Switch>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+
+    this.state = {
+      showAdminBoard: false,
+      currentUser: undefined,
+    };
+  }
+
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+  }
+
+  logOut() {
+    AuthService.logout();
+  }
+
+  render() {
+    const {currentUser, showAdminBoard} = this.state;
+
+    return (
+      <div>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand">
+            Team Sport App
+          </Link>
+          <div className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <a href={"https://trello.com/b/e1oxD2CF/sport-app-project"} className="nav-link">
+                Trello
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href={"https://github.com/whoiszorz/sport-app"} className="nav-link">
+                GitHub
+              </a>
+            </li>
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to ={"/user"} className="nav-link">
+                  User Board
+                </Link>
+              </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  Logout
+                </a>
+              </li>
             </div>
-          <FooterComponent/>
-      </Router>
-    </div>
-  );
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav>
+
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={HomeComponent} />
+            <Route exact path="/login" component={LoginComponent} />
+            <Route exact path="/register" component={RegisterComponent} />
+            <Route exact path="/profile" component={ProfileComponent} />
+            <Route path="/admin" component={BoardAdminComponent} />
+            <Route path="/user" component={BoardUserComponent} />
+          </Switch>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

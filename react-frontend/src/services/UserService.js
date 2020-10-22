@@ -1,27 +1,22 @@
 import axios from 'axios'
+import authHeader from './AuthHeader';
 
-const USERS_REST_API_URL = 'http://localhost:8080/users';
+const TEST_REST_API_URL = 'http://localhost:8080/api/test/';
+const USER_REST_API_URL = 'http://localhost:8080/user';
+const ADMIN_REST_API_URL = 'http://localhost:8080/admin';
 
 class UserService {
-    
-    getUsers() {
-        return axios.get(USERS_REST_API_URL);
+
+    getPublicContent() {
+        return axios.get(TEST_REST_API_URL + 'all');
     }
 
-    createUser(user) {
-        return axios.post(USERS_REST_API_URL, user);
+    getUserBoard() {
+        return axios.get(USER_REST_API_URL, {headers: authHeader()});
     }
 
-    getUserById(id) {
-        return axios.get(USERS_REST_API_URL + '/' + id);
-    }
-
-    updateUser(user, id) {
-        return axios.put(USERS_REST_API_URL + '/' + id, user);
-    }
-
-    deleteUser(id) {
-        return axios.delete(USERS_REST_API_URL + '/' + id);
+    getAdminBoard() {
+        return axios.get(ADMIN_REST_API_URL, {headers: authHeader()});
     }
 
 }
