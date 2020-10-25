@@ -2,9 +2,11 @@ package com.deik.sportapp.match;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "match")
+@Table(name = "match", schema = "competitions")
 public class Match {
 
     @Id
@@ -31,6 +33,12 @@ public class Match {
 
     @Column(name = "date")
     private Date date;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "team",
+            joinColumns = @JoinColumn(name = "home_team"),
+                          @JoinColumn(name = "away_team"))
+    private Set<>  = new HashSet<>();
 
     public Match() {
     }
@@ -109,5 +117,5 @@ public class Match {
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
 }

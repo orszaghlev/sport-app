@@ -27,7 +27,6 @@ public class DatasourceConfiguration {
 
     @Bean(name = "datasource2")
     @ConfigurationProperties(prefix="competitions.datasource")
-    @Primary
     public DataSource dataSource2() {
         return DataSourceBuilder.create().build();
     }
