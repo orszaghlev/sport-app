@@ -59,12 +59,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`PLAYS_IN` (
   `end_of_contract` DATE,
   PRIMARY KEY (`athlete_id`, `team_id`, `start_of_contract`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `athlete_id`
+  CONSTRAINT `pi_athlete_id`
     FOREIGN KEY (`athlete_id`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `pi_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -95,12 +95,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`WORKS_IN` (
   `end_of_contract` DATE,
   PRIMARY KEY (`staff_id`, `team_id`, `start_of_contract`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `staff_id`
+  CONSTRAINT `wi_staff_id`
     FOREIGN KEY (`staff_id`)
     REFERENCES `competitions`.`STAFF` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `wi_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -133,12 +133,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
   PRIMARY KEY (`id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
   INDEX `competition_id_idx` (`competition_id` ASC) VISIBLE,
-  CONSTRAINT `team_id`
+  CONSTRAINT `se_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `competition_id`
+  CONSTRAINT `se_competition_id`
     FOREIGN KEY (`competition_id`)
     REFERENCES `competitions`.`COMPETITION` (`id`)
     ON DELETE NO ACTION
@@ -162,17 +162,17 @@ CREATE TABLE IF NOT EXISTS `competitions`.`MATCH` (
   INDEX `season_id_idx` (`season_id` ASC) VISIBLE,
   INDEX `home_team_idx` (`home_team` ASC) VISIBLE,
   INDEX `away_team_idx` (`away_team` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `ma_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `home_team`
+  CONSTRAINT `ma_home_team`
     FOREIGN KEY (`home_team`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `away_team`
+  CONSTRAINT `ma_away_team`
     FOREIGN KEY (`away_team`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -190,12 +190,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`PLAYED_MATCH` (
   `playing_started` DATETIME,
   PRIMARY KEY (`athlete_id`, `match_id`),
   INDEX `match_id_idx` (`match_id` ASC) VISIBLE,
-  CONSTRAINT `athlete_id`
+  CONSTRAINT `pm_athlete_id`
     FOREIGN KEY (`athlete_id`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `match_id`
+  CONSTRAINT `pm_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -226,22 +226,22 @@ CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
   INDEX `match_id_idx` (`match_id` ASC) VISIBLE,
   INDEX `event_type_idx` (`event_type` ASC) VISIBLE,
-  CONSTRAINT `athlete_id`
+  CONSTRAINT `ev_athlete_id`
     FOREIGN KEY (`athlete_id`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `ev_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `match_id`
+  CONSTRAINT `ev_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `event_type`
+  CONSTRAINT `ev_event_type`
     FOREIGN KEY (`event_type`)
     REFERENCES `competitions`.`EVENT_TYPES` (`id`)
     ON DELETE NO ACTION
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_MATCHSTSAT` (
   `h_yards_penalized` INT,
   `a_yards_penalized` INT,
   PRIMARY KEY (`match_id`),
-  CONSTRAINT `match_id`
+  CONSTRAINT `afstat_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
   `h_timeouts` INT,
   `a_timeouts` INT,
   PRIMARY KEY (`id`),
-  CONSTRAINT `match_id`
+  CONSTRAINT `hstat_match_id`
     FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_MATCHSTSAT` (
   `h_fouls` INT,
   `a_fouls` INT,
   PRIMARY KEY (`match_id`),
-  CONSTRAINT `match_id`
+  CONSTRAINT `fstat_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -393,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_MATCHSTSAT` (
   `h_timeouts` INT,
   `a_timeouts` INT,
   PRIMARY KEY (`match_id`),
-  CONSTRAINT `match_id`
+  CONSTRAINT `bstat_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_MATCHSTSAT` (
   `h_penalty_minutes` INT,
   `a_penalty_minutes` INT,
   PRIMARY KEY (`match_id`),
-  CONSTRAINT `match_id`
+  CONSTRAINT `hstat_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -443,12 +443,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_TABLE` (
   `pct` DECIMAL,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `aftable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `aftable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -470,12 +470,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_TABLE` (
   `str` DECIMAL,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `btable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `btable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -498,12 +498,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_TABLE` (
   `points` INT,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `htable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `htable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -528,12 +528,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_TABLE` (
   `points` INT,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `ftable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `ftable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -557,12 +557,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HOCEY_TABLE` (
   `str` INT,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `season_id`
+  CONSTRAINT `htable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `team_id`
+  CONSTRAINT `htable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
