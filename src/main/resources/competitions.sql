@@ -296,7 +296,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
   `id` VARCHAR(6) NOT NULL,
-  `a_shooting_efficiency` DECIMAL,
+  `h_shooting_efficiency` DECIMAL,
   `a_shooting_efficiency` DECIMAL,
   `h_wing_goals` INT,
   `a_wing_goals` INT,
