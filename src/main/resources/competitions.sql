@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
   `h_timeouts` INT,
   `a_timeouts` INT,
   PRIMARY KEY (`id`),
-  CONSTRAINT `hstat_match_id`
+  CONSTRAINT `hastat_match_id`
     FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_MATCHSTSAT` (
   `h_penalty_minutes` INT,
   `a_penalty_minutes` INT,
   PRIMARY KEY (`match_id`),
-  CONSTRAINT `hstat_match_id`
+  CONSTRAINT `hostat_match_id`
     FOREIGN KEY (`match_id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -498,12 +498,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_TABLE` (
   `points` INT,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `htable_season_id`
+  CONSTRAINT `hatable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `htable_team_id`
+  CONSTRAINT `hatable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
@@ -557,12 +557,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HOCEY_TABLE` (
   `str` INT,
   PRIMARY KEY (`season_id`, `team_id`),
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `htable_season_id`
+  CONSTRAINT `hotable_season_id`
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `htable_team_id`
+  CONSTRAINT `hotable_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
