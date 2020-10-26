@@ -1,7 +1,11 @@
 package com.deik.sportapp.team;
 
+import com.deik.sportapp.match.Match;
+import com.deik.sportapp.season.Season;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "team", schema = "competitions")
@@ -11,26 +15,32 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column("full_name")
+    @Column(name = "full_name")
     private String full_name;
 
-    @Column("short_name")
+    @Column(name = "short_name")
     private String short_name;
 
-    @Column("founding_date")
+    @Column(name = "founding_date")
     private Date founding_date;
 
-    @Column("team_value")
+    @Column(name = "team_value")
     private int team_value;
 
-    @Column("value_currency")
+    @Column(name = "value_currency")
     private String value_currency;
 
-    @Column("image_link")
+    @Column(name = "image_link")
     private String image_link;
 
-    @Column("home_place")
+    @Column(name = "home_place")
     private String home_place;
+
+    @OneToMany(mappedBy = "team")
+    private List<Match> matches;
+
+    @OneToMany(mappedBy = "team")
+    private List<Season> seasons;
 
     public Team() {
 
@@ -109,6 +119,22 @@ public class Team {
 
     public void setHomePlace(String home_place) {
         this.home_place = home_place;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Season> seasons) {
+        this.seasons = seasons;
     }
 
 }

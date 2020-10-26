@@ -1,6 +1,9 @@
 package com.deik.sportapp.competition;
 
+import com.deik.sportapp.season.Season;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "competition", schema = "competitions")
@@ -21,6 +24,9 @@ public class Competition {
 
     @Column(name = "logo_link")
     private String logo_link;
+
+    @OneToMany(mappedBy = "competition")
+    private List<Season> seasons;
 
     public Competition() {
 
@@ -72,6 +78,14 @@ public class Competition {
 
     public void setLogoLink(String logo_link) {
         this.logo_link = logo_link;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Season> seasons) {
+        this.seasons = seasons;
     }
 
 }
