@@ -25,7 +25,7 @@ public class Competition {
     @Column(name = "logo_link")
     private String logo_link;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition_id")
     private List<Season> seasons;
 
     public Competition() {

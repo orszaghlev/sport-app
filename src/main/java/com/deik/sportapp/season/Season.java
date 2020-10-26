@@ -18,11 +18,11 @@ public class Season {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
-    private Team team;
+    private Team team_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "competition_id", referencedColumnName = "id")
-    private Competition competition;
+    private Competition competition_id;
 
     @Column(name = "started")
     private Date started;
@@ -30,17 +30,17 @@ public class Season {
     @Column(name = "finished")
     private Date finished;
 
-    @OneToMany(mappedBy = "season")
+    @OneToMany(mappedBy = "season_id")
     private List<Match> matches;
 
     public Season() {
 
     }
 
-    public Season(String id, Team team, Competition competition, Date started, Date finished) {
+    public Season(String id, Team team_id, Competition competition_id, Date started, Date finished) {
         this.id = id;
-        this.team = team;
-        this.competition = competition;
+        this.team_id = team_id;
+        this.competition_id = competition_id;
         this.started = started;
         this.finished = finished;
     }
@@ -53,20 +53,20 @@ public class Season {
         this.id = id;
     }
 
-    public Team getTeam() {
-        return team;
+    public Team getTeamId() {
+        return team_id;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeamId(Team team_id) {
+        this.team_id = team_id;
     }
 
-    public Competition getCompetition() {
-        return competition;
+    public Competition getCompetitionId() {
+        return competition_id;
     }
 
-    public void setCompetition(Competition competition) {
-        this.competition = competition;
+    public void setCompetitionId(Competition competition_id) {
+        this.competition_id = competition_id;
     }
 
     public Date getStarted() {

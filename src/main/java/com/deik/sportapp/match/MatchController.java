@@ -1,45 +1,59 @@
 package com.deik.sportapp.match;
 
+import com.deik.sportapp.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/comp/")
 public class MatchController {
 
     @Autowired
-    private MatchService matchService;
+    private MatchRepository matchRepository;
 
-    @RequestMapping(value = "/matches", method = RequestMethod.GET)
+    @GetMapping("/matches")
     public List<Match> getAllMatches() {
-        return matchService.getAllMatches();
+        return matchRepository.findAll();
     }
 
-    @RequestMapping(value = "/matches/{id}", method = RequestMethod.GET)
-    public Match getMatch(@PathVariable String id) {
-        return matchService.getMatch(id);
+    @PostMapping("/matches/{id}")
+    public ResponseEntity<Match> getMatchById(@PathVariable String id) {
+        Match match = matchRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Match doesn't exist with ID: " + id));
+        return ResponseEntity.ok(match);
     }
 
-    @RequestMapping(value = "/matches", method = RequestMethod.POST)
-    public void addMatch(@RequestBody Match match) {
-        matchService.addMatch(match);
+    @PutMapping("/matches/{id}")
+    public ResponseEntity<Match> updateMatch(@PathVariable String id, @RequestBody Match matchDetails) {
+        Match match = matchRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Match doesn't exist with ID: " + id));
+
+        match.setSeasonId(matchDetails.getSeasonId());
+        match.setHomeTeam(matchDetails.getHomeTeam());
+        match.setAwayTeam(matchDetails.getAwayTeam());
+        match.setHomeScore(matchDetails.getHomeScore());
+        match.setAwayScore(matchDetails.getAwayScore());
+        match.setPlace(matchDetails.getPlace());
+        match.setDate(matchDetails.getDate());
+
+        Match updatedMatch = matchRepository.save(match);
+        return ResponseEntity.ok(updatedMatch);
     }
 
-    @RequestMapping(value = "/matches/{id}", method = RequestMethod.PUT)
-    public void updateMatch(@RequestBody Match match, @PathVariable String id) {
-        matchService.updateMatch(id, match);
-    }
-
-    @RequestMapping(value = "/matches/{id}", method = RequestMethod.DELETE)
-    public void deleteMatch(@PathVariable String id) {
-        matchService.deleteMatch(id);
+    @DeleteMapping("/matches/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteMatch(@PathVariable String id) {
+        Match match = matchRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Match doesn't exist with ID: " + id));
+        matchRepository.delete(match);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 }

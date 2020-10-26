@@ -36,10 +36,13 @@ public class Team {
     @Column(name = "home_place")
     private String home_place;
 
-    @OneToMany(mappedBy = "team")
-    private List<Match> matches;
+    @OneToMany(mappedBy = "home_team")
+    private List<Match> home_matches;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "away_team")
+    private List<Match> away_matches;
+
+    @OneToMany(mappedBy = "team_id")
     private List<Season> seasons;
 
     public Team() {
@@ -121,12 +124,20 @@ public class Team {
         this.home_place = home_place;
     }
 
-    public List<Match> getMatches() {
-        return matches;
+    public List<Match> getHomeMatches() {
+        return home_matches;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setHomeMatches(List<Match> home_matches) {
+        this.home_matches = home_matches;
+    }
+
+    public List<Match> getAwayMatches() {
+        return away_matches;
+    }
+
+    public void setAwayMatches(List<Match> away_matches) {
+        this.away_matches = away_matches;
     }
 
     public List<Season> getSeasons() {
