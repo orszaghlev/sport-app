@@ -22,7 +22,12 @@ public class MatchController {
         return matchRepository.findAll();
     }
 
-    @PostMapping("/matches/{id}")
+    @PostMapping("/matches")
+    public Match createMatch(@RequestBody Match match) {
+        return matchRepository.save(match);
+    }
+
+    @GetMapping("/matches/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable String id) {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Match doesn't exist with ID: " + id));

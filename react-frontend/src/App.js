@@ -9,6 +9,7 @@ import ProfileComponent from './components/ProfileComponent';
 import BoardUserComponent from './components/BoardUserComponent';
 import BoardAdminComponent from './components/BoardAdminComponent';
 import MatchComponent from './components/MatchComponent';
+import CreateMatchComponent from './components/CreateMatchComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
@@ -117,6 +118,7 @@ class App extends Component {
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
             <Route path="/admin" component={BoardAdminComponent} />
+            <Route path="/admin/add-match" component={CreateMatchComponent}></Route>
             <Route path="/user" component={MatchComponent} />
           </Switch>
         </div>

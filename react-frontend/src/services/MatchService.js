@@ -8,6 +8,10 @@ class MatchService {
         return axios.get(MATCH_API_BASE_URL);
     }
 
+    createMatch(match) {
+        return axios.post(MATCH_API_BASE_URL, match);
+    }
+
 }
 
 export default new MatchService()
