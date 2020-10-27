@@ -1,11 +1,14 @@
 package com.deik.sportapp.competition;
 
 import com.deik.sportapp.season.Season;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Proxy(lazy = false)
 @Table(name = "competition", schema = "competitions")
 public class Competition {
 
@@ -25,7 +28,8 @@ public class Competition {
     @Column(name = "logo_link")
     private String logo_link;
 
-    @OneToMany(mappedBy = "competition_id")
+    @OneToMany(mappedBy = "competition_id", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Season> seasons;
 
     public Competition() {

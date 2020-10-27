@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const MATCH_API_BASE_URL = "http://localhost:8080/comp/matches";
+const MATCH_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches";
 
 class MatchService {
 

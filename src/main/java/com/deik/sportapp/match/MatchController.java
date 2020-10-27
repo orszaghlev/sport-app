@@ -11,7 +11,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/comp/")
+@RequestMapping("/api/auth/comp")
 public class MatchController {
 
     @Autowired

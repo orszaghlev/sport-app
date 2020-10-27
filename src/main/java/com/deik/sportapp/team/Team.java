@@ -2,12 +2,15 @@ package com.deik.sportapp.team;
 
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.season.Season;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Proxy(lazy = false)
 @Table(name = "team", schema = "competitions")
 public class Team {
 
@@ -36,13 +39,16 @@ public class Team {
     @Column(name = "home_place")
     private String home_place;
 
-    @OneToMany(mappedBy = "home_team")
+    @OneToMany(mappedBy = "home_team", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Match> home_matches;
 
-    @OneToMany(mappedBy = "away_team")
+    @OneToMany(mappedBy = "away_team", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Match> away_matches;
 
-    @OneToMany(mappedBy = "team_id")
+    @OneToMany(mappedBy = "team_id", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Season> seasons;
 
     public Team() {

@@ -2,11 +2,13 @@ package com.deik.sportapp.match;
 
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Proxy(lazy = false)
 @Table(name = "match", schema = "competitions")
 public class Match {
 

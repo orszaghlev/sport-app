@@ -3,12 +3,15 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Proxy(lazy = false)
 @Table(name = "season", schema = "competitions")
 public class Season {
 
@@ -30,7 +33,8 @@ public class Season {
     @Column(name = "finished")
     private Date finished;
 
-    @OneToMany(mappedBy = "season_id")
+    @OneToMany(mappedBy = "season_id", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Match> matches;
 
     public Season() {
