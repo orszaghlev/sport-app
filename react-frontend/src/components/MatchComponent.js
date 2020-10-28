@@ -11,6 +11,10 @@ class MatchComponent extends Component {
         }
     }
     
+    viewMatch(id) {
+        this.props.history.push(`/view-match/${id}`);
+    }
+
     componentDidMount() {
         UserService.getUserBoard().then(
             response => {
@@ -51,6 +55,7 @@ class MatchComponent extends Component {
                                 <th>Away Score</th>
                                 <th>Place</th>
                                 <th>Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +71,9 @@ class MatchComponent extends Component {
                                         <td>{match.awayScore}</td>
                                         <td>{match.place}</td>
                                         <td>{match.date}</td>
+                                        <td>
+                                        <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                        </td>
                                     </tr>
                                 )
                             }

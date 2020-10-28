@@ -11,6 +11,7 @@ class MatchComponent extends Component {
         }
         this.addMatch = this.addMatch.bind(this);
         this.editMatch = this.editMatch.bind(this);
+        this.deleteMatch = this.deleteMatch.bind(this);
     }
  
     addMatch() {
@@ -19,6 +20,16 @@ class MatchComponent extends Component {
     
     editMatch(id) {
         this.props.history.push(`/add-match/${id}`);
+    }
+
+    deleteMatch(id) {
+        MatchService.deleteMatch(id).then(res => {
+            this.setState({matches: this.state.matches.filter(match => match.id !== id)});
+        });
+    }
+
+    viewMatch(id) {
+        this.props.history.push(`/view-match/${id}`);
     }
 
     componentDidMount() {
@@ -83,6 +94,8 @@ class MatchComponent extends Component {
                                         <td>{match.date}</td>
                                         <td>
                                             <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )

@@ -16,6 +16,14 @@ class MatchService {
         return axios.get(MATCH_API_BASE_URL + '/' + matchId);
     }
 
+    updateMatch(match, matchId) {
+        return axios.put(MATCH_API_BASE_URL + '/' + matchId, match);
+    }
+
+    deleteMatch(matchId) {
+        return axios.delete(MATCH_API_BASE_URL + '/' + matchId);
+    }
+
 }
 
 export default new MatchService()
