@@ -1,7 +1,6 @@
 package com.deik.sportapp.competition;
 
 import com.deik.sportapp.season.Season;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -20,28 +19,27 @@ public class Competition {
     private String region;
 
     @Column(name = "sport_type")
-    private String sport_type;
+    private String sportType;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "logo_link")
-    private String logo_link;
+    private String logoLink;
 
     @OneToMany(mappedBy = "competition_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Season> seasons;
 
     public Competition() {
 
     }
 
-    public Competition(String id, String region, String sport_type, String name, String logo_link) {
+    public Competition(String id, String region, String sportType, String name, String logoLink) {
         this.id = id;
         this.region = region;
-        this.sport_type = sport_type;
+        this.sportType = sportType;
         this.name = name;
-        this.logo_link = logo_link;
+        this.logoLink = logoLink;
     }
 
     public String getId() {
@@ -61,11 +59,11 @@ public class Competition {
     }
 
     public String getSportType() {
-        return sport_type;
+        return sportType;
     }
 
-    public void setSportType(String sport_type) {
-        this.sport_type = sport_type;
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
     }
 
     public String getName() {
@@ -77,11 +75,11 @@ public class Competition {
     }
 
     public String getLogoLink() {
-        return logo_link;
+        return logoLink;
     }
 
-    public void setLogoLink(String logo_link) {
-        this.logo_link = logo_link;
+    public void setLogoLink(String logoLink) {
+        this.logoLink = logoLink;
     }
 
     public List<Season> getSeasons() {

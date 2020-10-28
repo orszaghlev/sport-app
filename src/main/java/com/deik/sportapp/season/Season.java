@@ -3,7 +3,6 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -34,7 +33,6 @@ public class Season {
     private Date finished;
 
     @OneToMany(mappedBy = "season_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Match> matches;
 
     public Season() {

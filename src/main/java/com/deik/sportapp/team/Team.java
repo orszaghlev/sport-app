@@ -2,7 +2,6 @@ package com.deik.sportapp.team;
 
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.season.Season;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -19,51 +18,48 @@ public class Team {
     private String id;
 
     @Column(name = "full_name")
-    private String full_name;
+    private String fullName;
 
     @Column(name = "short_name")
-    private String short_name;
+    private String shortName;
 
     @Column(name = "founding_date")
-    private Date founding_date;
+    private Date foundingDate;
 
     @Column(name = "team_value")
-    private int team_value;
+    private int teamValue;
 
     @Column(name = "value_currency")
-    private String value_currency;
+    private String valueCurrency;
 
     @Column(name = "image_link")
-    private String image_link;
+    private String imageLink;
 
     @Column(name = "home_place")
-    private String home_place;
+    private String homePlace;
 
     @OneToMany(mappedBy = "home_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Match> home_matches;
 
     @OneToMany(mappedBy = "away_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Match> away_matches;
 
     @OneToMany(mappedBy = "team_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Season> seasons;
 
     public Team() {
 
     }
 
-    public Team(String id, String full_name, String short_name, Date founding_date, int team_value, String value_currency, String image_link, String home_place) {
+    public Team(String id, String fullName, String shortName, Date foundingDate, int teamValue, String valueCurrency, String imageLink, String homePlace) {
         this.id = id;
-        this.full_name = full_name;
-        this.short_name = short_name;
-        this.founding_date = founding_date;
-        this.team_value = team_value;
-        this.value_currency = value_currency;
-        this.image_link = image_link;
-        this.home_place = home_place;
+        this.fullName = fullName;
+        this.shortName = shortName;
+        this.foundingDate = foundingDate;
+        this.teamValue = teamValue;
+        this.valueCurrency = valueCurrency;
+        this.imageLink = imageLink;
+        this.homePlace = homePlace;
     }
 
     public String getId() {
@@ -75,59 +71,59 @@ public class Team {
     }
 
     public String getFullName() {
-        return full_name;
+        return fullName;
     }
 
-    public void setFullName(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getShortName() {
-        return short_name;
+        return shortName;
     }
 
-    public void setShortName(String short_name) {
-        this.short_name = short_name;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     public Date getFoundingDate() {
-        return founding_date;
+        return foundingDate;
     }
 
-    public void setFoundingDate(Date founding_date) {
-        this.founding_date = founding_date;
+    public void setFoundingDate(Date foundingDate) {
+        this.foundingDate = foundingDate;
     }
 
     public int getTeamValue() {
-        return team_value;
+        return teamValue;
     }
 
-    public void setTeamValue(int team_value) {
-        this.team_value = team_value;
+    public void setTeamValue(int teamValue) {
+        this.teamValue = teamValue;
     }
 
     public String getValueCurrency() {
-        return value_currency;
+        return valueCurrency;
     }
 
-    public void setValueCurrency(String value_currency) {
-        this.value_currency = value_currency;
+    public void setValueCurrency(String valueCurrency) {
+        this.valueCurrency = valueCurrency;
     }
 
     public String getImageLink() {
-        return image_link;
+        return imageLink;
     }
 
-    public void setImageLink(String image_link) {
-        this.image_link = image_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public String getHomePlace() {
-        return home_place;
+        return homePlace;
     }
 
-    public void setHomePlace(String home_place) {
-        this.home_place = home_place;
+    public void setHomePlace(String homePlace) {
+        this.homePlace = homePlace;
     }
 
     public List<Match> getHomeMatches() {

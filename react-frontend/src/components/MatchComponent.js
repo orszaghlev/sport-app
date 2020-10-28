@@ -43,8 +43,8 @@ class MatchComponent extends Component {
                                         <td>{match.season_id}</td>
                                         <td>{match.home_team}</td>
                                         <td>{match.away_team}</td>
-                                        <td>{match.home_score}</td>
-                                        <td>{match.away_score}</td>
+                                        <td>{match.homeScore}</td>
+                                        <td>{match.awayScore}</td>
                                         <td>{match.place}</td>
                                         <td>{match.date}</td>
                                     </tr>

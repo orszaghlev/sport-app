@@ -6,7 +6,6 @@ import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
-import BoardAdminComponent from './components/BoardAdminComponent';
 import MatchComponent from './components/MatchComponent';
 import CreateMatchComponent from './components/CreateMatchComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -73,7 +72,7 @@ class App extends Component {
 
             {currentUser && (
               <li className="nav-item">
-                <Link to ={"/user"} className="nav-link">
+                <Link to ={"/matches"} className="nav-link">
                   Matches
                 </Link>
               </li>
@@ -116,9 +115,8 @@ class App extends Component {
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
-            <Route path="/admin" component={BoardAdminComponent} />
             <Route path="/add-match" component={CreateMatchComponent}></Route>
-            <Route path="/user" component={MatchComponent} />
+            <Route path="/matches" component={MatchComponent} />
           </Switch>
         </div>
       </div>

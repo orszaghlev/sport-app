@@ -29,10 +29,10 @@ public class Match {
     private Team away_team;
 
     @Column(name = "home_score")
-    private int home_score;
+    private int homeScore;
 
     @Column(name = "away_score")
-    private int away_score;
+    private int awayScore;
 
     @Column(name = "place")
     private String place;
@@ -43,13 +43,13 @@ public class Match {
     public Match() {
     }
 
-    public Match(String id, Season season_id, Team home_team, Team away_team, int home_score, int away_score, String place, Date date) {
+    public Match(String id, Season season_id, Team home_team, Team away_team, int homeScore, int awayScore, String place, Date date) {
         this.id = id;
         this.season_id = season_id;
         this.home_team = home_team;
         this.away_team = away_team;
-        this.home_score = home_score;
-        this.away_score = away_score;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
         this.place = place;
         this.date = date;
     }
@@ -87,19 +87,19 @@ public class Match {
     }
 
     public int getHomeScore() {
-        return home_score;
+        return homeScore;
     }
 
-    public void setHomeScore(int home_score) {
-        this.home_score = home_score;
+    public void setHomeScore(int homeScore) {
+        this.homeScore = homeScore;
     }
 
     public int getAwayScore() {
-        return away_score;
+        return awayScore;
     }
 
-    public void setAwayScore(int away_score) {
-        this.away_score = away_score;
+    public void setAwayScore(int awayScore) {
+        this.awayScore = awayScore;
     }
 
     public String getPlace() {

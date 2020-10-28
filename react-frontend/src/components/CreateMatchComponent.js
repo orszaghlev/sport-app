@@ -9,8 +9,8 @@ class CreateMatchComponent extends Component {
             season_id: '',
             home_team: '',
             away_team: '',
-            home_score: '',
-            away_score: '',
+            homeScore: '',
+            awayScore: '',
             place: '',
             date: ''
         }
@@ -27,11 +27,11 @@ class CreateMatchComponent extends Component {
 
     saveMatch = (m) => {
         m.preventDefault();
-        let match = {season_id: this.state.season_id, home_team: this.state.home_team, away_team: this.state.away_team, home_score: this.state.home_score, away_score: this.state.away_score, place: this.state.place, date: this.state.date};
+        let match = {season_id: this.state.season_id, home_team: this.state.home_team, away_team: this.state.away_team, homeScore: this.state.homeScore, awayScore: this.state.awayScore, place: this.state.place, date: this.state.date};
         console.log('match => ' + JSON.stringify(match));
 
         MatchService.createMatch(match).then(res => {
-            this.props.history.push('/api/auth/comp/matches');
+            this.props.history.push('/matches');
         });
     }
 
@@ -48,11 +48,11 @@ class CreateMatchComponent extends Component {
     }
 
     changeHomeScoreHandler = (event) => {
-        this.setState({home_score: event.target.value});
+        this.setState({homeScore: event.target.value});
     }
 
     changeAwayScoreHandler = (event) => {
-        this.setState({away_score: event.target.value});
+        this.setState({awayScore: event.target.value});
     }
 
     changePlaceHandler = (event) => {
@@ -64,7 +64,7 @@ class CreateMatchComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/api/auth/comp/matches');
+        this.props.history.push('/matches');
     }
 
     render() {
@@ -93,13 +93,13 @@ class CreateMatchComponent extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label>Home Score:</label>
-                                        <input placeholder="Home Score" name="home_score" className="form-control"
-                                            value={this.state.home_score} onChange={this.changeHomeScoreHandler}/>
+                                        <input placeholder="Home Score" name="homeScore" className="form-control"
+                                            value={this.state.homeScore} onChange={this.changeHomeScoreHandler}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Away Score:</label>
-                                        <input placeholder="Away Score" name="away_score" className="form-control"
-                                            value={this.state.away_score} onChange={this.changeAwayScoreHandler}/>
+                                        <input placeholder="Away Score" name="awayScore" className="form-control"
+                                            value={this.state.awayScore} onChange={this.changeAwayScoreHandler}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Place:</label>
