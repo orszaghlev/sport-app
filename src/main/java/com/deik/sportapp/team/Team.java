@@ -39,15 +39,15 @@ public class Team {
     @Column(name = "home_place")
     private String home_place;
 
-    @OneToMany(mappedBy = "home_team", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "home_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Match> home_matches;
 
-    @OneToMany(mappedBy = "away_team", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "away_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Match> away_matches;
 
-    @OneToMany(mappedBy = "team_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Season> seasons;
 

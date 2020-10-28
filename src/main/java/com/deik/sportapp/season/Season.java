@@ -33,7 +33,7 @@ public class Season {
     @Column(name = "finished")
     private Date finished;
 
-    @OneToMany(mappedBy = "season_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "season_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Match> matches;
 

@@ -28,7 +28,7 @@ public class Competition {
     @Column(name = "logo_link")
     private String logo_link;
 
-    @OneToMany(mappedBy = "competition_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "competition_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Season> seasons;
 
