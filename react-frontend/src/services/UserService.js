@@ -3,7 +3,7 @@ import authHeader from './AuthHeader';
 
 const TEST_REST_API_URL = 'http://localhost:8080/api/test/';
 const USER_REST_API_URL = 'http://localhost:8080/api/auth/comp/matches';
-const ADMIN_REST_API_URL = 'http://localhost:8080/admin';
+const ADMIN_REST_API_URL = 'http://localhost:8080/api/auth/comp/matches';
 
 class UserService {
 

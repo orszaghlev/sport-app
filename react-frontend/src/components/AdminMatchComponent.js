@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MatchService from '../services/MatchService';
-import UserService from "../services/UserService";
+import UserService from '../services/UserService';
 
 class MatchComponent extends Component {
     constructor(props) {
@@ -9,10 +9,20 @@ class MatchComponent extends Component {
         this.state = {
             matches: []
         }
+        this.addMatch = this.addMatch.bind(this);
+        this.editMatch = this.editMatch.bind(this);
+    }
+ 
+    addMatch() {
+        this.props.history.push(`/add-match/_add`);
     }
     
+    editMatch(id) {
+        this.props.history.push(`/add-match/${id}`);
+    }
+
     componentDidMount() {
-        UserService.getUserBoard().then(
+        UserService.getAdminBoard().then (
             response => {
                 this.setState({
                     content: response.data
@@ -21,11 +31,11 @@ class MatchComponent extends Component {
             error => {
                 this.setState({
                     content:
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString()
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString()
                 });
             }
         );
@@ -38,7 +48,11 @@ class MatchComponent extends Component {
     render() {
         return (
             <div>
-                <h2 className="text-center">Matches</h2>
+                <h2 className="text-center">Matches (as Admin)</h2>
+                <div className="row">
+                    <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
+                </div>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
@@ -51,6 +65,7 @@ class MatchComponent extends Component {
                                 <th>Away Score</th>
                                 <th>Place</th>
                                 <th>Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +81,9 @@ class MatchComponent extends Component {
                                         <td>{match.awayScore}</td>
                                         <td>{match.place}</td>
                                         <td>{match.date}</td>
+                                        <td>
+                                            <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
+                                        </td>
                                     </tr>
                                 )
                             }

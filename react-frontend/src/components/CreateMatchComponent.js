@@ -6,6 +6,7 @@ class CreateMatchComponent extends Component {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             season_id: '',
             home_team: '',
             away_team: '',
@@ -22,17 +23,41 @@ class CreateMatchComponent extends Component {
         this.changeAwayScoreHandler = this.changeAwayScoreHandler.bind(this);
         this.changePlaceHandler = this.changePlaceHandler.bind(this);
         this.changeDateHandler = this.changeDateHandler.bind(this);
-        this.saveMatch = this.saveMatch.bind(this);
+        this.saveOrUpdateMatch = this.saveOrUpdateMatch.bind(this);
     }
 
-    saveMatch = (m) => {
+    componentDidMount() {
+        if(this.state.id === '_add') {
+            return
+        } else {
+            MatchService.getMatchById(this.state.id).then( (res) => {
+                let match = res.data;
+                this.setState({season_id: match.season_id,
+                    home_team: match.home_team,
+                    away_team: match.away_team,
+                    homeScore: match.homeScore,
+                    awayScore: match.awayScore,
+                    place: match.place,
+                    date: match.date
+                });
+            });
+        }
+    }
+
+    saveOrUpdateMatch = (m) => {
         m.preventDefault();
         let match = {season_id: this.state.season_id, home_team: this.state.home_team, away_team: this.state.away_team, homeScore: this.state.homeScore, awayScore: this.state.awayScore, place: this.state.place, date: this.state.date};
         console.log('match => ' + JSON.stringify(match));
 
-        MatchService.createMatch(match).then(res => {
-            this.props.history.push('/matches');
-        });
+        if(this.state.id === '_add') {
+            MatchService.createMatch(match).then(res => {
+                this.props.history.push('/matches-admin');
+            });
+        } else {
+            MatchService.updateMatch(match, this.state.id).then(res => {
+                this.props.history.push('/matches-admin');
+            })
+        }
     }
 
     changeSeasonIdHandler = (event) => {
@@ -64,16 +89,27 @@ class CreateMatchComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/matches');
+        this.props.history.push('/matches-admin');
+    }
+
+    getTitle() {
+        if(this.state.id === '_add') {
+            return <h3 className="text-center">Add Match</h3>
+        } else {
+            return <h3 className="text-center">Update Match</h3>
+        }
     }
 
     render() {
         return (
             <div>
+                <br></br>
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Add Match</h3>
+                            {
+                                this.getTitle()    
+                            }
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -112,7 +148,7 @@ class CreateMatchComponent extends Component {
                                             value={this.state.date} onChange={this.changeDateHandler}/>
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveMatch}>Save</button>
+                                    <button className="btn btn-success" onClick={this.saveOrUpdateMatch}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
                             </div>

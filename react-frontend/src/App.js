@@ -7,6 +7,7 @@ import RegisterComponent from './components/RegisterComponent';
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
 import MatchComponent from './components/MatchComponent';
+import AdminMatchComponent from './components/AdminMatchComponent';
 import CreateMatchComponent from './components/CreateMatchComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -64,8 +65,8 @@ class App extends Component {
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/add-match"} className="nav-link">
-                  Add Match
+                <Link to={"/matches-admin"} className="nav-link">
+                  Matches (as Admin)
                 </Link>
               </li>
             )}
@@ -115,8 +116,9 @@ class App extends Component {
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
-            <Route path="/add-match" component={CreateMatchComponent}></Route>
+            <Route path="/add-match/:id" component={CreateMatchComponent}></Route>
             <Route path="/matches" component={MatchComponent} />
+            <Route path="/matches-admin" component={AdminMatchComponent}/>
           </Switch>
         </div>
       </div>

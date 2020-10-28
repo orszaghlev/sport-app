@@ -12,6 +12,10 @@ class MatchService {
         return axios.post(MATCH_API_BASE_URL, match);
     }
 
+    getMatchById(matchId) {
+        return axios.get(MATCH_API_BASE_URL + '/' + matchId);
+    }
+
 }
 
 export default new MatchService()
