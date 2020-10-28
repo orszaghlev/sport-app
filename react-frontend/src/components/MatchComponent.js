@@ -8,7 +8,6 @@ class MatchComponent extends Component {
         this.state = {
             matches: []
         }
-        this.addMatch = this.addMatch.bind(this);
     }
     
     componentDidMount() {
@@ -17,17 +16,10 @@ class MatchComponent extends Component {
         });
     }
 
-    addMatch() {
-        this.props.history.push('/admin/add-match');
-    }
-
     render() {
         return (
             <div>
                 <h2 className="text-center">Matches</h2>
-                <div className="row">
-                    <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
-                </div>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>

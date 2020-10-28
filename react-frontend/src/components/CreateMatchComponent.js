@@ -15,13 +15,13 @@ class CreateMatchComponent extends Component {
             date: ''
         }
 
-        this.changeSeasonIdHandler = this.changeSeasonIdHandler,bind(this);
-        this.changeHomeTeamHandler = this.changeHomeTeamHandler,bind(this);
-        this.changeAwayTeamHandler = this.changeAwayTeamHandler,bind(this);
-        this.changeHomeScoreHandler = this.changeHomeScoreHandler,bind(this);
-        this.changeAwayScoreHandler = this.changeAwayScoreHandler,bind(this);
-        this.changePlaceHandler = this.changePlaceHandler,bind(this);
-        this.changeDateHandler = this.changeDateHandler,bind(this);
+        this.changeSeasonIdHandler = this.changeSeasonIdHandler.bind(this);
+        this.changeHomeTeamHandler = this.changeHomeTeamHandler.bind(this);
+        this.changeAwayTeamHandler = this.changeAwayTeamHandler.bind(this);
+        this.changeHomeScoreHandler = this.changeHomeScoreHandler.bind(this);
+        this.changeAwayScoreHandler = this.changeAwayScoreHandler.bind(this);
+        this.changePlaceHandler = this.changePlaceHandler.bind(this);
+        this.changeDateHandler = this.changeDateHandler.bind(this);
         this.saveMatch = this.saveMatch.bind(this);
     }
 
