@@ -56,7 +56,8 @@ class ViewMatchComponent extends Component {
                             <label>Date:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.match.date}</div>
                         </div>
-                        <div>
+                        <br></br>
+                        <div className="row">
                             <button className="btn btn-danger" onClick={this.return.bind(this)}>Return</button>
                         </div>
                     </div>
