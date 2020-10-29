@@ -1,13 +1,11 @@
 package com.deik.sportapp.competition;
 
 import com.deik.sportapp.season.Season;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Proxy(lazy = false)
 @Table(name = "competition", schema = "competitions")
 public class Competition {
 
@@ -18,16 +16,16 @@ public class Competition {
     @Column(name = "region")
     private String region;
 
-    @Column(name = "sport_type")
+    @Column(name = "sportType")
     private String sportType;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "logo_link")
+    @Column(name = "logoLink")
     private String logoLink;
 
-    @OneToMany(mappedBy = "competition_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "competitionId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Season> seasons;
 
     public Competition() {

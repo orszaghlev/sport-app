@@ -7,9 +7,9 @@ class CreateMatchComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            season_id: '',
-            home_team: '',
-            away_team: '',
+            seasonId: '',
+            homeTeam: '',
+            awayTeam: '',
             homeScore: '',
             awayScore: '',
             place: '',
@@ -33,8 +33,8 @@ class CreateMatchComponent extends Component {
             MatchService.getMatchById(this.state.id).then( (res) => {
                 let match = res.data;
                 this.setState({season_id: match.season_id,
-                    home_team: match.home_team,
-                    away_team: match.away_team,
+                    homeTeam: match.homeTeam,
+                    awayTeam: match.awayTeam,
                     homeScore: match.homeScore,
                     awayScore: match.awayScore,
                     place: match.place,
@@ -46,7 +46,7 @@ class CreateMatchComponent extends Component {
 
     saveOrUpdateMatch = (m) => {
         m.preventDefault();
-        let match = {season_id: this.state.season_id, home_team: this.state.home_team, away_team: this.state.away_team, homeScore: this.state.homeScore, awayScore: this.state.awayScore, place: this.state.place, date: this.state.date};
+        let match = {seasonId: this.state.seasonId, homeTeam: this.state.homeTeam, awayTeam: this.state.awayTeam, homeScore: this.state.homeScore, awayScore: this.state.awayScore, place: this.state.place, date: this.state.date};
         console.log('match => ' + JSON.stringify(match));
 
         if(this.state.id === '_add') {
@@ -61,15 +61,15 @@ class CreateMatchComponent extends Component {
     }
 
     changeSeasonIdHandler = (event) => {
-        this.setState({season_id: event.target.value});
+        this.setState({seasonId: event.target.value});
     }
 
     changeHomeTeamHandler = (event) => {
-        this.setState({home_team: event.target.value});
+        this.setState({homeTeam: event.target.value});
     }
 
     changeAwayTeamHandler = (event) => {
-        this.setState({away_team: event.target.value});
+        this.setState({awayTeam: event.target.value});
     }
 
     changeHomeScoreHandler = (event) => {
@@ -114,18 +114,18 @@ class CreateMatchComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Season ID:</label>
-                                        <input placeholder="Season ID" name="season_id" className="form-control"
-                                            value={this.state.season_id} onChange={this.changeSeasonIdHandler}/>
+                                        <input placeholder="Season ID" name="seasonId" className="form-control"
+                                            value={this.state.seasonId} onChange={this.changeSeasonIdHandler}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Home Team:</label>
-                                        <input placeholder="Home Team" name="home_team" className="form-control"
-                                            value={this.state.home_team} onChange={this.changeHomeTeamHandler}/>
+                                        <input placeholder="Home Team" name="homeTeam" className="form-control"
+                                            value={this.state.homeTeam} onChange={this.changeHomeTeamHandler}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Away Team:</label>
-                                        <input placeholder="Away Team" name="away_team" className="form-control"
-                                            value={this.state.away_team} onChange={this.changeAwayTeamHandler}/>
+                                        <input placeholder="Away Team" name="awayTeam" className="form-control"
+                                            value={this.state.awayTeam} onChange={this.changeAwayTeamHandler}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Home Score:</label>

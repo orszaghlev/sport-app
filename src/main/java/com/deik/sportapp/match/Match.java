@@ -2,13 +2,11 @@ package com.deik.sportapp.match;
 
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Proxy(lazy = false)
 @Table(name = "match", schema = "competitions")
 public class Match {
 
@@ -17,21 +15,21 @@ public class Match {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "season_id", referencedColumnName = "id")
-    private Season season_id;
+    @JoinColumn(name = "seasonId", referencedColumnName = "id")
+    private Season seasonId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "home_team", referencedColumnName = "id")
-    private Team home_team;
+    @JoinColumn(name = "homeTeam", referencedColumnName = "id")
+    private Team homeTeam;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "away_team", referencedColumnName = "id")
-    private Team away_team;
+    @JoinColumn(name = "awayTeam", referencedColumnName = "id")
+    private Team awayTeam;
 
-    @Column(name = "home_score")
+    @Column(name = "homeScore")
     private int homeScore;
 
-    @Column(name = "away_score")
+    @Column(name = "awayScore")
     private int awayScore;
 
     @Column(name = "place")
@@ -43,11 +41,11 @@ public class Match {
     public Match() {
     }
 
-    public Match(String id, Season season_id, Team home_team, Team away_team, int homeScore, int awayScore, String place, Date date) {
+    public Match(String id, Season seasonId, Team homeTeam, Team awayTeam, int homeScore, int awayScore, String place, Date date) {
         this.id = id;
-        this.season_id = season_id;
-        this.home_team = home_team;
-        this.away_team = away_team;
+        this.seasonId = seasonId;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.place = place;
@@ -63,27 +61,27 @@ public class Match {
     }
 
     public Season getSeasonId() {
-        return season_id;
+        return seasonId;
     }
 
-    public void setSeasonId(Season season_id) {
-        this.season_id = season_id;
+    public void setSeasonId(Season seasonId) {
+        this.seasonId = seasonId;
     }
 
     public Team getHomeTeam() {
-        return home_team;
+        return homeTeam;
     }
 
-    public void setHomeTeam(Team home_team) {
-        this.home_team = home_team;
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
     }
 
     public Team getAwayTeam() {
-        return away_team;
+        return awayTeam;
     }
 
-    public void setAwayTeam(Team away_team) {
-        this.away_team = away_team;
+    public void setAwayTeam(Team awayTeam) {
+        this.awayTeam = awayTeam;
     }
 
     public int getHomeScore() {

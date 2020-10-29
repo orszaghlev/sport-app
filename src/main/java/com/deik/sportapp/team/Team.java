@@ -2,14 +2,12 @@ package com.deik.sportapp.team;
 
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.season.Season;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Proxy(lazy = false)
 @Table(name = "team", schema = "competitions")
 public class Team {
 
@@ -17,34 +15,34 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(name = "full_name")
+    @Column(name = "fullName")
     private String fullName;
 
-    @Column(name = "short_name")
+    @Column(name = "shortName")
     private String shortName;
 
-    @Column(name = "founding_date")
+    @Column(name = "foundingDate")
     private Date foundingDate;
 
-    @Column(name = "team_value")
+    @Column(name = "teamValue")
     private int teamValue;
 
-    @Column(name = "value_currency")
+    @Column(name = "valueCurrency")
     private String valueCurrency;
 
-    @Column(name = "image_link")
+    @Column(name = "imageLink")
     private String imageLink;
 
-    @Column(name = "home_place")
+    @Column(name = "homePlace")
     private String homePlace;
 
-    @OneToMany(mappedBy = "home_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Match> home_matches;
+    @OneToMany(mappedBy = "homeTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Match> homeMatches;
 
-    @OneToMany(mappedBy = "away_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Match> away_matches;
+    @OneToMany(mappedBy = "awayTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Match> awayMatches;
 
-    @OneToMany(mappedBy = "team_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Season> seasons;
 
     public Team() {
@@ -127,19 +125,19 @@ public class Team {
     }
 
     public List<Match> getHomeMatches() {
-        return home_matches;
+        return homeMatches;
     }
 
-    public void setHomeMatches(List<Match> home_matches) {
-        this.home_matches = home_matches;
+    public void setHomeMatches(List<Match> homeMatches) {
+        this.homeMatches = homeMatches;
     }
 
     public List<Match> getAwayMatches() {
-        return away_matches;
+        return awayMatches;
     }
 
-    public void setAwayMatches(List<Match> away_matches) {
-        this.away_matches = away_matches;
+    public void setAwayMatches(List<Match> awayMatches) {
+        this.awayMatches = awayMatches;
     }
 
     public List<Season> getSeasons() {

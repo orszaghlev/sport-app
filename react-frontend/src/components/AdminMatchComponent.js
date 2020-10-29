@@ -7,7 +7,10 @@ class MatchComponent extends Component {
         super(props)
 
         this.state = {
-            matches: []
+            matches: [],
+            seasons: [],
+            competitions: [],
+            teams: []
         }
         this.addMatch = this.addMatch.bind(this);
         this.editMatch = this.editMatch.bind(this);
@@ -54,6 +57,18 @@ class MatchComponent extends Component {
         MatchService.getMatches().then((res) => {
             this.setState({matches: res.data});
         });
+
+        MatchService.getSeasons().then((res) => {
+            this.setState({seasons: res.data});
+        });
+
+        MatchService.getCompetitions().then((res) => {
+            this.setState({competitions: res.data});
+        });
+
+        MatchService.getTeams().then((res) => {
+            this.setState({teams: res.data});
+        });
     }
 
     render() {
@@ -85,9 +100,9 @@ class MatchComponent extends Component {
                                     match => 
                                     <tr key = {match.id}>
                                         <td>{match.id}</td>
-                                        <td>{match.season_id}</td>
-                                        <td>{match.home_team}</td>
-                                        <td>{match.away_team}</td>
+                                        <td>{match.seasonId}</td>
+                                        <td>{match.homeTeam}</td>
+                                        <td>{match.awayTeam}</td>
                                         <td>{match.homeScore}</td>
                                         <td>{match.awayScore}</td>
                                         <td>{match.place}</td>

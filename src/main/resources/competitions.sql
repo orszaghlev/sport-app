@@ -37,13 +37,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`TEAM` (
   `id` VARCHAR(6) NOT NULL,
-  `full_name` VARCHAR(250) NOT NULL,
-  `short_name` VARCHAR(5) NOT NULL,
-  `founding_date` DATE,
-  `team_value` INT,
-  `value_currency` VARCHAR(20),
-  `image_link` VARCHAR(250),
-  `home_place` VARCHAR(250),
+  `fullName` VARCHAR(250) NOT NULL,
+  `shortName` VARCHAR(5) NOT NULL,
+  `foundingDate` DATE,
+  `teamValue` INT,
+  `valueCurrency` VARCHAR(20),
+  `imageLink` VARCHAR(250),
+  `homePlace` VARCHAR(250),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -114,9 +114,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `competitions`.`COMPETITION` (
   `id` VARCHAR(6) NOT NULL,
   `region` VARCHAR(250),
-  `sport_type` VARCHAR(250),
+  `sportType` VARCHAR(250),
   `name` VARCHAR(250),
-  `logo_link` VARCHAR(250),
+  `logoLink` VARCHAR(250),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -126,20 +126,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
   `id` VARCHAR(6) NOT NULL,
-  `team_id` VARCHAR(6) NOT NULL,
-  `competition_id` VARCHAR(6) NOT NULL,
+  `teamId` VARCHAR(6) NOT NULL,
+  `competitionId` VARCHAR(6) NOT NULL,
   `started` DATE,
   `finished` DATE,
   PRIMARY KEY (`id`),
-  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  INDEX `competition_id_idx` (`competition_id` ASC) VISIBLE,
-  CONSTRAINT `se_team_id`
-    FOREIGN KEY (`team_id`)
+  INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
+  INDEX `competitionIdIdx` (`competitionId` ASC) VISIBLE,
+  CONSTRAINT `seTeamId`
+    FOREIGN KEY (`teamId`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `se_competition_id`
-    FOREIGN KEY (`competition_id`)
+  CONSTRAINT `seCompetitionId`
+    FOREIGN KEY (`competitionId`)
     REFERENCES `competitions`.`COMPETITION` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -151,29 +151,29 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`MATCH` (
   `id` VARCHAR(6) NOT NULL,
-  `season_id` VARCHAR(6),
-  `home_team` VARCHAR(6) NOT NULL,
-  `away_team` VARCHAR(6) NOT NULL,
-  `home_score` INT,
-  `away_score` INT,
+  `seasonId` VARCHAR(6),
+  `homeTeam` VARCHAR(6) NOT NULL,
+  `awayTeam` VARCHAR(6) NOT NULL,
+  `homeScore` INT,
+  `awayScore` INT,
   `place` VARCHAR(250),
   `date` DATE,
   PRIMARY KEY (`id`),
-  INDEX `season_id_idx` (`season_id` ASC) VISIBLE,
-  INDEX `home_team_idx` (`home_team` ASC) VISIBLE,
-  INDEX `away_team_idx` (`away_team` ASC) VISIBLE,
-  CONSTRAINT `ma_season_id`
-    FOREIGN KEY (`season_id`)
+  INDEX `seasonIdIdx` (`seasonId` ASC) VISIBLE,
+  INDEX `homeTeamIdx` (`homeTeam` ASC) VISIBLE,
+  INDEX `awayTeamIdx` (`awayTeam` ASC) VISIBLE,
+  CONSTRAINT `maSeasonId`
+    FOREIGN KEY (`seasonId`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `ma_home_team`
-    FOREIGN KEY (`home_team`)
+  CONSTRAINT `maHomeTeam`
+    FOREIGN KEY (`homeTeam`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `ma_away_team`
-    FOREIGN KEY (`away_team`)
+  CONSTRAINT `maAwayTeam`
+    FOREIGN KEY (`awayTeam`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
   `h_saves` INT,
   `a_saves` INT,
   `h_two_min_penalty` INT,
-  `a_two_min_penalty` INT,	
+  `a_two_min_penalty` INT,
   `h_yellow_cards` INT,
   `a_yellow_cards` INT,
   `h_goal_streak` INT,

@@ -30,15 +30,15 @@ class ViewMatchComponent extends Component {
                     <div className="card-body">
                         <div className="row">
                             <label>Season ID:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.match.season_id}</div>
+                            <div style={{marginLeft: "5px"}}>{this.state.match.seasonId}</div>
                         </div>
                         <div className="row">
                             <label>Home Team:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.match.home_team}</div>
+                            <div style={{marginLeft: "5px"}}>{this.state.match.homeTeam}</div>
                         </div>
                         <div className="row">
                             <label>Away Team:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.match.away_team}</div>
+                            <div style={{marginLeft: "5px"}}>{this.state.match.awayTeam}</div>
                         </div>
                         <div className="row">
                             <label>Home Score:</label>

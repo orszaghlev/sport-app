@@ -3,14 +3,12 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Proxy(lazy = false)
 @Table(name = "season", schema = "competitions")
 public class Season {
 
@@ -19,12 +17,12 @@ public class Season {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", referencedColumnName = "id")
-    private Team team_id;
+    @JoinColumn(name = "teamId", referencedColumnName = "id")
+    private Team teamId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "competition_id", referencedColumnName = "id")
-    private Competition competition_id;
+    @JoinColumn(name = "competitionId", referencedColumnName = "id")
+    private Competition competitionId;
 
     @Column(name = "started")
     private Date started;
@@ -32,17 +30,17 @@ public class Season {
     @Column(name = "finished")
     private Date finished;
 
-    @OneToMany(mappedBy = "season_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seasonId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Match> matches;
 
     public Season() {
 
     }
 
-    public Season(String id, Team team_id, Competition competition_id, Date started, Date finished) {
+    public Season(String id, Team teamId, Competition competitionId, Date started, Date finished) {
         this.id = id;
-        this.team_id = team_id;
-        this.competition_id = competition_id;
+        this.teamId = teamId;
+        this.competitionId = competitionId;
         this.started = started;
         this.finished = finished;
     }
@@ -56,19 +54,19 @@ public class Season {
     }
 
     public Team getTeamId() {
-        return team_id;
+        return teamId;
     }
 
-    public void setTeamId(Team team_id) {
-        this.team_id = team_id;
+    public void setTeamId(Team teamId) {
+        this.teamId = teamId;
     }
 
     public Competition getCompetitionId() {
-        return competition_id;
+        return competitionId;
     }
 
-    public void setCompetitionId(Competition competition_id) {
-        this.competition_id = competition_id;
+    public void setCompetitionId(Competition competitionId) {
+        this.competitionId = competitionId;
     }
 
     public Date getStarted() {
