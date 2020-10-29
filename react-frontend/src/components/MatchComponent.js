@@ -18,6 +18,18 @@ class MatchComponent extends Component {
         this.props.history.push(`/view-match/${id}`);
     }
 
+    viewTeam(id) {
+        this.props.history.push(`/view-team/${id}`);
+    }
+
+    viewSeason(id) {
+        this.props.history.push(`/view-season/${id}`);
+    }
+
+    viewCompetition(id) {
+        this.props.history.push(`/view-competition/${id}`);
+    }
+
     componentDidMount() {
         UserService.getUserBoard().then(
             response => {
@@ -87,7 +99,109 @@ class MatchComponent extends Component {
                                         <td>{match.place}</td>
                                         <td>{match.date}</td>
                                         <td>
-                                        <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                            <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <h2 className="text-center">Teams</h2>
+                <div className="row">
+                    <table className="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Team ID</th>
+                                <th>Full Name</th>
+                                <th>Short Name</th>
+                                <th>Founding Date</th>
+                                <th>Team Value</th>
+                                <th>Value Currency</th>
+                                <th>Image Link</th>
+                                <th>Home Place</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.teams.map(
+                                    team => 
+                                    <tr key = {team.id}>
+                                        <td>{team.id}</td>
+                                        <td>{team.fullName}</td>
+                                        <td>{team.shortName}</td>
+                                        <td>{team.foundingDate}</td>
+                                        <td>{team.teamValue}</td>
+                                        <td>{team.valueCurrency}</td>
+                                        <td>{team.imageLink}</td>
+                                        <td>{team.homePlace}</td>
+                                        <td>
+                                            <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <h2 className="text-center">Seasons</h2>
+                <div className="row">
+                    <table className="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Season ID</th>
+                                <th>Team ID</th>
+                                <th>Competition ID</th>
+                                <th>Started</th>
+                                <th>Finished</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.seasons.map(
+                                    season => 
+                                    <tr key = {season.id}>
+                                        <td>{season.id}</td>
+                                        <td>{season.teamId}</td>
+                                        <td>{season.competitionId}</td>
+                                        <td>{season.started}</td>
+                                        <td>{season.finished}</td>
+                                        <td>
+                                            <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <h2 className="text-center">Competitions</h2>
+                <div className="row">
+                    <table className="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Competition ID</th>
+                                <th>Region</th>
+                                <th>Sport Type</th>
+                                <th>Name</th>
+                                <th>Logo Link</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.competitions.map(
+                                    competition => 
+                                    <tr key = {competition.id}>
+                                        <td>{competition.id}</td>
+                                        <td>{competition.region}</td>
+                                        <td>{competition.sportType}</td>
+                                        <td>{competition.name}</td>
+                                        <td>{competition.logoLink}</td>
+                                        <td>
+                                            <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
