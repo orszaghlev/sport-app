@@ -13,21 +13,72 @@ class MatchComponent extends Component {
             teams: []
         }
         this.addMatch = this.addMatch.bind(this);
+        this.addTeam = this.addTeam.bind(this);
+        this.addSeason = this.addSeason.bind(this);
+        this.addCompetition = this.addCompetition.bind(this);
         this.editMatch = this.editMatch.bind(this);
+        this.editTeam = this.editTeam.bind(this);
+        this.editSeason = this.editSeason.bind(this);
+        this.editCompetition = this.editCompetition.bind(this);
         this.deleteMatch = this.deleteMatch.bind(this);
+        this.deleteTeam = this.deleteTeam.bind(this);
+        this.deleteSeason = this.deleteSeason.bind(this);
+        this.deleteCompetition = this.deleteCompetition.bind(this);
     }
  
     addMatch() {
         this.props.history.push(`/add-match/_add`);
+    }
+
+    addTeam() {
+        this.props.history.push(`/add-team/_add`);
+    }
+
+    addSeason() {
+        this.props.history.push(`/add-season/_add`);
+    }
+
+    addCompetition() {
+        this.props.history.push(`/add-competition/_add`);
     }
     
     editMatch(id) {
         this.props.history.push(`/add-match/${id}`);
     }
 
+    editTeam(id) {
+        this.props.history.push(`/add-team/${id}`);
+    }
+
+    editSeason(id) {
+        this.props.history.push(`/add-season/${id}`);
+    }
+
+    editCompetition(id) {
+        this.props.history.push(`/add-competition/${id}`);
+    }
+
     deleteMatch(id) {
         MatchService.deleteMatch(id).then(res => {
             this.setState({matches: this.state.matches.filter(match => match.id !== id)});
+        });
+    }
+
+    deleteTeam(id) {
+        MatchService.deleteTeam(id).then(res => {
+            this.setState({teams: this.state.teams.filter(team => team.id !== id)});
+        });
+    }
+
+    deleteSeason(id) {
+        MatchService.deleteSeason(id).then(res => {
+            this.setState({seasons: this.state.seasons.filter(season => season.id !== id)});
+        });
+    }
+
+    deleteCompetition(id) {
+        MatchService.deleteCompetition(id).then(res => {
+            this.setState({competitions: this.state.competitions.filter(competition => competition.id !== id)});
         });
     }
 
@@ -70,16 +121,16 @@ class MatchComponent extends Component {
             this.setState({matches: res.data});
         });
 
+        MatchService.getTeams().then((res) => {
+            this.setState({teams: res.data});
+        });
+
         MatchService.getSeasons().then((res) => {
             this.setState({seasons: res.data});
         });
 
         MatchService.getCompetitions().then((res) => {
             this.setState({competitions: res.data});
-        });
-
-        MatchService.getTeams().then((res) => {
-            this.setState({teams: res.data});
         });
     }
 

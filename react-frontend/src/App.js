@@ -9,7 +9,13 @@ import ProfileComponent from './components/ProfileComponent';
 import MatchComponent from './components/MatchComponent';
 import AdminMatchComponent from './components/AdminMatchComponent';
 import CreateMatchComponent from './components/CreateMatchComponent';
+import CreateTeamComponent from './components/CreateTeamComponent';
+import CreateSeasonComponent from './components/CreateSeasonComponent';
+import CreateCompetitionComponent from './components/CreateCompetitionComponent';
 import ViewMatchComponent from './components/ViewMatchComponent';
+import ViewTeamComponent from './components/ViewTeamComponent';
+import ViewSeasonComponent from './components/ViewSeasonComponent';
+import ViewCompetitionComponent from './components/ViewCompetitionComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
@@ -118,7 +124,13 @@ class App extends Component {
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
             <Route path="/add-match/:id" component={CreateMatchComponent}></Route>
+            <Route path="/add-team/:id" component={CreateTeamComponent}></Route>
+            <Route path="/add-season/:id" component={CreateSeasonComponent}></Route>
+            <Route path="/add-competition/:id" component={CreateCompetitionComponent}></Route>
             <Route path="/view-match/:id" component={ViewMatchComponent}></Route>
+            <Route path="/view-team/:id" component={ViewTeamComponent}></Route>
+            <Route path="/view-season/:id" component={ViewSeasonComponent}></Route>
+            <Route path="/view-competition/:id" component={ViewCompetitionComponent}></Route>
             <Route path="/matches" component={MatchComponent} />
             <Route path="/matches-admin" component={AdminMatchComponent}/>
           </Switch>
