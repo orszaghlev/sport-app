@@ -42,11 +42,11 @@ class CreateCompetitionComponent extends Component {
 
         if(this.state.id === '_add') {
             MatchService.createCompetition(competition).then(res => {
-                this.props.history.push('/matches-admin');
+                this.props.history.push('/events-admin');
             });
         } else {
             MatchService.updateCompetition(competition, this.state.id).then(res => {
-                this.props.history.push('/matches-admin');
+                this.props.history.push('/events-admin');
             })
         }
     }
@@ -68,7 +68,7 @@ class CreateCompetitionComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/matches-admin');
+        this.props.history.push('/events-admin');
     }
 
     getTitle() {

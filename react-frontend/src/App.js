@@ -72,16 +72,16 @@ class App extends Component {
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/matches-admin"} className="nav-link">
-                  Matches (as Admin)
+                <Link to={"/events-admin"} className="nav-link">
+                  Events (as Admin)
                 </Link>
               </li>
             )}
 
             {currentUser && (
               <li className="nav-item">
-                <Link to ={"/matches"} className="nav-link">
-                  Matches
+                <Link to ={"/events"} className="nav-link">
+                  Events
                 </Link>
               </li>
             )}
@@ -131,8 +131,8 @@ class App extends Component {
             <Route path="/view-team/:id" component={ViewTeamComponent}></Route>
             <Route path="/view-season/:id" component={ViewSeasonComponent}></Route>
             <Route path="/view-competition/:id" component={ViewCompetitionComponent}></Route>
-            <Route path="/matches" component={MatchComponent} />
-            <Route path="/matches-admin" component={AdminMatchComponent}/>
+            <Route path="/events" component={MatchComponent} />
+            <Route path="/events-admin" component={AdminMatchComponent}/>
           </Switch>
         </div>
       </div>

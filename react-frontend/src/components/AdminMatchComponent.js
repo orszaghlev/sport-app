@@ -137,7 +137,7 @@ class MatchComponent extends Component {
     render() {
         return (
             <div>
-                <h2 className="text-center">Matches (as Admin)</h2>
+                <h2 className="text-center">Matches</h2>
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
                 </div>
@@ -181,7 +181,7 @@ class MatchComponent extends Component {
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-center">Teams (as Admin)</h2>
+                <h2 className="text-center">Teams</h2>
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addTeam}>Add Team</button>
                 </div>
@@ -225,7 +225,7 @@ class MatchComponent extends Component {
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-center">Seasons (as Admin)</h2>
+                <h2 className="text-center">Seasons</h2>
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addSeason}>Add Season</button>
                 </div>
@@ -263,7 +263,7 @@ class MatchComponent extends Component {
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-center">Competitions (as Admin)</h2>
+                <h2 className="text-center">Competitions</h2>
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addCompetition}>Add Competition</button>
                 </div>

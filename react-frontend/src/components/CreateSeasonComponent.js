@@ -42,11 +42,11 @@ class CreateSeasonComponent extends Component {
 
         if(this.state.id === '_add') {
             MatchService.createSeason(season).then(res => {
-                this.props.history.push('/matches-admin');
+                this.props.history.push('/events-admin');
             });
         } else {
             MatchService.updateSeason(season, this.state.id).then(res => {
-                this.props.history.push('/matches-admin');
+                this.props.history.push('/events-admin');
             })
         }
     }
@@ -68,7 +68,7 @@ class CreateSeasonComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/matches-admin');
+        this.props.history.push('/events-admin');
     }
 
     getTitle() {
