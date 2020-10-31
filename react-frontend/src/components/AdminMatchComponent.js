@@ -162,15 +162,15 @@ class MatchComponent extends Component {
                                 this.state.matches.map(
                                     match => 
                                     <tr key = {match.id}>
-                                        <td>{match.id}</td>
-                                        <td>{match.seasonId}</td>
-                                        <td>{match.homeTeam}</td>
-                                        <td>{match.awayTeam}</td>
-                                        <td>{match.homeScore}</td>
-                                        <td>{match.awayScore}</td>
-                                        <td>{match.place}</td>
-                                        <td>{match.date}</td>
-                                        <td>
+                                        <td className="align-middle">{match.id}</td>
+                                        <td className="align-middle">{match.seasonId}</td>
+                                        <td className="align-middle">{match.homeTeam}</td>
+                                        <td className="align-middle">{match.awayTeam}</td>
+                                        <td className="align-middle">{match.homeScore}</td>
+                                        <td className="align-middle">{match.awayScore}</td>
+                                        <td className="align-middle">{match.place}</td>
+                                        <td className="align-middle">{match.date}</td>
+                                        <td className="align-middle">
                                             <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
@@ -206,15 +206,15 @@ class MatchComponent extends Component {
                                 this.state.teams.map(
                                     team => 
                                     <tr key = {team.id}>
-                                        <td>{team.id}</td>
-                                        <td>{team.fullName}</td>
-                                        <td width="11%">{team.shortName}</td>
-                                        <td>{team.foundingDate}</td>
-                                        <td>{team.teamValue}</td>
-                                        <td width="5%">{team.valueCurrency}</td>
-                                        <td>{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
-                                        <td>{team.homePlace}</td>
-                                        <td>
+                                        <td className="align-middle">{team.id}</td>
+                                        <td className="align-middle">{team.fullName}</td>
+                                        <td className="align-middle" width="11%">{team.shortName}</td>
+                                        <td className="align-middle">{team.foundingDate}</td>
+                                        <td className="align-middle">{team.teamValue}</td>
+                                        <td className="align-middle" width="5%">{team.valueCurrency}</td>
+                                        <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
+                                        <td className="align-middle">{team.homePlace}</td>
+                                        <td className="align-middle">
                                             <button onClick={ () => this.editTeam(team.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteTeam(team.id)} className="btn btn-danger">Delete</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
@@ -247,12 +247,12 @@ class MatchComponent extends Component {
                                 this.state.seasons.map(
                                     season => 
                                     <tr key = {season.id}>
-                                        <td width="10%">{season.id}</td>
-                                        <td width="16%">{season.teamId}</td>
-                                        <td width="16%">{season.competitionId}</td>
-                                        <td width="17%">{season.started}</td>
-                                        <td width="17%">{season.finished}</td>
-                                        <td>
+                                        <td className="align-middle" width="10%">{season.id}</td>
+                                        <td className="align-middle" width="16%">{season.teamId}</td>
+                                        <td className="align-middle" width="16%">{season.competitionId}</td>
+                                        <td className="align-middle" width="17%">{season.started}</td>
+                                        <td className="align-middle" width="17%">{season.finished}</td>
+                                        <td className="align-middle">
                                             <button onClick={ () => this.editSeason(season.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteSeason(season.id)} className="btn btn-danger">Delete</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
@@ -285,12 +285,12 @@ class MatchComponent extends Component {
                                 this.state.competitions.map(
                                     competition => 
                                     <tr key = {competition.id}>
-                                        <td width="13%">{competition.id}</td>
-                                        <td width="16%">{competition.region}</td>
-                                        <td width="16%">{competition.sportType}</td>
-                                        <td width="16%">{competition.name}</td>
-                                        <td width="16%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
-                                        <td>
+                                        <td className="align-middle" width="13%">{competition.id}</td>
+                                        <td className="align-middle" width="16%">{competition.region}</td>
+                                        <td className="align-middle" width="16%">{competition.sportType}</td>
+                                        <td className="align-middle" width="16%">{competition.name}</td>
+                                        <td className="align-middle" width="16%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
+                                        <td className="align-middle">
                                             <button onClick={ () => this.editCompetition(competition.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCompetition(competition.id)} className="btn btn-danger">Delete</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
