@@ -2,6 +2,8 @@ package com.deik.sportapp.team;
 
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.season.Season;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +15,7 @@ public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private String id;
 
     @Column(name = "fullName")
@@ -49,7 +52,8 @@ public class Team {
 
     }
 
-    public Team(String id, String fullName, String shortName, Date foundingDate, int teamValue, String valueCurrency, String imageLink, String homePlace) {
+    @JsonCreator
+    public Team(@JsonProperty("id") String id, @JsonProperty("fullName") String fullName, @JsonProperty("shortName") String shortName, @JsonProperty("foundingDate") Date foundingDate, @JsonProperty("teamValue") int teamValue, @JsonProperty("valueCurrency") String valueCurrency, @JsonProperty("imageLink") String imageLink, @JsonProperty("homePlace") String homePlace) {
         this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;

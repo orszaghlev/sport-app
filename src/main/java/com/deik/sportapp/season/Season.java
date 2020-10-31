@@ -3,6 +3,8 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -14,6 +16,7 @@ public class Season {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +40,8 @@ public class Season {
 
     }
 
-    public Season(String id, Team teamId, Competition competitionId, Date started, Date finished) {
+    @JsonCreator
+    public Season(@JsonProperty("id") String id, @JsonProperty("teamId") Team teamId, @JsonProperty("competitionId") Competition competitionId, @JsonProperty("started") Date started, @JsonProperty("finished") Date finished) {
         this.id = id;
         this.teamId = teamId;
         this.competitionId = competitionId;

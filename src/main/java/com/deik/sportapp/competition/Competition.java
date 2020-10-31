@@ -1,6 +1,8 @@
 package com.deik.sportapp.competition;
 
 import com.deik.sportapp.season.Season;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,7 +34,8 @@ public class Competition {
 
     }
 
-    public Competition(String id, String region, String sportType, String name, String logoLink) {
+    @JsonCreator
+    public Competition(@JsonProperty("id") String id, @JsonProperty("region") String region, @JsonProperty("sportType") String sportType, @JsonProperty("name") String name, @JsonProperty("logoLink") String logoLink) {
         this.id = id;
         this.region = region;
         this.sportType = sportType;
