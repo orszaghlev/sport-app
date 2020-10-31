@@ -116,9 +116,9 @@ class MatchComponent extends Component {
                                 <th>Full Name</th>
                                 <th>Short Name</th>
                                 <th>Founding Date</th>
-                                <th>Team Value</th>
-                                <th>Value Currency</th>
-                                <th>Image Link</th>
+                                <th>Value</th>
+                                <th>Currency</th>
+                                <th>Image</th>
                                 <th>Home Place</th>
                                 <th>Actions</th>
                             </tr>
@@ -163,11 +163,11 @@ class MatchComponent extends Component {
                                 this.state.seasons.map(
                                     season => 
                                     <tr key = {season.id}>
-                                        <td>{season.id}</td>
-                                        <td>{season.teamId}</td>
-                                        <td>{season.competitionId}</td>
-                                        <td>{season.started}</td>
-                                        <td>{season.finished}</td>
+                                        <td width="10%">{season.id}</td>
+                                        <td width="18%">{season.teamId}</td>
+                                        <td width="18%">{season.competitionId}</td>
+                                        <td width="22.5%">{season.started}</td>
+                                        <td width="22.5%">{season.finished}</td>
                                         <td>
                                             <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
                                         </td>
@@ -186,7 +186,7 @@ class MatchComponent extends Component {
                                 <th>Region</th>
                                 <th>Sport Type</th>
                                 <th>Name</th>
-                                <th>Logo Link</th>
+                                <th>Logo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -195,11 +195,11 @@ class MatchComponent extends Component {
                                 this.state.competitions.map(
                                     competition => 
                                     <tr key = {competition.id}>
-                                        <td>{competition.id}</td>
-                                        <td>{competition.region}</td>
-                                        <td>{competition.sportType}</td>
-                                        <td>{competition.name}</td>
-                                        <td>{competition.logoLink}</td>
+                                        <td width="13%">{competition.id}</td>
+                                        <td width="19.5%">{competition.region}</td>
+                                        <td width="19.5%">{competition.sportType}</td>
+                                        <td width="19.5%">{competition.name}</td>
+                                        <td width="19.5%">{competition.logoLink}</td>
                                         <td>
                                             <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>

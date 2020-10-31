@@ -41,15 +41,15 @@ class ViewTeamComponent extends Component {
                             <div style={{marginLeft: "5px"}}>{this.state.team.foundingDate}</div>
                         </div>
                         <div className="row">
-                            <label>Team Value:</label>
+                            <label>Value:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.team.teamValue}</div>
                         </div>
                         <div className="row">
-                            <label>Value Currency:</label>
+                            <label>Currency:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.team.valueCurrency}</div>
                         </div>
                         <div className="row">
-                            <label>Image Link:</label>
+                            <label>Image:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.team.imageLink}</div>
                         </div>
                         <div className="row">

@@ -128,13 +128,13 @@ class CreateTeamComponent extends Component {
                                             value={this.state.foundingDate} onChange={this.changeFoundingDateHandler}/>
                                     </div>
                                     <div className="form-group">
-                                        <label>Team Value:</label>
-                                        <input placeholder="Team Value" name="teamValue" className="form-control"
+                                        <label>Value:</label>
+                                        <input placeholder="Value" name="teamValue" className="form-control"
                                             value={this.state.teamValue} onChange={this.changeTeamValueHandler}/>
                                     </div>
                                     <div className="form-group">
-                                        <label>Value Currency:</label>
-                                        <input placeholder="Value Currency" name="valueCurrency" className="form-control"
+                                        <label>Currency:</label>
+                                        <input placeholder="Currency" name="valueCurrency" className="form-control"
                                             value={this.state.valueCurrency} onChange={this.changeValueCurrencyHandler}/>
                                     </div>
                                     <div className="form-group">

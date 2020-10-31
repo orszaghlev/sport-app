@@ -42,7 +42,7 @@ export default class Profile extends Component {
                         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
                     </p>
                     <p>
-                        <strong>Id:</strong>{" "}
+                        <strong>ID:</strong>{" "}
                         {currentUser.id}
                     </p>
                     <p>

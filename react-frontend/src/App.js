@@ -48,7 +48,10 @@ class App extends Component {
     const {currentUser, showAdminBoard} = this.state;
 
     return (
-      <div>
+      <div
+      style={{
+        backgroundColor: '#F4F7F9'
+      }}>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
             Team Sport App
