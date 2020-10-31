@@ -212,7 +212,7 @@ class MatchComponent extends Component {
                                         <td>{team.foundingDate}</td>
                                         <td>{team.teamValue}</td>
                                         <td width="5%">{team.valueCurrency}</td>
-                                        <td>{team.imageLink}</td>
+                                        <td>{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
                                         <td>{team.homePlace}</td>
                                         <td>
                                             <button onClick={ () => this.editTeam(team.id)} className="btn btn-info">Update</button>
@@ -289,7 +289,7 @@ class MatchComponent extends Component {
                                         <td width="16%">{competition.region}</td>
                                         <td width="16%">{competition.sportType}</td>
                                         <td width="16%">{competition.name}</td>
-                                        <td width="16%">{competition.logoLink}</td>
+                                        <td width="16%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
                                         <td>
                                             <button onClick={ () => this.editCompetition(competition.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCompetition(competition.id)} className="btn btn-danger">Delete</button>

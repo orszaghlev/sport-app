@@ -134,7 +134,7 @@ class MatchComponent extends Component {
                                         <td>{team.foundingDate}</td>
                                         <td>{team.teamValue}</td>
                                         <td>{team.valueCurrency}</td>
-                                        <td>{team.imageLink}</td>
+                                        <td>{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
                                         <td>{team.homePlace}</td>
                                         <td>
                                             <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
@@ -199,7 +199,7 @@ class MatchComponent extends Component {
                                         <td width="19.5%">{competition.region}</td>
                                         <td width="19.5%">{competition.sportType}</td>
                                         <td width="19.5%">{competition.name}</td>
-                                        <td width="19.5%">{competition.logoLink}</td>
+                                        <td width="19.5%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
                                         <td>
                                             <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>

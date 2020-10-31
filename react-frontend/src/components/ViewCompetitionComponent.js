@@ -42,7 +42,7 @@ class ViewCompetitionComponent extends Component {
                         </div>
                         <div className="row">
                             <label>Logo:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.competition.logoLink}</div>
+                            <div style={{marginLeft: "5px"}}>{<img src={this.state.competition.logoLink} alt="Logo" width="200px" height="200px"/>}</div>
                         </div>
                         <br></br>
                         <div className="row">

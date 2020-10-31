@@ -50,7 +50,7 @@ class ViewTeamComponent extends Component {
                         </div>
                         <div className="row">
                             <label>Image:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.imageLink}</div>
+                            <div style={{marginLeft: "5px"}}>{<img src={this.state.team.imageLink} alt="Team" width="200px" height="200px"/>}</div>
                         </div>
                         <div className="row">
                             <label>Home Place:</label>
