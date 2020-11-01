@@ -6,7 +6,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -20,28 +19,25 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", basePackages = {"com.deik.sportapp.user"}, transactionManagerRef = "transactionManager")
-public class DatasourceConfiguration {
+@EnableJpaRepositories(entityManagerFactoryRef = "competitionsEntityManagerFactory", basePackages = {"com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition"}, transactionManagerRef = "competitionsTransactionManager")
+public class SecondaryDatasourceConfiguration {
 
-    @Bean(name = "datasource1")
-    @ConfigurationProperties(prefix="users.datasource")
-    @Primary
+    @Bean(name = "datasource2")
+    @ConfigurationProperties(prefix="competitions.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(EntityManagerFactoryBuilder builder, @Qualifier("datasource1") DataSource dataSource) {
+    @Bean(name = "competitionsEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(EntityManagerFactoryBuilder builder, @Qualifier("datasource2") DataSource dataSource) {
         Map<String, Object> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        return builder.dataSource(dataSource).properties(properties).packages("com.deik.sportapp.user").persistenceUnit("Users").build();
+        return builder.dataSource(dataSource).properties(properties).packages("com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition").persistenceUnit("Competitions").build();
     }
 
-    @Primary
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    @Bean(name = "competitionsTransactionManager")
+    public PlatformTransactionManager transactionManager(@Qualifier("competitionsEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 

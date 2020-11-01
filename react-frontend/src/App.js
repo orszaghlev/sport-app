@@ -6,8 +6,16 @@ import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
-import BoardUserComponent from './components/BoardUserComponent';
-import BoardAdminComponent from './components/BoardAdminComponent';
+import MatchComponent from './components/MatchComponent';
+import AdminMatchComponent from './components/AdminMatchComponent';
+import CreateMatchComponent from './components/CreateMatchComponent';
+import CreateTeamComponent from './components/CreateTeamComponent';
+import CreateSeasonComponent from './components/CreateSeasonComponent';
+import CreateCompetitionComponent from './components/CreateCompetitionComponent';
+import ViewMatchComponent from './components/ViewMatchComponent';
+import ViewTeamComponent from './components/ViewTeamComponent';
+import ViewSeasonComponent from './components/ViewSeasonComponent';
+import ViewCompetitionComponent from './components/ViewCompetitionComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
@@ -41,6 +49,7 @@ class App extends Component {
 
     return (
       <div>
+        <style>{'body { background-color: #F4F7F9; }'}</style>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
             Team Sport App
@@ -64,16 +73,16 @@ class App extends Component {
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                <Link to={"/events-admin"} className="nav-link">
+                  Events (as Admin)
                 </Link>
               </li>
             )}
 
             {currentUser && (
               <li className="nav-item">
-                <Link to ={"/user"} className="nav-link">
-                  User Board
+                <Link to ={"/events"} className="nav-link">
+                  Events
                 </Link>
               </li>
             )}
@@ -115,8 +124,16 @@ class App extends Component {
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
-            <Route path="/admin" component={BoardAdminComponent} />
-            <Route path="/user" component={BoardUserComponent} />
+            <Route path="/add-match/:id" component={CreateMatchComponent}></Route>
+            <Route path="/add-team/:id" component={CreateTeamComponent}></Route>
+            <Route path="/add-season/:id" component={CreateSeasonComponent}></Route>
+            <Route path="/add-competition/:id" component={CreateCompetitionComponent}></Route>
+            <Route path="/view-match/:id" component={ViewMatchComponent}></Route>
+            <Route path="/view-team/:id" component={ViewTeamComponent}></Route>
+            <Route path="/view-season/:id" component={ViewSeasonComponent}></Route>
+            <Route path="/view-competition/:id" component={ViewCompetitionComponent}></Route>
+            <Route path="/events" component={MatchComponent} />
+            <Route path="/events-admin" component={AdminMatchComponent}/>
           </Switch>
         </div>
       </div>
