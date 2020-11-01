@@ -126,23 +126,37 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
   `id` VARCHAR(6) NOT NULL,
-  `team_id` VARCHAR(6) NOT NULL,
   `competition_id` VARCHAR(6) NOT NULL,
   `started` DATE,
   `finished` DATE,
   PRIMARY KEY (`id`),
-  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
   INDEX `competition_id_idx` (`competition_id` ASC) VISIBLE,
-  CONSTRAINT `se_team_id`
-    FOREIGN KEY (`team_id`)
-    REFERENCES `competitions`.`TEAM` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `se_competition_id`
     FOREIGN KEY (`competition_id`)
     REFERENCES `competitions`.`COMPETITION` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+               
+-- -----------------------------------------------------
+-- Table `competitions`.`IN_SEASON`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`id`, `team_id`, `competition_id`, `started`),
+  INDEX `season_id_idx` (`competition_id` ASC) VISIBLE,
+  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
+  CONSTRAINT `inse_season_id`
+    FOREIGN KEY (`season_id`)
+    REFERENCES `competitions`.`SEASON` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  CONSTRAINT `inse_team_id`
+    FOREIGN KEY (`team_id`)
+    REFERENCES `competitions`.`TEAM` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
 ENGINE = InnoDB;
 
 
