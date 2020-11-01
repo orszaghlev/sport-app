@@ -151,12 +151,12 @@ CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
     FOREIGN KEY (`season_id`)
     REFERENCES `competitions`.`SEASON` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION,
   CONSTRAINT `inse_team_id`
     FOREIGN KEY (`team_id`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
