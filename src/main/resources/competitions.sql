@@ -36,6 +36,7 @@ ENGINE = InnoDB;
 -- Table `competitions`.`TEAM`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`TEAM` (
+<<<<<<< HEAD
   `id` INT NOT NULL AUTO_INCREMENT,
   `fullName` VARCHAR(250) NOT NULL,
   `shortName` VARCHAR(5) NOT NULL,
@@ -46,6 +47,18 @@ CREATE TABLE IF NOT EXISTS `competitions`.`TEAM` (
   `homePlace` VARCHAR(250),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB AUTO_INCREMENT=1;
+=======
+  `id` VARCHAR(6) NOT NULL,
+  `full_name` VARCHAR(250) NOT NULL,
+  `short_name` VARCHAR(5) NOT NULL,
+  `founding_date` DATE,
+  `team_value` INT,
+  `value_currency` VARCHAR(20),
+  `image_link` VARCHAR(250),
+  `home_place` VARCHAR(250),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+>>>>>>> master
 
 
 -- -----------------------------------------------------
@@ -53,7 +66,11 @@ ENGINE = InnoDB AUTO_INCREMENT=1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`PLAYS_IN` (
   `athlete_id` VARCHAR(6) NOT NULL,
+<<<<<<< HEAD
   `team_id` INT NOT NULL,
+=======
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `jersey_number` INT,
   `start_of_contract` DATE NOT NULL,
   `end_of_contract` DATE,
@@ -90,7 +107,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`WORKS_IN` (
   `staff_id` VARCHAR(6) NOT NULL,
+<<<<<<< HEAD
   `team_id` INT NOT NULL,
+=======
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `start_of_contract` DATE NOT NULL,
   `end_of_contract` DATE,
   PRIMARY KEY (`staff_id`, `team_id`, `start_of_contract`),
@@ -112,6 +133,7 @@ ENGINE = InnoDB;
 -- Table `competitions`.`COMPETITION`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`COMPETITION` (
+<<<<<<< HEAD
   `id` INT NOT NULL AUTO_INCREMENT,
   `region` VARCHAR(250),
   `sportType` VARCHAR(250),
@@ -119,12 +141,22 @@ CREATE TABLE IF NOT EXISTS `competitions`.`COMPETITION` (
   `logoLink` VARCHAR(250),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB AUTO_INCREMENT=1;
+=======
+  `id` VARCHAR(6) NOT NULL,
+  `region` VARCHAR(250),
+  `sport_type` VARCHAR(250),
+  `name` VARCHAR(250),
+  `logo_link` VARCHAR(250),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+>>>>>>> master
 
 
 -- -----------------------------------------------------
 -- Table `competitions`.`SEASON`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
+<<<<<<< HEAD
   `id` INT NOT NULL AUTO_INCREMENT,
   `competitionId` INT NOT NULL,
   `started` DATE,
@@ -138,10 +170,26 @@ CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB AUTO_INCREMENT=1;
 
+=======
+  `id` VARCHAR(6) NOT NULL,
+  `competition_id` VARCHAR(6) NOT NULL,
+  `started` DATE,
+  `finished` DATE,
+  PRIMARY KEY (`id`),
+  INDEX `competition_id_idx` (`competition_id` ASC) VISIBLE,
+  CONSTRAINT `se_competition_id`
+    FOREIGN KEY (`competition_id`)
+    REFERENCES `competitions`.`COMPETITION` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+               
+>>>>>>> master
 -- -----------------------------------------------------
 -- Table `competitions`.`IN_SEASON`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
+<<<<<<< HEAD
   `seasonId` INT NOT NULL,
   `teamId` INT NOT NULL,
   PRIMARY KEY (`seasonId`, `teamId`),
@@ -158,11 +206,31 @@ CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB AUTO_INCREMENT=1;
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`season_id`, `team_id`),
+  INDEX `season_id_idx` (`season_id` ASC) VISIBLE,
+  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
+  CONSTRAINT `inse_season_id`
+    FOREIGN KEY (`season_id`)
+    REFERENCES `competitions`.`SEASON` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `inse_team_id`
+    FOREIGN KEY (`team_id`)
+    REFERENCES `competitions`.`TEAM` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+>>>>>>> master
 
 -- -----------------------------------------------------
 -- Table `competitions`.`MATCH`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`MATCH` (
+<<<<<<< HEAD
   `id` INT NOT NULL AUTO_INCREMENT,
   `seasonId` INT,
   `homeTeam` INT NOT NULL,
@@ -191,6 +259,36 @@ CREATE TABLE IF NOT EXISTS `competitions`.`MATCH` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB AUTO_INCREMENT=1;
+=======
+  `id` VARCHAR(6) NOT NULL,
+  `season_id` VARCHAR(6),
+  `home_team` VARCHAR(6) NOT NULL,
+  `away_team` VARCHAR(6) NOT NULL,
+  `home_score` INT,
+  `away_score` INT,
+  `place` VARCHAR(250),
+  `date` DATE,
+  PRIMARY KEY (`id`),
+  INDEX `season_id_idx` (`season_id` ASC) VISIBLE,
+  INDEX `home_team_idx` (`home_team` ASC) VISIBLE,
+  INDEX `away_team_idx` (`away_team` ASC) VISIBLE,
+  CONSTRAINT `ma_season_id`
+    FOREIGN KEY (`season_id`)
+    REFERENCES `competitions`.`SEASON` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ma_home_team`
+    FOREIGN KEY (`home_team`)
+    REFERENCES `competitions`.`TEAM` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ma_away_team`
+    FOREIGN KEY (`away_team`)
+    REFERENCES `competitions`.`TEAM` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+>>>>>>> master
 
 
 -- -----------------------------------------------------
@@ -198,7 +296,11 @@ ENGINE = InnoDB AUTO_INCREMENT=1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`PLAYED_MATCH` (
   `athlete_id` VARCHAR(6) NOT NULL,
+<<<<<<< HEAD
   `match_id` INT NOT NULL,
+=======
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `time_played` DATETIME,
   `playing_started` DATETIME,
   PRIMARY KEY (`athlete_id`, `match_id`),
@@ -231,8 +333,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
   `athlete_id` VARCHAR(6) NOT NULL,
+<<<<<<< HEAD
   `team_id` INT NOT NULL,
   `match_id` INT NOT NULL,
+=======
+  `team_id` VARCHAR(6) NOT NULL,
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `event_type` VARCHAR(6) NOT NULL,
   `time` INT NOT NULL,
   PRIMARY KEY (`athlete_id`, `team_id`, `match_id`, `time`),
@@ -266,7 +373,11 @@ ENGINE = InnoDB;
 -- Table `competitions`.`AM_FOOTBALL_MATCHSTSAT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_MATCHSTSAT` (
+<<<<<<< HEAD
   `match_id` INT NOT NULL,
+=======
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `h_touchdowns` INT,
   `a_touchdowns` INT,
   `h_field_goals` INT,
@@ -308,7 +419,11 @@ ENGINE = InnoDB;
 -- Table `competitions`.`HANDBALL_MATCHSTSAT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
+<<<<<<< HEAD
   `id` INT NOT NULL,
+=======
+  `id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `h_shooting_efficiency` DECIMAL,
   `a_shooting_efficiency` DECIMAL,
   `h_wing_goals` INT,
@@ -320,7 +435,11 @@ CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
   `h_saves` INT,
   `a_saves` INT,
   `h_two_min_penalty` INT,
+<<<<<<< HEAD
   `a_two_min_penalty` INT,
+=======
+  `a_two_min_penalty` INT,	
+>>>>>>> master
   `h_yellow_cards` INT,
   `a_yellow_cards` INT,
   `h_goal_streak` INT,
@@ -348,7 +467,11 @@ ENGINE = InnoDB;
 -- Table `competitions`.`FOOTBALL_MATCHSTSAT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_MATCHSTSAT` (
+<<<<<<< HEAD
   `match_id` INT NOT NULL,
+=======
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `h_attempts` INT,
   `a_attempts` INT,
   `h_on_target` INT,
@@ -384,7 +507,11 @@ ENGINE = InnoDB;
 -- Table `competitions`.`BASKETBALL_MATCHSTSAT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_MATCHSTSAT` (
+<<<<<<< HEAD
   `match_id` INT NOT NULL,
+=======
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `h_free_throws` INT,
   `a_free_throws` INT,
   `h_two_pointers` INT,
@@ -418,7 +545,11 @@ ENGINE = InnoDB;
 -- Table `competitions`.`HOCKEY_MATCHSTSAT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_MATCHSTSAT` (
+<<<<<<< HEAD
   `match_id` INT NOT NULL,
+=======
+  `match_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `h_shots` INT,
   `a_shots` INT,
   `h_goals_in_powerplay` INT,
@@ -448,8 +579,13 @@ ENGINE = InnoDB;
 -- Table `competitions`.`AM_FOOTBALL_TABLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_TABLE` (
+<<<<<<< HEAD
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `position` INT,
   `wins` INT,
   `loses` INT,
@@ -473,8 +609,13 @@ ENGINE = InnoDB;
 -- Table `competitions`.`BASKETBALL_TABLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_TABLE` (
+<<<<<<< HEAD
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `position` INT,
   `played` INT,
   `wins` INT,
@@ -500,8 +641,13 @@ ENGINE = InnoDB;
 -- Table `competitions`.`HANDBALL_TABLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_TABLE` (
+<<<<<<< HEAD
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `position` INT,
   `played` INT,
   `wins` INT,
@@ -528,8 +674,13 @@ ENGINE = InnoDB;
 -- Table `competitions`.`FOOTBALL_TABLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_TABLE` (
+<<<<<<< HEAD
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `position` INT,
   `played` INT,
   `wins` INT,
@@ -558,8 +709,13 @@ ENGINE = InnoDB;
 -- Table `competitions`.`HOCEY_TABLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`HOCEY_TABLE` (
+<<<<<<< HEAD
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+=======
+  `season_id` VARCHAR(6) NOT NULL,
+  `team_id` VARCHAR(6) NOT NULL,
+>>>>>>> master
   `position` INT,
   `played` INT,
   `wins` INT,
@@ -585,4 +741,8 @@ ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+<<<<<<< HEAD
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+=======
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+>>>>>>> master
