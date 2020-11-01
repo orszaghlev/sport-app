@@ -1,6 +1,5 @@
 package com.deik.sportapp.match;
 
-<<<<<<< HEAD
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
 
@@ -9,17 +8,10 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "match", schema = "competitions")
-=======
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
->>>>>>> master
 public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
     @Column(name = "id")
     private String id;
 
@@ -59,27 +51,6 @@ public class Match {
         this.awayScore = awayScore;
         this.place = place;
         this.date = date;
-=======
-    private String id;
-    private String season;
-    private String home_team;
-    private String away_team;
-    private int home_score;
-    private int away_score;
-    private String place;
-
-    public Match() {
-    }
-
-    public Match(String id, String season, String home_team, String away_team, int home_score, int away_score, String place) {
-        this.id = id;
-        this.season=season;
-        this.home_team=home_team;
-        this.away_team=away_team;
-        this.home_score=home_score;
-        this.away_score=away_score;
-        this.place=place;
->>>>>>> master
     }
 
     public String getId() {
@@ -90,7 +61,6 @@ public class Match {
         this.id = id;
     }
 
-<<<<<<< HEAD
     public Season getSeasonId() {
         return seasonId;
     }
@@ -129,46 +99,6 @@ public class Match {
 
     public void setAwayScore(int awayScore) {
         this.awayScore = awayScore;
-=======
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public String getHome_team() {
-        return home_team;
-    }
-
-    public void setHome_team(String home_team) {
-        this.home_team = home_team;
-    }
-
-    public String getAway_team() {
-        return away_team;
-    }
-
-    public void setAway_team(String away_team) {
-        this.away_team = away_team;
-    }
-
-    public int getHome_score() {
-        return home_score;
-    }
-
-    public void setHome_score(int home_score) {
-        this.home_score = home_score;
-    }
-
-    public int getAway_score() {
-        return away_score;
-    }
-
-    public void setAway_score(int away_score) {
-        this.away_score = away_score;
->>>>>>> master
     }
 
     public String getPlace() {
@@ -178,7 +108,6 @@ public class Match {
     public void setPlace(String place) {
         this.place = place;
     }
-<<<<<<< HEAD
 
     public Date getDate() {
         return date;
@@ -188,6 +117,4 @@ public class Match {
         this.date = date;
     }
 
-=======
->>>>>>> master
 }
