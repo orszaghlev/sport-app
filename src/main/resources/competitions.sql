@@ -144,7 +144,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
   `season_id` VARCHAR(6) NOT NULL,
   `team_id` VARCHAR(6) NOT NULL,
-  PRIMARY KEY (`seasonid`, `team_id`),
+  PRIMARY KEY (`season_id`, `team_id`),
   INDEX `season_id_idx` (`season_id` ASC) VISIBLE,
   INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
   CONSTRAINT `inse_season_id`
