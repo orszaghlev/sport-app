@@ -3,12 +3,11 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "season", schema = "competitions")
@@ -18,10 +17,6 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teamId", referencedColumnName = "id")
-    private Team teamId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "competitionId", referencedColumnName = "id")
@@ -34,16 +29,20 @@ public class Season {
     private Date finished;
 
     @OneToMany(mappedBy = "seasonId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Match> matches;
+    private Set<Match> matches;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "in_season",
+            joinColumns = @JoinColumn(name = "seasonId"),
+            inverseJoinColumns = @JoinColumn(name = "teamId"))
+    private Set<Team> teams = new HashSet<>();
 
     public Season() {
 
     }
 
-    @JsonCreator
-    public Season(@JsonProperty("id") String id, @JsonProperty("teamId") Team teamId, @JsonProperty("competitionId") Competition competitionId, @JsonProperty("started") Date started, @JsonProperty("finished") Date finished) {
+    public Season(String id, Competition competitionId, Date started, Date finished) {
         this.id = id;
-        this.teamId = teamId;
         this.competitionId = competitionId;
         this.started = started;
         this.finished = finished;
@@ -55,14 +54,6 @@ public class Season {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Team getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Team teamId) {
-        this.teamId = teamId;
     }
 
     public Competition getCompetitionId() {
@@ -89,12 +80,20 @@ public class Season {
         this.finished = finished;
     }
 
-    public List<Match> getMatches() {
+    public Set<Match> getMatches() {
         return matches;
     }
 
-    public void setMatch(List<Match> matches) {
+    public void setMatch(Set<Match> matches) {
         this.matches = matches;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 
 }

@@ -7,13 +7,11 @@ class CreateSeasonComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            teamId: '',
             competitionId: '',
             started: '',
             finished: '',
         }
 
-        this.changeTeamIdHandler = this.changeTeamIdHandler.bind(this);
         this.changeCompetitionIdHandler = this.changeCompetitionIdHandler.bind(this);
         this.changeStartedHandler = this.changeStartedHandler.bind(this);
         this.changeFinishedHandler = this.changeFinishedHandler.bind(this);
@@ -26,8 +24,7 @@ class CreateSeasonComponent extends Component {
         } else {
             MatchService.getSeasonById(this.state.id).then( (res) => {
                 let season = res.data;
-                this.setState({teamId: season.teamId,
-                    competitionId: season.competitionId,
+                this.setState({competitionId: season.competitionId,
                     started: season.started,
                     finished: season.finished
                 });
@@ -37,7 +34,7 @@ class CreateSeasonComponent extends Component {
 
     saveOrUpdateSeason = (s) => {
         s.preventDefault();
-        let season = {teamId: this.state.teamId, competitionId: this.state.competitionId, started: this.state.started, finished: this.state.finished};
+        let season = {competitionId: this.state.competitionId, started: this.state.started, finished: this.state.finished};
         console.log('season => ' + JSON.stringify(season));
 
         if(this.state.id === '_add') {
@@ -49,10 +46,6 @@ class CreateSeasonComponent extends Component {
                 this.props.history.push('/events-admin');
             })
         }
-    }
-
-    changeTeamIdHandler = (event) => {
-        this.setState({teamId: event.target.value});
     }
 
     changeCompetitionIdHandler = (event) => {
@@ -91,11 +84,6 @@ class CreateSeasonComponent extends Component {
                             }
                             <div className="card-body">
                                 <form>
-                                    <div className="form-group">
-                                        <label>Team ID:</label>
-                                        <input placeholder="Team ID" name="teamId" className="form-control"
-                                            value={this.state.teamId} onChange={this.changeTeamIdHandler}/>
-                                    </div>
                                     <div className="form-group">
                                         <label>Competition ID:</label>
                                         <input placeholder="Competition ID" name="competitionId" className="form-control"

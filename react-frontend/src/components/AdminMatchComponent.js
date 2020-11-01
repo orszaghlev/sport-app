@@ -162,12 +162,12 @@ class MatchComponent extends Component {
                                 this.state.matches.map(
                                     match => 
                                     <tr key = {match.id}>
-                                        <td className="align-middle">{match.id}</td>
-                                        <td className="align-middle">{match.seasonId}</td>
-                                        <td className="align-middle">{match.homeTeam}</td>
-                                        <td className="align-middle">{match.awayTeam}</td>
-                                        <td className="align-middle">{match.homeScore}</td>
-                                        <td className="align-middle">{match.awayScore}</td>
+                                        <td className="align-middle" width="8%">{match.id}</td>
+                                        <td className="align-middle" width="8%">{match.seasonId}</td>
+                                        <td className="align-middle" width="8%">{match.homeTeam}</td>
+                                        <td className="align-middle" width="8%">{match.awayTeam}</td>
+                                        <td className="align-middle" width="8%">{match.homeScore}</td>
+                                        <td className="align-middle" width="8%">{match.awayScore}</td>
                                         <td className="align-middle">{match.place}</td>
                                         <td className="align-middle">{match.date}</td>
                                         <td className="align-middle">
@@ -208,7 +208,7 @@ class MatchComponent extends Component {
                                     <tr key = {team.id}>
                                         <td className="align-middle">{team.id}</td>
                                         <td className="align-middle">{team.fullName}</td>
-                                        <td className="align-middle" width="11%">{team.shortName}</td>
+                                        <td className="align-middle" width="8%">{team.shortName}</td>
                                         <td className="align-middle">{team.foundingDate}</td>
                                         <td className="align-middle">{team.teamValue}</td>
                                         <td className="align-middle" width="5%">{team.valueCurrency}</td>
@@ -217,7 +217,7 @@ class MatchComponent extends Component {
                                         <td className="align-middle">
                                             <button onClick={ () => this.editTeam(team.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteTeam(team.id)} className="btn btn-danger">Delete</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
+                                            <button style={{marginTop: "10px"}} onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
@@ -235,7 +235,6 @@ class MatchComponent extends Component {
                         <thead>
                             <tr>
                                 <th>Season ID</th>
-                                <th>Team ID</th>
                                 <th>Competition ID</th>
                                 <th>Started</th>
                                 <th>Finished</th>
@@ -248,10 +247,9 @@ class MatchComponent extends Component {
                                     season => 
                                     <tr key = {season.id}>
                                         <td className="align-middle" width="10%">{season.id}</td>
-                                        <td className="align-middle" width="16%">{season.teamId}</td>
-                                        <td className="align-middle" width="16%">{season.competitionId}</td>
-                                        <td className="align-middle" width="17%">{season.started}</td>
-                                        <td className="align-middle" width="17%">{season.finished}</td>
+                                        <td className="align-middle" width="21.5%">{season.competitionId}</td>
+                                        <td className="align-middle" width="22.5%">{season.started}</td>
+                                        <td className="align-middle" width="22.5%">{season.finished}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.editSeason(season.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteSeason(season.id)} className="btn btn-danger">Delete</button>

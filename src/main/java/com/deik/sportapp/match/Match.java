@@ -2,8 +2,6 @@ package com.deik.sportapp.match;
 
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -44,8 +42,7 @@ public class Match {
     public Match() {
     }
 
-    @JsonCreator
-    public Match(@JsonProperty("id") String id, @JsonProperty("seasonId") Season seasonId, @JsonProperty("homeTeam") Team homeTeam, @JsonProperty("awayTeam") Team awayTeam, @JsonProperty("homeScore") int homeScore, @JsonProperty("awayScore") int awayScore, @JsonProperty("place") String place, @JsonProperty("date") Date date) {
+    public Match(String id, Season seasonId, Team homeTeam, Team awayTeam, int homeScore, int awayScore, String place, Date date) {
         this.id = id;
         this.seasonId = seasonId;
         this.homeTeam = homeTeam;

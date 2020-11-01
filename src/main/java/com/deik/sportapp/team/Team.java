@@ -1,13 +1,10 @@
 package com.deik.sportapp.team;
 
 import com.deik.sportapp.match.Match;
-import com.deik.sportapp.season.Season;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "team", schema = "competitions")
@@ -28,7 +25,7 @@ public class Team {
     private Date foundingDate;
 
     @Column(name = "teamValue")
-    private int teamValue;
+    private long teamValue;
 
     @Column(name = "valueCurrency")
     private String valueCurrency;
@@ -40,20 +37,16 @@ public class Team {
     private String homePlace;
 
     @OneToMany(mappedBy = "homeTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Match> homeMatches;
+    private Set<Match> homeMatches;
 
     @OneToMany(mappedBy = "awayTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Match> awayMatches;
-
-    @OneToMany(mappedBy = "teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Season> seasons;
+    private Set<Match> awayMatches;
 
     public Team() {
 
     }
 
-    @JsonCreator
-    public Team(@JsonProperty("id") String id, @JsonProperty("fullName") String fullName, @JsonProperty("shortName") String shortName, @JsonProperty("foundingDate") Date foundingDate, @JsonProperty("teamValue") int teamValue, @JsonProperty("valueCurrency") String valueCurrency, @JsonProperty("imageLink") String imageLink, @JsonProperty("homePlace") String homePlace) {
+    public Team(String id, String fullName, String shortName, Date foundingDate, long teamValue, String valueCurrency, String imageLink, String homePlace) {
         this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;
@@ -96,11 +89,11 @@ public class Team {
         this.foundingDate = foundingDate;
     }
 
-    public int getTeamValue() {
+    public long getTeamValue() {
         return teamValue;
     }
 
-    public void setTeamValue(int teamValue) {
+    public void setTeamValue(long teamValue) {
         this.teamValue = teamValue;
     }
 
@@ -128,28 +121,20 @@ public class Team {
         this.homePlace = homePlace;
     }
 
-    public List<Match> getHomeMatches() {
+    public Set<Match> getHomeMatches() {
         return homeMatches;
     }
 
-    public void setHomeMatches(List<Match> homeMatches) {
+    public void setHomeMatches(Set<Match> homeMatches) {
         this.homeMatches = homeMatches;
     }
 
-    public List<Match> getAwayMatches() {
+    public Set<Match> getAwayMatches() {
         return awayMatches;
     }
 
-    public void setAwayMatches(List<Match> awayMatches) {
+    public void setAwayMatches(Set<Match> awayMatches) {
         this.awayMatches = awayMatches;
-    }
-
-    public List<Season> getSeasons() {
-        return seasons;
-    }
-
-    public void setSeasons(List<Season> seasons) {
-        this.seasons = seasons;
     }
 
 }

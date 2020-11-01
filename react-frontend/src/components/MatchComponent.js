@@ -151,7 +151,6 @@ class MatchComponent extends Component {
                         <thead>
                             <tr>
                                 <th>Season ID</th>
-                                <th>Team ID</th>
                                 <th>Competition ID</th>
                                 <th>Started</th>
                                 <th>Finished</th>
@@ -164,10 +163,9 @@ class MatchComponent extends Component {
                                     season => 
                                     <tr key = {season.id}>
                                         <td className="align-middle" width="10%">{season.id}</td>
-                                        <td className="align-middle" width="18%">{season.teamId}</td>
-                                        <td className="align-middle" width="18%">{season.competitionId}</td>
-                                        <td className="align-middle" width="22.5%">{season.started}</td>
-                                        <td className="align-middle" width="22.5%">{season.finished}</td>
+                                        <td className="align-middle" width="23.5%">{season.competitionId}</td>
+                                        <td className="align-middle" width="29.5%">{season.started}</td>
+                                        <td className="align-middle" width="29.5%">{season.finished}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
                                         </td>
@@ -196,10 +194,10 @@ class MatchComponent extends Component {
                                     competition => 
                                     <tr key = {competition.id}>
                                         <td className="align-middle" width="13%">{competition.id}</td>
-                                        <td className="align-middle" width="19.5%">{competition.region}</td>
-                                        <td className="align-middle" width="19.5%">{competition.sportType}</td>
-                                        <td className="align-middle" width="19.5%">{competition.name}</td>
-                                        <td className="align-middle" width="19.5%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
+                                        <td className="align-middle" width="14%">{competition.region}</td>
+                                        <td className="align-middle" width="19%">{competition.sportType}</td>
+                                        <td className="align-middle" width="28.5%">{competition.name}</td>
+                                        <td className="align-middle" width="20.5%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>

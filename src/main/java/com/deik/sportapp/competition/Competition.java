@@ -1,11 +1,9 @@
 package com.deik.sportapp.competition;
 
 import com.deik.sportapp.season.Season;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "competition", schema = "competitions")
@@ -28,14 +26,13 @@ public class Competition {
     private String logoLink;
 
     @OneToMany(mappedBy = "competitionId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Season> seasons;
+    private Set<Season> seasons;
 
     public Competition() {
 
     }
 
-    @JsonCreator
-    public Competition(@JsonProperty("id") String id, @JsonProperty("region") String region, @JsonProperty("sportType") String sportType, @JsonProperty("name") String name, @JsonProperty("logoLink") String logoLink) {
+    public Competition(String id, String region, String sportType, String name, String logoLink) {
         this.id = id;
         this.region = region;
         this.sportType = sportType;
@@ -83,11 +80,11 @@ public class Competition {
         this.logoLink = logoLink;
     }
 
-    public List<Season> getSeasons() {
+    public Set<Season> getSeasons() {
         return seasons;
     }
 
-    public void setSeasons(List<Season> seasons) {
+    public void setSeasons(Set<Season> seasons) {
         this.seasons = seasons;
     }
 

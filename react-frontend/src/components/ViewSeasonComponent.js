@@ -29,10 +29,6 @@ class ViewSeasonComponent extends Component {
                     <h3 className="text-center">View Season Details</h3>
                     <div className="card-body">
                         <div className="row">
-                            <label>Team ID:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.season.teamId}</div>
-                        </div>
-                        <div className="row">
                             <label>Competition ID:</label>
                             <div style={{marginLeft: "5px"}}>{this.state.season.competitionId}</div>
                         </div>

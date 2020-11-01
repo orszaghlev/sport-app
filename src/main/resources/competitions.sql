@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`TEAM` (
   `fullName` VARCHAR(250) NOT NULL,
   `shortName` VARCHAR(5) NOT NULL,
   `foundingDate` DATE,
-  `teamValue` INT,
+  `teamValue` BIGINT,
   `valueCurrency` VARCHAR(20),
   `imageLink` VARCHAR(250),
   `homePlace` VARCHAR(250),
@@ -126,18 +126,11 @@ ENGINE = InnoDB AUTO_INCREMENT=1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `teamId` INT NOT NULL,
   `competitionId` INT NOT NULL,
   `started` DATE,
   `finished` DATE,
   PRIMARY KEY (`id`),
-  INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
   INDEX `competitionIdIdx` (`competitionId` ASC) VISIBLE,
-  CONSTRAINT `seTeamId`
-    FOREIGN KEY (`teamId`)
-    REFERENCES `competitions`.`TEAM` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `seCompetitionId`
     FOREIGN KEY (`competitionId`)
     REFERENCES `competitions`.`COMPETITION` (`id`)
@@ -145,6 +138,26 @@ CREATE TABLE IF NOT EXISTS `competitions`.`SEASON` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB AUTO_INCREMENT=1;
 
+-- -----------------------------------------------------
+-- Table `competitions`.`IN_SEASON`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `competitions`.`IN_SEASON` (
+  `seasonId` INT NOT NULL,
+  `teamId` INT NOT NULL,
+  PRIMARY KEY (`seasonId`, `teamId`),
+  INDEX `seasonIdIdx` (`seasonId` ASC) VISIBLE,
+  INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
+  CONSTRAINT `inseSeasonId`
+    FOREIGN KEY (`seasonId`)
+    REFERENCES `competitions`.`SEASON` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `inseTeamId`
+    FOREIGN KEY (`teamId`)
+    REFERENCES `competitions`.`TEAM` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB AUTO_INCREMENT=1;
 
 -- -----------------------------------------------------
 -- Table `competitions`.`MATCH`

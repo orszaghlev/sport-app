@@ -39,7 +39,6 @@ public class SeasonController {
         Season season = seasonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Season doesn't exist with ID: " + id));
 
-        season.setTeamId(seasonDetails.getTeamId());
         season.setCompetitionId(seasonDetails.getCompetitionId());
         season.setStarted(seasonDetails.getStarted());
         season.setFinished(seasonDetails.getFinished());
