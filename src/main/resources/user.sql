@@ -1,8 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `users`;
 USE `users`;
 
-DROP TABLE IF EXISTS `user`;
-
 CREATE TABLE `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) NOT NULL,
@@ -14,8 +12,6 @@ CREATE TABLE `user` (
   UNIQUE (`email`,`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `role`;
-
 CREATE TABLE `role` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL,
@@ -25,8 +21,6 @@ CREATE TABLE `role` (
 INSERT INTO `role` VALUES
     (1, 'ROLE_USER'),
     (2, 'ROLE_ADMIN');
-
-DROP TABLE IF EXISTS `user_role`;
 
 CREATE TABLE `user_role` (
     `user_id` INT NOT NULL,
