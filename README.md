@@ -19,3 +19,5 @@ The final step is to open the `src/react-frontend` folder and enter the followin
 npm install
 npm start
 ```
+
+Images are from [Wikipedia](https://en.wikipedia.org/).
