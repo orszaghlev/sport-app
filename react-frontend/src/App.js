@@ -52,7 +52,7 @@ class App extends Component {
         <style>{'body { background-color: #F4F7F9; }'}</style>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            Team Sport App
+            Sport App
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
