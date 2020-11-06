@@ -33,11 +33,3 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50;
 }
-
-.page-num {
-  width: 45px !important;
-  border: 1px solid #17A2B8;
-  color: #17A2B8;
-  text-align: center;
-  font-weight: bold;
-}

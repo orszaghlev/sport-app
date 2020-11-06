@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
+import './Style.css';
 
 class SeasonComponent extends Component {
     constructor(props) {
