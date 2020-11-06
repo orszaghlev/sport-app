@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from '../services/UserService';
 
@@ -7,7 +10,9 @@ class AdminTeamComponent extends Component {
         super(props)
 
         this.state = {
-            teams: []
+            teams: [],
+            currentPage: 1,
+            teamsPerPage: 5
         }
         this.addTeam = this.addTeam.bind(this);
         this.editTeam = this.editTeam.bind(this);
@@ -56,7 +61,58 @@ class AdminTeamComponent extends Component {
         });
     }
 
+    changePage = event => {
+        this.setState({
+            [event.target.name]: parseInt(event.target.value)
+        });
+    };
+
+    firstPage = () => {
+        if (this.state.currentPage > 1) {
+            this.setState({
+                currentPage: 1
+            });
+        }
+    };
+
+    previousPage = () => {
+        if (this.state.currentPage > 1) {
+            this.setState({
+                currentPage: this.state.currentPage - 1
+            });
+        }
+    };
+
+    lastPage = () => {
+        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
+            this.setState({
+                currentPage: Math.ceil(this.state.teams.length / this.state.teamsPerPage)
+            });
+        }
+    }
+
+    nextPage = () => {
+        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
+            this.setState({
+                currentPage: this.state.currentPage + 1
+            });
+        }
+    }
+
     render() {
+        const {teams, currentPage, teamsPerPage} = this.state;
+        const lastIndex = currentPage * teamsPerPage;
+        const firstIndex = lastIndex - teamsPerPage;
+        const currentTeams = teams.slice(firstIndex, lastIndex);
+        const totalPages = teams.length / teamsPerPage;
+        const pageNumCss = {
+            width: "45px",
+            border: "1px solid #17A2B8",
+            color: "#17A2B8",
+            textAlign: "center",
+            fontWeight: "bold"
+        };
+
         return (
             <div>
                 <h2 className="text-center">Teams</h2>
@@ -80,8 +136,11 @@ class AdminTeamComponent extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                this.state.teams.map(
+                            {teams.length === 0 ?
+                                <tr align="center">
+                                    <td colSpan="9">No Teams Available</td>
+                                </tr>:
+                                currentTeams.map(
                                     team => 
                                     <tr key = {team.id}>
                                         <td className="align-middle">{team.id}</td>
@@ -102,6 +161,37 @@ class AdminTeamComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <Card.Footer>
+                    <div style={{"margin-left": "auto"}}>
+                        Showing Page {currentPage} of {Math.ceil(totalPages)}
+                    </div>
+                    <div style={{"margin-right": "0"}}>
+                        <InputGroup size="sm">
+                            <InputGroup.Prepend>
+                                <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
+                                    onClick={this.firstPage}>
+                                    <FontAwesomeIcon icon={faFastBackward}/> First
+                                </Button>
+                                <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
+                                    onClick={this.previousPage}>
+                                    <FontAwesomeIcon icon={faStepBackward}/> Previous
+                                </Button >
+                            </InputGroup.Prepend>
+                            <FormControl style={pageNumCss} className={"bg-white"} name="currentPage" value={currentPage}
+                                    onChange={this.changePage}/>
+                            <InputGroup.Append>
+                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                    onClick={this.nextPage}>
+                                    <FontAwesomeIcon icon={faStepForward}/> Next
+                                </Button>
+                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                    onClick={this.lastPage}>
+                                    <FontAwesomeIcon icon={faFastForward}/> Last
+                                </Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </div>
+                    </Card.Footer>
                 </div>
             </div>
         );
