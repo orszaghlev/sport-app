@@ -18,7 +18,7 @@ class ViewSeasonComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/events');
+        this.props.history.push('/seasons');
     }
 
     render() {

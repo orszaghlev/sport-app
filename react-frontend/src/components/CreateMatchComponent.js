@@ -51,11 +51,11 @@ class CreateMatchComponent extends Component {
 
         if(this.state.id === '_add') {
             MatchService.createMatch(match).then(res => {
-                this.props.history.push('/events-admin');
+                this.props.history.push('/matches-admin');
             });
         } else {
             MatchService.updateMatch(match, this.state.id).then(res => {
-                this.props.history.push('/events-admin');
+                this.props.history.push('/matches-admin');
             })
         }
     }
@@ -89,7 +89,7 @@ class CreateMatchComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/events-admin');
+        this.props.history.push('/matches-admin');
     }
 
     getTitle() {

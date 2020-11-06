@@ -18,7 +18,7 @@ class ViewCompetitionComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/events');
+        this.props.history.push('/competitions');
     }
 
     render() {

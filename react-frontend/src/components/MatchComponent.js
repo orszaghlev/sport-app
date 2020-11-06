@@ -7,27 +7,12 @@ class MatchComponent extends Component {
         super(props)
 
         this.state = {
-            matches: [],
-            seasons: [],
-            competitions: [],
-            teams: []
+            matches: []
         }
     }
     
     viewMatch(id) {
         this.props.history.push(`/view-match/${id}`);
-    }
-
-    viewTeam(id) {
-        this.props.history.push(`/view-team/${id}`);
-    }
-
-    viewSeason(id) {
-        this.props.history.push(`/view-season/${id}`);
-    }
-
-    viewCompetition(id) {
-        this.props.history.push(`/view-competition/${id}`);
     }
 
     componentDidMount() {
@@ -51,18 +36,6 @@ class MatchComponent extends Component {
 
         MatchService.getMatches().then((res) => {
             this.setState({matches: res.data});
-        });
-
-        MatchService.getSeasons().then((res) => {
-            this.setState({seasons: res.data});
-        });
-
-        MatchService.getCompetitions().then((res) => {
-            this.setState({competitions: res.data});
-        });
-
-        MatchService.getTeams().then((res) => {
-            this.setState({teams: res.data});
         });
     }
 
@@ -100,106 +73,6 @@ class MatchComponent extends Component {
                                         <td className="align-middle">{match.date}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <h2 className="text-center">Teams</h2>
-                <div className="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Team ID</th>
-                                <th>Full Name</th>
-                                <th>Short Name</th>
-                                <th>Founding Date</th>
-                                <th>Value</th>
-                                <th>Currency</th>
-                                <th>Image</th>
-                                <th>Home Place</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.teams.map(
-                                    team => 
-                                    <tr key = {team.id}>
-                                        <td className="align-middle">{team.id}</td>
-                                        <td className="align-middle">{team.fullName}</td>
-                                        <td className="align-middle">{team.shortName}</td>
-                                        <td className="align-middle">{team.foundingDate}</td>
-                                        <td className="align-middle">{team.teamValue}</td>
-                                        <td className="align-middle">{team.valueCurrency}</td>
-                                        <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
-                                        <td className="align-middle">{team.homePlace}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <h2 className="text-center">Seasons</h2>
-                <div className="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Season ID</th>
-                                <th>Competition ID</th>
-                                <th>Started</th>
-                                <th>Finished</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.seasons.map(
-                                    season => 
-                                    <tr key = {season.id}>
-                                        <td className="align-middle" width="10%">{season.id}</td>
-                                        <td className="align-middle" width="23.5%">{season.competitionId}</td>
-                                        <td className="align-middle" width="29.5%">{season.started}</td>
-                                        <td className="align-middle" width="29.5%">{season.finished}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <h2 className="text-center">Competitions</h2>
-                <div className="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Competition ID</th>
-                                <th>Region</th>
-                                <th>Sport Type</th>
-                                <th>Name</th>
-                                <th>Logo</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.competitions.map(
-                                    competition => 
-                                    <tr key = {competition.id}>
-                                        <td className="align-middle" width="13%">{competition.id}</td>
-                                        <td className="align-middle" width="14%">{competition.region}</td>
-                                        <td className="align-middle" width="19%">{competition.sportType}</td>
-                                        <td className="align-middle" width="28.5%">{competition.name}</td>
-                                        <td className="align-middle" width="20.5%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )

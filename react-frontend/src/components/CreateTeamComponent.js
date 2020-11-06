@@ -51,11 +51,11 @@ class CreateTeamComponent extends Component {
 
         if(this.state.id === '_add') {
             MatchService.createTeam(team).then(res => {
-                this.props.history.push('/events-admin');
+                this.props.history.push('/teams-admin');
             });
         } else {
             MatchService.updateTeam(team, this.state.id).then(res => {
-                this.props.history.push('/events-admin');
+                this.props.history.push('/teams-admin');
             })
         }
     }
@@ -89,7 +89,7 @@ class CreateTeamComponent extends Component {
     }
 
     cancel() {
-        this.props.history.push('/events-admin');
+        this.props.history.push('/teams-admin');
     }
 
     getTitle() {
