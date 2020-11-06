@@ -8,7 +8,7 @@ class CreateCompetitionComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             region: '',
-            sportType: '',
+            sportType: 'option1',
             name: '',
             logoLink: '',
         }
@@ -96,10 +96,46 @@ class CreateCompetitionComponent extends Component {
                                         <input placeholder="Region" name="region" className="form-control"
                                             value={this.state.region} onChange={this.changeRegionHandler}/>
                                     </div>
-                                    <div className="form-group">
-                                        <label>Sport Type:</label>
-                                        <input placeholder="Sport Type" name="sportType" className="form-control"
-                                            value={this.state.sportType} onChange={this.changeSportTypeHandler}/>
+                                    <label>Sport Type:</label>
+                                    <div className="form-check">
+                                        <label>
+                                        <input type="radio" name="sportType" value="American Football"
+                                            checked={this.state.sportType === "American Football"}
+                                            onChange={this.changeSportTypeHandler} className="form-check-input"/>
+                                            American Football
+                                        </label>
+                                    </div>
+                                    <div className="form-check">
+                                        <label>
+                                        <input type="radio" name="sportType" value="Basketball"
+                                            checked={this.state.sportType === "Basketball"}
+                                            onChange={this.changeSportTypeHandler} className="form-check-input"/>
+                                            Basketball
+                                        </label>
+                                    </div>
+                                    <div className="form-check">
+                                        <label>
+                                        <input type="radio" name="sportType" value="Football"
+                                            checked={this.state.sportType === "Football"}
+                                            onChange={this.changeSportTypeHandler} className="form-check-input"/>
+                                            Football
+                                        </label>
+                                    </div>
+                                    <div className="form-check">
+                                        <label>
+                                        <input type="radio" name="sportType" value="Handball"
+                                            checked={this.state.sportType === "Handball"}
+                                            onChange={this.changeSportTypeHandler} className="form-check-input"/>
+                                            Handball
+                                        </label>
+                                    </div>
+                                    <div className="form-check">
+                                        <label>
+                                        <input type="radio" name="sportType" value="Ice Hockey"
+                                            checked={this.state.sportType === "Ice Hockey"}
+                                            onChange={this.changeSportTypeHandler} className="form-check-input"/>
+                                            Ice Hockey
+                                        </label>
                                     </div>
                                     <div className="form-group">
                                         <label>Name:</label>
