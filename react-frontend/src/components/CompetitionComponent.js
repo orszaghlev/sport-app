@@ -88,13 +88,6 @@ class CompetitionComponent extends Component {
         const firstIndex = lastIndex - competitionsPerPage;
         const currentCompetitions = competitions.slice(firstIndex, lastIndex);
         const totalPages = competitions.length / competitionsPerPage;
-        const pageNumCss = {
-            width: "45px",
-            border: "1px solid #17A2B8",
-            color: "#17A2B8",
-            textAlign: "center",
-            fontWeight: "bold"
-        };
 
         return (
             <div>
@@ -148,7 +141,7 @@ class CompetitionComponent extends Component {
                                     <FontAwesomeIcon icon={faStepBackward}/> Previous
                                 </Button >
                             </InputGroup.Prepend>
-                            <FormControl style={pageNumCss} className={"bg-white"} name="currentPage" value={currentPage}
+                            <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
                                 <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
