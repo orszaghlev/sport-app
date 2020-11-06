@@ -3,43 +3,26 @@ import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
-import UserService from '../services/UserService';
+import UserService from "../services/UserService";
 import './Style.css';
 
-class AdminMatchComponent extends Component {
+class CompetitionComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            matches: [],
+            competitions: [],
             currentPage: 1,
-            matchesPerPage: 5
+            competitionsPerPage: 5
         }
-        this.addMatch = this.addMatch.bind(this);
-        this.editMatch = this.editMatch.bind(this);
-        this.deleteMatch = this.deleteMatch.bind(this);
-    }
- 
-    addMatch() {
-        this.props.history.push(`/add-match/_add`);
-    }
-    
-    editMatch(id) {
-        this.props.history.push(`/add-match/${id}`);
     }
 
-    deleteMatch(id) {
-        MatchService.deleteMatch(id).then(res => {
-            this.setState({matches: this.state.matches.filter(match => match.id !== id)});
-        });
-    }
-
-    viewMatch(id) {
-        this.props.history.push(`/view-match/${id}`);
+    viewCompetition(id) {
+        this.props.history.push(`/view-competition/${id}`);
     }
 
     componentDidMount() {
-        UserService.getAdminBoard().then (
+        UserService.getUserBoard().then(
             response => {
                 this.setState({
                     content: response.data
@@ -48,17 +31,17 @@ class AdminMatchComponent extends Component {
             error => {
                 this.setState({
                     content:
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString()
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString()
                 });
             }
         );
 
-        MatchService.getMatches().then((res) => {
-            this.setState({matches: res.data});
+        MatchService.getCompetitions().then((res) => {
+            this.setState({competitions: res.data});
         });
     }
 
@@ -85,15 +68,15 @@ class AdminMatchComponent extends Component {
     };
 
     lastPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.matches.length / this.state.matchesPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.competitions.length / this.state.competitionsPerPage)) {
             this.setState({
-                currentPage: Math.ceil(this.state.matches.length / this.state.matchesPerPage)
+                currentPage: Math.ceil(this.state.competitions.length / this.state.competitionsPerPage)
             });
         }
     }
 
     nextPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.matches.length / this.state.matchesPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.competitions.length / this.state.competitionsPerPage)) {
             this.setState({
                 currentPage: this.state.currentPage + 1
             });
@@ -101,54 +84,42 @@ class AdminMatchComponent extends Component {
     }
 
     render() {
-        const {matches, currentPage, matchesPerPage} = this.state;
-        const lastIndex = currentPage * matchesPerPage;
-        const firstIndex = lastIndex - matchesPerPage;
-        const currentMatches = matches.slice(firstIndex, lastIndex);
-        const totalPages = matches.length / matchesPerPage;
+        const {competitions, currentPage, competitionsPerPage} = this.state;
+        const lastIndex = currentPage * competitionsPerPage;
+        const firstIndex = lastIndex - competitionsPerPage;
+        const currentCompetitions = competitions.slice(firstIndex, lastIndex);
+        const totalPages = competitions.length / competitionsPerPage;
 
         return (
             <div>
-                <h2 className="text-center">Matches</h2>
-                <div className="row">
-                    <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
-                </div>
-                <br></br>
+                <h2 className="text-center">Competitions</h2>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Match ID</th>
-                                <th>Season ID</th>
-                                <th>Home Team</th>
-                                <th>Away Team</th>
-                                <th>Home Score</th>
-                                <th>Away Score</th>
-                                <th>Place</th>
-                                <th>Date</th>
+                                <th>Competition ID</th>
+                                <th>Region</th>
+                                <th>Sport Type</th>
+                                <th>Name</th>
+                                <th>Logo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {matches.length === 0 ?
+                            {competitions.length === 0 ?
                                 <tr align="center">
-                                    <td colSpan="9">No Matches Available</td>
+                                    <td colSpan="6">No Competitions Available</td>
                                 </tr>:
-                                currentMatches.map(
-                                    match => 
-                                    <tr key = {match.id}>
-                                        <td className="align-middle" width="8%">{match.id}</td>
-                                        <td className="align-middle" width="8%">{match.seasonId}</td>
-                                        <td className="align-middle" width="8%">{match.homeTeam}</td>
-                                        <td className="align-middle" width="8%">{match.awayTeam}</td>
-                                        <td className="align-middle" width="8%">{match.homeScore}</td>
-                                        <td className="align-middle" width="8%">{match.awayScore}</td>
-                                        <td className="align-middle">{match.place}</td>
-                                        <td className="align-middle">{match.date}</td>
+                                currentCompetitions.map(
+                                    competition => 
+                                    <tr key = {competition.id}>
+                                        <td className="align-middle" width="13%">{competition.id}</td>
+                                        <td className="align-middle" width="14%">{competition.region}</td>
+                                        <td className="align-middle" width="19%">{competition.sportType}</td>
+                                        <td className="align-middle" width="28.5%">{competition.name}</td>
+                                        <td className="align-middle" width="20.5%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
                                         <td className="align-middle">
-                                            <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                            <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
@@ -192,4 +163,4 @@ class AdminMatchComponent extends Component {
     }
 }
 
-export default AdminMatchComponent;
+export default CompetitionComponent;

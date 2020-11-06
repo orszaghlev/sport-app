@@ -6,36 +6,36 @@ import MatchService from '../services/MatchService';
 import UserService from '../services/UserService';
 import './Style.css';
 
-class AdminMatchComponent extends Component {
+class AdminTeamComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            matches: [],
+            teams: [],
             currentPage: 1,
-            matchesPerPage: 5
+            teamsPerPage: 5
         }
-        this.addMatch = this.addMatch.bind(this);
-        this.editMatch = this.editMatch.bind(this);
-        this.deleteMatch = this.deleteMatch.bind(this);
-    }
- 
-    addMatch() {
-        this.props.history.push(`/add-match/_add`);
-    }
-    
-    editMatch(id) {
-        this.props.history.push(`/add-match/${id}`);
+        this.addTeam = this.addTeam.bind(this);
+        this.editTeam = this.editTeam.bind(this);
+        this.deleteTeam = this.deleteTeam.bind(this);
     }
 
-    deleteMatch(id) {
-        MatchService.deleteMatch(id).then(res => {
-            this.setState({matches: this.state.matches.filter(match => match.id !== id)});
+    addTeam() {
+        this.props.history.push(`/add-team/_add`);
+    }
+
+    editTeam(id) {
+        this.props.history.push(`/add-team/${id}`);
+    }
+
+    deleteTeam(id) {
+        MatchService.deleteTeam(id).then(res => {
+            this.setState({teams: this.state.teams.filter(team => team.id !== id)});
         });
     }
 
-    viewMatch(id) {
-        this.props.history.push(`/view-match/${id}`);
+    viewTeam(id) {
+        this.props.history.push(`/view-team/${id}`);
     }
 
     componentDidMount() {
@@ -57,8 +57,8 @@ class AdminMatchComponent extends Component {
             }
         );
 
-        MatchService.getMatches().then((res) => {
-            this.setState({matches: res.data});
+        MatchService.getTeams().then((res) => {
+            this.setState({teams: res.data});
         });
     }
 
@@ -85,15 +85,15 @@ class AdminMatchComponent extends Component {
     };
 
     lastPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.matches.length / this.state.matchesPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
             this.setState({
-                currentPage: Math.ceil(this.state.matches.length / this.state.matchesPerPage)
+                currentPage: Math.ceil(this.state.teams.length / this.state.teamsPerPage)
             });
         }
     }
 
     nextPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.matches.length / this.state.matchesPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
             this.setState({
                 currentPage: this.state.currentPage + 1
             });
@@ -101,54 +101,54 @@ class AdminMatchComponent extends Component {
     }
 
     render() {
-        const {matches, currentPage, matchesPerPage} = this.state;
-        const lastIndex = currentPage * matchesPerPage;
-        const firstIndex = lastIndex - matchesPerPage;
-        const currentMatches = matches.slice(firstIndex, lastIndex);
-        const totalPages = matches.length / matchesPerPage;
+        const {teams, currentPage, teamsPerPage} = this.state;
+        const lastIndex = currentPage * teamsPerPage;
+        const firstIndex = lastIndex - teamsPerPage;
+        const currentTeams = teams.slice(firstIndex, lastIndex);
+        const totalPages = teams.length / teamsPerPage;
 
         return (
             <div>
-                <h2 className="text-center">Matches</h2>
+                <h2 className="text-center">Teams</h2>
                 <div className="row">
-                    <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
+                    <button className="btn btn-primary" onClick={this.addTeam}>Add Team</button>
                 </div>
                 <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Match ID</th>
-                                <th>Season ID</th>
-                                <th>Home Team</th>
-                                <th>Away Team</th>
-                                <th>Home Score</th>
-                                <th>Away Score</th>
-                                <th>Place</th>
-                                <th>Date</th>
+                                <th>Team ID</th>
+                                <th>Full Name</th>
+                                <th>Short Name</th>
+                                <th>Founding Date</th>
+                                <th>Value</th>
+                                <th>Currency</th>
+                                <th>Image</th>
+                                <th>Home Place</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {matches.length === 0 ?
+                            {teams.length === 0 ?
                                 <tr align="center">
-                                    <td colSpan="9">No Matches Available</td>
+                                    <td colSpan="9">No Teams Available</td>
                                 </tr>:
-                                currentMatches.map(
-                                    match => 
-                                    <tr key = {match.id}>
-                                        <td className="align-middle" width="8%">{match.id}</td>
-                                        <td className="align-middle" width="8%">{match.seasonId}</td>
-                                        <td className="align-middle" width="8%">{match.homeTeam}</td>
-                                        <td className="align-middle" width="8%">{match.awayTeam}</td>
-                                        <td className="align-middle" width="8%">{match.homeScore}</td>
-                                        <td className="align-middle" width="8%">{match.awayScore}</td>
-                                        <td className="align-middle">{match.place}</td>
-                                        <td className="align-middle">{match.date}</td>
+                                currentTeams.map(
+                                    team => 
+                                    <tr key = {team.id}>
+                                        <td className="align-middle">{team.id}</td>
+                                        <td className="align-middle">{team.fullName}</td>
+                                        <td className="align-middle" width="8%">{team.shortName}</td>
+                                        <td className="align-middle">{team.foundingDate}</td>
+                                        <td className="align-middle">{team.teamValue}</td>
+                                        <td className="align-middle" width="5%">{team.valueCurrency}</td>
+                                        <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
+                                        <td className="align-middle">{team.homePlace}</td>
                                         <td className="align-middle">
-                                            <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                            <button onClick={ () => this.editTeam(team.id)} className="btn btn-info">Update</button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteTeam(team.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginTop: "10px"}} onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
@@ -192,4 +192,4 @@ class AdminMatchComponent extends Component {
     }
 }
 
-export default AdminMatchComponent;
+export default AdminTeamComponent;

@@ -18,7 +18,7 @@ class ViewMatchComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/events');
+        this.props.history.push('/matches');
     }
 
     render() {

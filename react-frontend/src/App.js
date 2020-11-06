@@ -7,7 +7,13 @@ import RegisterComponent from './components/RegisterComponent';
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
 import MatchComponent from './components/MatchComponent';
+import TeamComponent from './components/TeamComponent';
+import SeasonComponent from './components/SeasonComponent';
+import CompetitionComponent from './components/CompetitionComponent';
 import AdminMatchComponent from './components/AdminMatchComponent';
+import AdminTeamComponent from './components/AdminTeamComponent';
+import AdminSeasonComponent from './components/AdminSeasonComponent';
+import AdminCompetitionComponent from './components/AdminCompetitionComponent';
 import CreateMatchComponent from './components/CreateMatchComponent';
 import CreateTeamComponent from './components/CreateTeamComponent';
 import CreateSeasonComponent from './components/CreateSeasonComponent';
@@ -73,16 +79,64 @@ class App extends Component {
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/events-admin"} className="nav-link">
-                  Events (as Admin)
+                <Link to={"/matches-admin"} className="nav-link">
+                  Matches (A)
                 </Link>
               </li>
             )}
 
             {currentUser && (
               <li className="nav-item">
-                <Link to ={"/events"} className="nav-link">
-                  Events
+                <Link to ={"/matches"} className="nav-link">
+                  Matches
+                </Link>
+              </li>
+            )}
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/teams-admin"} className="nav-link">
+                  Teams (A)
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to ={"/teams"} className="nav-link">
+                  Teams
+                </Link>
+              </li>
+            )}
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/seasons-admin"} className="nav-link">
+                  Seasons (A)
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to ={"/seasons"} className="nav-link">
+                  Seasons
+                </Link>
+              </li>
+            )}
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/competitions-admin"} className="nav-link">
+                  Competitions (A)
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to ={"/competitions"} className="nav-link">
+                  Competitions
                 </Link>
               </li>
             )}
@@ -132,8 +186,14 @@ class App extends Component {
             <Route path="/view-team/:id" component={ViewTeamComponent}></Route>
             <Route path="/view-season/:id" component={ViewSeasonComponent}></Route>
             <Route path="/view-competition/:id" component={ViewCompetitionComponent}></Route>
-            <Route path="/events" component={MatchComponent} />
-            <Route path="/events-admin" component={AdminMatchComponent}/>
+            <Route path="/matches" component={MatchComponent} />
+            <Route path="/teams" component={TeamComponent} />
+            <Route path="/seasons" component={SeasonComponent} />
+            <Route path="/competitions" component={CompetitionComponent} />
+            <Route path="/matches-admin" component={AdminMatchComponent}/>
+            <Route path="/teams-admin" component={AdminTeamComponent}/>
+            <Route path="/seasons-admin" component={AdminSeasonComponent}/>
+            <Route path="/competitions-admin" component={AdminCompetitionComponent}/>
           </Switch>
         </div>
       </div>
