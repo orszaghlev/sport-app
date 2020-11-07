@@ -120,7 +120,7 @@ class AdminSeasonComponent extends Component {
         const firstIndex = lastIndex - seasonsPerPage;
 
         const filteredSeasons = seasons.filter( season => {
-            return (season.id.indexOf(search) !== -1) 
+            return (season.id.indexOf(search) !== -1)
             || (season.started.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (season.finished.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
         })

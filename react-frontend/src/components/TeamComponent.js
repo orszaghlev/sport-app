@@ -108,6 +108,7 @@ class TeamComponent extends Component {
             || (team.shortName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (team.foundingDate.indexOf(search) !== -1)
+            || (team.teamValue.toString().indexOf((search)) !== -1)
             || (team.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (team.homePlace.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
         })

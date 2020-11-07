@@ -104,6 +104,8 @@ class MatchComponent extends Component {
 
         const filteredMatches = matches.filter( match => {
             return (match.id.indexOf(search) !== -1)
+            || (match.homeScore.toString().indexOf(search) !== -1)
+            || (match.awayScore.toString().indexOf(search) !== -1)
             || (match.place.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (match.date.indexOf(search) !== -1);
         })
