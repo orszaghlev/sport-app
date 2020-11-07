@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
@@ -13,7 +13,8 @@ class CompetitionComponent extends Component {
         this.state = {
             competitions: [],
             currentPage: 1,
-            competitionsPerPage: 5
+            competitionsPerPage: 5,
+            search: ''
         }
     }
 
@@ -83,16 +84,50 @@ class CompetitionComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getCompetitions().then((res) => {
+            this.setState({currentCompetitions: res.data});
+        });
+    }
+
     render() {
-        const {competitions, currentPage, competitionsPerPage} = this.state;
+        const {competitions, currentPage, competitionsPerPage, search} = this.state;
         const lastIndex = currentPage * competitionsPerPage;
         const firstIndex = lastIndex - competitionsPerPage;
-        const currentCompetitions = competitions.slice(firstIndex, lastIndex);
+
+        const filteredCompetitions = competitions.filter( competition => {
+            return (competition.id.indexOf(search) !== -1) 
+            || (competition.region.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (competition.sportType.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (competition.name.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+        })
+        
+        const currentCompetitions = filteredCompetitions.slice(firstIndex, lastIndex);
         const totalPages = competitions.length / competitionsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Competitions</h2>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>

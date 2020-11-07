@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
@@ -13,7 +13,8 @@ class TeamComponent extends Component {
         this.state = {
             teams: [],
             currentPage: 1,
-            teamsPerPage: 5
+            teamsPerPage: 5,
+            search: ''
         }
     }
 
@@ -83,16 +84,53 @@ class TeamComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getTeams().then((res) => {
+            this.setState({currentTeams: res.data});
+        });
+    }
+
     render() {
-        const {teams, currentPage, teamsPerPage} = this.state;
+        const {teams, currentPage, teamsPerPage, search} = this.state;
         const lastIndex = currentPage * teamsPerPage;
         const firstIndex = lastIndex - teamsPerPage;
-        const currentTeams = teams.slice(firstIndex, lastIndex);
+
+        const filteredTeams = teams.filter( team => {
+            return (team.id.indexOf(search) !== -1) 
+            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.shortName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.foundingDate.indexOf(search) !== -1)
+            || (team.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.homePlace.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+        })
+
+        const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
         const totalPages = teams.length / teamsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Teams</h2>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>

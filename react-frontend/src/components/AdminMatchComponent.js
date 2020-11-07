@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from '../services/UserService';
 import './Style.css';
@@ -13,7 +13,8 @@ class AdminMatchComponent extends Component {
         this.state = {
             matches: [],
             currentPage: 1,
-            matchesPerPage: 5
+            matchesPerPage: 5,
+            search: ''
         }
         this.addMatch = this.addMatch.bind(this);
         this.editMatch = this.editMatch.bind(this);
@@ -100,11 +101,31 @@ class AdminMatchComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getMatches().then((res) => {
+            this.setState({currentMatches: res.data});
+        });
+    }
+
     render() {
-        const {matches, currentPage, matchesPerPage} = this.state;
+        const {matches, currentPage, matchesPerPage, search} = this.state;
         const lastIndex = currentPage * matchesPerPage;
         const firstIndex = lastIndex - matchesPerPage;
-        const currentMatches = matches.slice(firstIndex, lastIndex);
+
+        const filteredMatches = matches.filter( match => {
+            return (match.id.indexOf(search) !== -1)
+            || (match.place.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (match.date.indexOf(search) !== -1);
+        })
+
+        const currentMatches = filteredMatches.slice(firstIndex, lastIndex);
         const totalPages = matches.length / matchesPerPage;
 
         return (
@@ -113,6 +134,18 @@ class AdminMatchComponent extends Component {
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
                 </div>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
                 <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">

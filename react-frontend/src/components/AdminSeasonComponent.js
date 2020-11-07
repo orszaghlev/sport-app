@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from '../services/UserService';
 import './Style.css';
@@ -13,7 +13,8 @@ class AdminSeasonComponent extends Component {
         this.state = {
             seasons: [],
             currentPage: 1,
-            seasonsPerPage: 5
+            seasonsPerPage: 5,
+            search: ''
         }
         this.addSeason = this.addSeason.bind(this);
         this.editSeason = this.editSeason.bind(this);
@@ -100,11 +101,31 @@ class AdminSeasonComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getSeasons().then((res) => {
+            this.setState({currentSeasons: res.data});
+        });
+    }
+
     render() {
-        const {seasons, currentPage, seasonsPerPage} = this.state;
+        const {seasons, currentPage, seasonsPerPage, search} = this.state;
         const lastIndex = currentPage * seasonsPerPage;
         const firstIndex = lastIndex - seasonsPerPage;
-        const currentSeasons = seasons.slice(firstIndex, lastIndex);
+
+        const filteredSeasons = seasons.filter( season => {
+            return (season.id.indexOf(search) !== -1) 
+            || (season.started.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (season.finished.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+        })
+
+        const currentSeasons = filteredSeasons.slice(firstIndex, lastIndex);
         const totalPages = seasons.length / seasonsPerPage;
 
         return (
@@ -113,6 +134,18 @@ class AdminSeasonComponent extends Component {
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addSeason}>Add Season</button>
                 </div>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
                 <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
