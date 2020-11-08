@@ -14,7 +14,8 @@ class TeamComponent extends Component {
             teams: [],
             currentPage: 1,
             teamsPerPage: 5,
-            search: ''
+            search: '',
+            sortToggle: true
         }
     }
 
@@ -97,10 +98,21 @@ class TeamComponent extends Component {
         });
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
         const {teams, currentPage, teamsPerPage, search} = this.state;
         const lastIndex = currentPage * teamsPerPage;
         const firstIndex = lastIndex - teamsPerPage;
+
+        teams.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
 
         const filteredTeams = teams.filter( team => {
             return (team.id.indexOf(search) !== -1) 
@@ -136,7 +148,7 @@ class TeamComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Team ID</th>
+                                <th onClick={this.sortData}>Team ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Full Name</th>
                                 <th>Short Name</th>
                                 <th>Founding Date</th>
@@ -155,10 +167,10 @@ class TeamComponent extends Component {
                                 currentTeams.map(
                                     team => 
                                     <tr key = {team.id}>
-                                        <td className="align-middle">{team.id}</td>
-                                        <td className="align-middle">{team.fullName}</td>
-                                        <td className="align-middle">{team.shortName}</td>
-                                        <td className="align-middle">{team.foundingDate}</td>
+                                        <td className="align-middle" width="10%">{team.id}</td>
+                                        <td className="align-middle" width="15%">{team.fullName}</td>
+                                        <td className="align-middle" width="12%">{team.shortName}</td>
+                                        <td className="align-middle" width="13%">{team.foundingDate}</td>
                                         <td className="align-middle">{team.teamValue}</td>
                                         <td className="align-middle">{team.valueCurrency}</td>
                                         <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
@@ -190,11 +202,11 @@ class TeamComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

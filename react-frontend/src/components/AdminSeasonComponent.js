@@ -14,7 +14,8 @@ class AdminSeasonComponent extends Component {
             seasons: [],
             currentPage: 1,
             seasonsPerPage: 5,
-            search: ''
+            search: '',
+            sortToggle: true
         }
         this.addSeason = this.addSeason.bind(this);
         this.editSeason = this.editSeason.bind(this);
@@ -114,10 +115,21 @@ class AdminSeasonComponent extends Component {
         });
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
         const {seasons, currentPage, seasonsPerPage, search} = this.state;
         const lastIndex = currentPage * seasonsPerPage;
         const firstIndex = lastIndex - seasonsPerPage;
+
+        seasons.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
 
         const filteredSeasons = seasons.filter( season => {
             return (season.id.indexOf(search) !== -1)
@@ -151,7 +163,7 @@ class AdminSeasonComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Season ID</th>
+                                <th onClick={this.sortData}>Season ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Competition ID</th>
                                 <th>Started</th>
                                 <th>Finished</th>
@@ -166,10 +178,10 @@ class AdminSeasonComponent extends Component {
                                 currentSeasons.map(
                                     season => 
                                     <tr key = {season.id}>
-                                        <td className="align-middle" width="10%">{season.id}</td>
-                                        <td className="align-middle" width="21.5%">{season.competitionId}</td>
-                                        <td className="align-middle" width="22.5%">{season.started}</td>
-                                        <td className="align-middle" width="22.5%">{season.finished}</td>
+                                        <td className="align-middle" width="12%">{season.id}</td>
+                                        <td className="align-middle" width="20.5%">{season.competitionId}</td>
+                                        <td className="align-middle" width="21.5%">{season.started}</td>
+                                        <td className="align-middle" width="21.5%">{season.finished}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.editSeason(season.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteSeason(season.id)} className="btn btn-danger">Delete</button>
@@ -199,11 +211,11 @@ class AdminSeasonComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

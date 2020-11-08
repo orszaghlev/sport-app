@@ -14,7 +14,8 @@ class MatchComponent extends Component {
             matches: [],
             currentPage: 1,
             matchesPerPage: 5,
-            search: ''
+            search: '',
+            sortToggle: true
         }
     }
     
@@ -97,10 +98,21 @@ class MatchComponent extends Component {
         });
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
         const {matches, currentPage, matchesPerPage, search} = this.state;
         const lastIndex = currentPage * matchesPerPage;
         const firstIndex = lastIndex - matchesPerPage;
+
+        matches.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
 
         const filteredMatches = matches.filter( match => {
             return (match.id.indexOf(search) !== -1)
@@ -133,7 +145,7 @@ class MatchComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Match ID</th>
+                                <th onClick={this.sortData}>Match ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Season ID</th>
                                 <th>Home Team</th>
                                 <th>Away Team</th>
@@ -152,7 +164,7 @@ class MatchComponent extends Component {
                                 currentMatches.map(
                                     match => 
                                     <tr key = {match.id}>
-                                        <td className="align-middle">{match.id}</td>
+                                        <td className="align-middle" width="11%">{match.id}</td>
                                         <td className="align-middle">{match.seasonId}</td>
                                         <td className="align-middle">{match.homeTeam}</td>
                                         <td className="align-middle">{match.awayTeam}</td>
@@ -187,11 +199,11 @@ class MatchComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

@@ -14,7 +14,8 @@ class SeasonComponent extends Component {
             seasons: [],
             currentPage: 1,
             seasonsPerPage: 5,
-            search: ''
+            search: '',
+            sortToggle: true
         }
     }
 
@@ -97,10 +98,21 @@ class SeasonComponent extends Component {
         });
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
         const {seasons, currentPage, seasonsPerPage, search} = this.state;
         const lastIndex = currentPage * seasonsPerPage;
         const firstIndex = lastIndex - seasonsPerPage;
+
+        seasons.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
 
         const filteredSeasons = seasons.filter( season => {
             return (season.id.indexOf(search) !== -1)
@@ -131,7 +143,7 @@ class SeasonComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Season ID</th>
+                                <th onClick={this.sortData}>Season ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Competition ID</th>
                                 <th>Started</th>
                                 <th>Finished</th>
@@ -146,7 +158,7 @@ class SeasonComponent extends Component {
                                 currentSeasons.map(
                                     season => 
                                     <tr key = {season.id}>
-                                        <td className="align-middle" width="10%">{season.id}</td>
+                                        <td className="align-middle" width="12%">{season.id}</td>
                                         <td className="align-middle" width="23.5%">{season.competitionId}</td>
                                         <td className="align-middle" width="29.5%">{season.started}</td>
                                         <td className="align-middle" width="29.5%">{season.finished}</td>
@@ -177,11 +189,11 @@ class SeasonComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

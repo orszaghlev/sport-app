@@ -14,7 +14,8 @@ class AdminMatchComponent extends Component {
             matches: [],
             currentPage: 1,
             matchesPerPage: 5,
-            search: ''
+            search: '',
+            sortToggle: true
         }
         this.addMatch = this.addMatch.bind(this);
         this.editMatch = this.editMatch.bind(this);
@@ -114,10 +115,21 @@ class AdminMatchComponent extends Component {
         });
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
         const {matches, currentPage, matchesPerPage, search} = this.state;
         const lastIndex = currentPage * matchesPerPage;
         const firstIndex = lastIndex - matchesPerPage;
+
+        matches.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
 
         const filteredMatches = matches.filter( match => {
             return (match.id.indexOf(search) !== -1)
@@ -153,7 +165,7 @@ class AdminMatchComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Match ID</th>
+                                <th onClick={this.sortData}>Match ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Season ID</th>
                                 <th>Home Team</th>
                                 <th>Away Team</th>
@@ -172,18 +184,18 @@ class AdminMatchComponent extends Component {
                                 currentMatches.map(
                                     match => 
                                     <tr key = {match.id}>
-                                        <td className="align-middle" width="8%">{match.id}</td>
-                                        <td className="align-middle" width="8%">{match.seasonId}</td>
-                                        <td className="align-middle" width="8%">{match.homeTeam}</td>
-                                        <td className="align-middle" width="8%">{match.awayTeam}</td>
-                                        <td className="align-middle" width="8%">{match.homeScore}</td>
-                                        <td className="align-middle" width="8%">{match.awayScore}</td>
-                                        <td className="align-middle">{match.place}</td>
-                                        <td className="align-middle">{match.date}</td>
+                                        <td className="align-middle" width="10%">{match.id}</td>
+                                        <td className="align-middle" width="10%">{match.seasonId}</td>
+                                        <td className="align-middle" width="12%">{match.homeTeam}</td>
+                                        <td className="align-middle" width="10%">{match.awayTeam}</td>
+                                        <td className="align-middle" width="12%">{match.homeScore}</td>
+                                        <td className="align-middle" width="10%">{match.awayScore}</td>
+                                        <td className="align-middle" width="14%">{match.place}</td>
+                                        <td className="align-middle" width="10%">{match.date}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.editMatch(match.id)} className="btn btn-info">Update</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                            <button style={{marginTop: "10px"}} onClick={ () => this.deleteMatch(match.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginTop: "10px"}} onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
@@ -209,11 +221,11 @@ class AdminMatchComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>
