@@ -122,7 +122,7 @@ class CompetitionComponent extends Component {
         })
         
         const currentCompetitions = filteredCompetitions.slice(firstIndex, lastIndex);
-        const totalPages = competitions.length / competitionsPerPage;
+        const totalPages = filteredCompetitions.length / competitionsPerPage;
 
         return (
             <div>

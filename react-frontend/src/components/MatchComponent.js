@@ -123,7 +123,7 @@ class MatchComponent extends Component {
         })
 
         const currentMatches = filteredMatches.slice(firstIndex, lastIndex);
-        const totalPages = matches.length / matchesPerPage;
+        const totalPages = filteredMatches.length / matchesPerPage;
 
         return (
             <div>

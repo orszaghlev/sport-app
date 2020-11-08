@@ -140,12 +140,12 @@ class AdminMatchComponent extends Component {
         })
 
         const currentMatches = filteredMatches.slice(firstIndex, lastIndex);
-        const totalPages = matches.length / matchesPerPage;
+        const totalPages = filteredMatches.length / matchesPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Matches</h2>
-                <div className="row">
+                <div style={{"float": "left"}} className="row">
                     <button className="btn btn-primary" onClick={this.addMatch}>Add Match</button>
                 </div>
                 <div style={{"float": "right"}}>

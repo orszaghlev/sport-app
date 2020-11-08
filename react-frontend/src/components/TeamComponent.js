@@ -126,7 +126,7 @@ class TeamComponent extends Component {
         })
 
         const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
-        const totalPages = teams.length / teamsPerPage;
+        const totalPages = filteredTeams.length / teamsPerPage;
 
         return (
             <div>

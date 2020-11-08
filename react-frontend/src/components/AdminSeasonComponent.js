@@ -138,12 +138,12 @@ class AdminSeasonComponent extends Component {
         })
 
         const currentSeasons = filteredSeasons.slice(firstIndex, lastIndex);
-        const totalPages = seasons.length / seasonsPerPage;
+        const totalPages = filteredSeasons.length / seasonsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Seasons</h2>
-                <div className="row">
+                <div style={{"float": "left"}} className="row">
                     <button className="btn btn-primary" onClick={this.addSeason}>Add Season</button>
                 </div>
                 <div style={{"float": "right"}}>

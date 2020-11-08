@@ -139,12 +139,12 @@ class AdminCompetitionComponent extends Component {
         })
 
         const currentCompetitions = filteredCompetitions.slice(firstIndex, lastIndex);
-        const totalPages = competitions.length / competitionsPerPage;
+        const totalPages = filteredCompetitions.length / competitionsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Competitions</h2>
-                <div className="row">
+                <div style={{"float": "left"}} className="row">
                     <button className="btn btn-primary" onClick={this.addCompetition}>Add Competition</button>
                 </div>
                 <div style={{"float": "right"}}>

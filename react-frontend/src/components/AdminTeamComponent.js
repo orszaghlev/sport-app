@@ -143,12 +143,12 @@ class AdminTeamComponent extends Component {
         })
 
         const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
-        const totalPages = teams.length / teamsPerPage;
+        const totalPages = filteredTeams.length / teamsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Teams</h2>
-                <div className="row">
+                <div style={{"float": "left"}} className="row">
                     <button className="btn btn-primary" onClick={this.addTeam}>Add Team</button>
                 </div>
                 <div style={{"float": "right"}}>

@@ -121,7 +121,7 @@ class SeasonComponent extends Component {
         })
 
         const currentSeasons = filteredSeasons.slice(firstIndex, lastIndex);
-        const totalPages = seasons.length / seasonsPerPage;
+        const totalPages = filteredSeasons.length / seasonsPerPage;
 
         return (
             <div>
