@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
@@ -13,7 +13,9 @@ class MatchComponent extends Component {
         this.state = {
             matches: [],
             currentPage: 1,
-            matchesPerPage: 5
+            matchesPerPage: 5,
+            search: '',
+            sortToggle: true
         }
     }
     
@@ -83,21 +85,67 @@ class MatchComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getMatches().then((res) => {
+            this.setState({currentMatches: res.data});
+        });
+    }
+
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
-        const {matches, currentPage, matchesPerPage} = this.state;
+        const {matches, currentPage, matchesPerPage, search} = this.state;
         const lastIndex = currentPage * matchesPerPage;
         const firstIndex = lastIndex - matchesPerPage;
-        const currentMatches = matches.slice(firstIndex, lastIndex);
-        const totalPages = matches.length / matchesPerPage;
+
+        matches.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
+
+        const filteredMatches = matches.filter( match => {
+            return (match.id.indexOf(search) !== -1)
+            || (match.homeScore.toString().indexOf(search) !== -1)
+            || (match.awayScore.toString().indexOf(search) !== -1)
+            || (match.place.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (match.date.indexOf(search) !== -1);
+        })
+
+        const currentMatches = filteredMatches.slice(firstIndex, lastIndex);
+        const totalPages = filteredMatches.length / matchesPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Matches</h2>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Match ID</th>
+                                <th onClick={this.sortData}>Match ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Season ID</th>
                                 <th>Home Team</th>
                                 <th>Away Team</th>
@@ -116,7 +164,7 @@ class MatchComponent extends Component {
                                 currentMatches.map(
                                     match => 
                                     <tr key = {match.id}>
-                                        <td className="align-middle">{match.id}</td>
+                                        <td className="align-middle" width="11%">{match.id}</td>
                                         <td className="align-middle">{match.seasonId}</td>
                                         <td className="align-middle">{match.homeTeam}</td>
                                         <td className="align-middle">{match.awayTeam}</td>
@@ -151,11 +199,11 @@ class MatchComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
@@ -13,7 +13,9 @@ class TeamComponent extends Component {
         this.state = {
             teams: [],
             currentPage: 1,
-            teamsPerPage: 5
+            teamsPerPage: 5,
+            search: '',
+            sortToggle: true
         }
     }
 
@@ -83,21 +85,70 @@ class TeamComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getTeams().then((res) => {
+            this.setState({currentTeams: res.data});
+        });
+    }
+
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
-        const {teams, currentPage, teamsPerPage} = this.state;
+        const {teams, currentPage, teamsPerPage, search} = this.state;
         const lastIndex = currentPage * teamsPerPage;
         const firstIndex = lastIndex - teamsPerPage;
-        const currentTeams = teams.slice(firstIndex, lastIndex);
-        const totalPages = teams.length / teamsPerPage;
+
+        teams.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
+
+        const filteredTeams = teams.filter( team => {
+            return (team.id.indexOf(search) !== -1) 
+            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.shortName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.foundingDate.indexOf(search) !== -1)
+            || (team.teamValue.toString().indexOf((search)) !== -1)
+            || (team.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (team.homePlace.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+        })
+
+        const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
+        const totalPages = filteredTeams.length / teamsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Teams</h2>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Team ID</th>
+                                <th onClick={this.sortData}>Team ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Full Name</th>
                                 <th>Short Name</th>
                                 <th>Founding Date</th>
@@ -116,10 +167,10 @@ class TeamComponent extends Component {
                                 currentTeams.map(
                                     team => 
                                     <tr key = {team.id}>
-                                        <td className="align-middle">{team.id}</td>
-                                        <td className="align-middle">{team.fullName}</td>
-                                        <td className="align-middle">{team.shortName}</td>
-                                        <td className="align-middle">{team.foundingDate}</td>
+                                        <td className="align-middle" width="10%">{team.id}</td>
+                                        <td className="align-middle" width="15%">{team.fullName}</td>
+                                        <td className="align-middle" width="12%">{team.shortName}</td>
+                                        <td className="align-middle" width="13%">{team.foundingDate}</td>
                                         <td className="align-middle">{team.teamValue}</td>
                                         <td className="align-middle">{team.valueCurrency}</td>
                                         <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
@@ -151,11 +202,11 @@ class TeamComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>

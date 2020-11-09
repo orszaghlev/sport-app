@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStepBackward, faFastBackward, faStepForward, faFastForward} from '@fortawesome/free-solid-svg-icons';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
@@ -13,7 +13,9 @@ class SeasonComponent extends Component {
         this.state = {
             seasons: [],
             currentPage: 1,
-            seasonsPerPage: 5
+            seasonsPerPage: 5,
+            search: '',
+            sortToggle: true
         }
     }
 
@@ -83,21 +85,65 @@ class SeasonComponent extends Component {
         }
     }
 
+    searchChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    cancelSearch = () => {
+        this.setState({"search": ''})
+        MatchService.getSeasons().then((res) => {
+            this.setState({currentSeasons: res.data});
+        });
+    }
+
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     render() {
-        const {seasons, currentPage, seasonsPerPage} = this.state;
+        const {seasons, currentPage, seasonsPerPage, search} = this.state;
         const lastIndex = currentPage * seasonsPerPage;
         const firstIndex = lastIndex - seasonsPerPage;
-        const currentSeasons = seasons.slice(firstIndex, lastIndex);
-        const totalPages = seasons.length / seasonsPerPage;
+
+        seasons.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.localeCompare(b.id));
+        });
+
+        const filteredSeasons = seasons.filter( season => {
+            return (season.id.indexOf(search) !== -1)
+            || (season.started.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (season.finished.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+        })
+
+        const currentSeasons = filteredSeasons.slice(firstIndex, lastIndex);
+        const totalPages = filteredSeasons.length / seasonsPerPage;
 
         return (
             <div>
                 <h2 className="text-center">Seasons</h2>
+                <div style={{"float": "right"}}>
+                    <InputGroup size="sm">
+                        <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
+                            onChange={this.searchChange}/>
+                        <InputGroup.Append>
+                            <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
+                                <FontAwesomeIcon icon={faTimes}/>
+                            </Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Season ID</th>
+                                <th onClick={this.sortData}>Season ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Competition ID</th>
                                 <th>Started</th>
                                 <th>Finished</th>
@@ -112,7 +158,7 @@ class SeasonComponent extends Component {
                                 currentSeasons.map(
                                     season => 
                                     <tr key = {season.id}>
-                                        <td className="align-middle" width="10%">{season.id}</td>
+                                        <td className="align-middle" width="12%">{season.id}</td>
                                         <td className="align-middle" width="23.5%">{season.competitionId}</td>
                                         <td className="align-middle" width="29.5%">{season.started}</td>
                                         <td className="align-middle" width="29.5%">{season.finished}</td>
@@ -143,11 +189,11 @@ class SeasonComponent extends Component {
                             <FormControl className={"page-num bg-white"} name="currentPage" value={currentPage}
                                     onChange={this.changePage}/>
                             <InputGroup.Append>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.nextPage}>
                                     <FontAwesomeIcon icon={faStepForward}/> Next
                                 </Button>
-                                <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false}
+                                <Button type="button" variant="outline-info" disabled={currentPage === Math.ceil(totalPages) ? true : false}
                                     onClick={this.lastPage}>
                                     <FontAwesomeIcon icon={faFastForward}/> Last
                                 </Button>
