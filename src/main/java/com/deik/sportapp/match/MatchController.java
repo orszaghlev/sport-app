@@ -1,6 +1,8 @@
 package com.deik.sportapp.match;
 
 import com.deik.sportapp.exception.ResourceNotFoundException;
+import com.deik.sportapp.season.SeasonRepository;
+import com.deik.sportapp.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -17,9 +20,30 @@ public class MatchController {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private SeasonRepository seasonRepository;
+
+    @Autowired
+    private TeamRepository teamRepository;
+
     @GetMapping("/matches")
     public List<Match> getAllMatches() {
         return matchRepository.findAll();
+    }
+
+    @GetMapping("/seasons/{seasonId}/matches")
+    public Set<Match> getAllMatchesBySeasonId(@PathVariable(value = "seasonId") String seasonId) {
+        return matchRepository.findBySeasonId(seasonId);
+    }
+
+    @GetMapping("/teams/{homeTeam}/matches")
+    public Set<Match> getAllMatchesByHomeTeam(@PathVariable(value = "homeTeam") String homeTeam) {
+        return matchRepository.findByHomeTeam(homeTeam);
+    }
+
+    @GetMapping("/teams/{awayTeam}/matches")
+    public Set<Match> getAllMatchesByAwayTeam(@PathVariable(value = "awayTeam") String awayTeam) {
+        return matchRepository.findByAwayTeam(awayTeam);
     }
 
     @PostMapping("/matches")

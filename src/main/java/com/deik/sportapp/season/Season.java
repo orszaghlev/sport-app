@@ -3,6 +3,10 @@ package com.deik.sportapp.season;
 import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,8 +22,11 @@ public class Season {
     @Column(name = "id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "competitionId", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "competitionId", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("competitionId")
     private Competition competitionId;
 
     @Column(name = "started")
