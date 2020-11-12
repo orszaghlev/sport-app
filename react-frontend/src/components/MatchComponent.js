@@ -13,7 +13,7 @@ class MatchComponent extends Component {
         this.state = {
             matches: [],
             currentPage: 1,
-            matchesPerPage: 5,
+            matchesPerPage: 10,
             search: '',
             sortToggle: true
         }
@@ -142,18 +142,17 @@ class MatchComponent extends Component {
                 <br></br>
                 <br></br>
                 <div className="row">
-                    <table className="table table-striped table-bordered">
+                    <table className="table table-striped ">
                         <thead>
                             <tr>
-                                <th onClick={this.sortData}>Match ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th>Season ID</th>
-                                <th>Home Team</th>
-                                <th>Away Team</th>
-                                <th>Home Score</th>
-                                <th>Away Score</th>
-                                <th>Place</th>
-                                <th>Date</th>
-                                <th>Actions</th>
+                                <th className="text-center align-middle" onClick={this.sortData}>Season<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th className="text-center align-middle">Date</th>
+                                <th className="text-center align-middle">Home Team</th>
+                                <th className="text-center align-middle" style={{width:"40px"}}></th>
+                                <th style={{width:"20px"}}></th>
+                                <th className="text-center align-middle" style={{width:"40px"}}></th>
+                                <th className="text-center align-middle">Away Team</th>
+                                <th className="text-center align-middle"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,17 +162,16 @@ class MatchComponent extends Component {
                                 </tr>:
                                 currentMatches.map(
                                     match => 
-                                    <tr key = {match.id}>
-                                        <td className="align-middle" width="11%">{match.id}</td>
-                                        <td className="align-middle">{match.seasonId}</td>
-                                        <td className="align-middle">{match.homeTeam}</td>
-                                        <td className="align-middle">{match.awayTeam}</td>
-                                        <td className="align-middle">{match.homeScore}</td>
-                                        <td className="align-middle">{match.awayScore}</td>
-                                        <td className="align-middle">{match.place}</td>
-                                        <td className="align-middle">{match.date}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View</button>
+                                    <tr key = {match.seasonId}>
+                                        <td className="text-center align-middle">{match.seasonId}</td>
+                                        <td className="text-center align-middle">{match.date}</td>
+                                        <td className="text-center align-middle">{match.homeTeam}</td>
+                                        <td className="text-center align-middle">{match.homeScore}</td>
+                                        <td className="text-center align-middle">-</td>
+                                        <td className="text-center align-middle">{match.awayScore}</td>
+                                        <td className="text-center align-middle">{match.awayTeam}</td>
+                                        <td className="text-center align-middle">
+                                            <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View details! &#62;&#62;</button>
                                         </td>
                                     </tr>
                                 )
@@ -184,7 +182,7 @@ class MatchComponent extends Component {
                     <div style={{"margin-left": "auto"}}>
                         Showing Page {currentPage} of {Math.ceil(totalPages)}
                     </div>
-                    <div style={{"margin-right": "0"}}>
+                    <div style={{"margin-right": "0", marginTop:"5px"}}>
                         <InputGroup size="sm">
                             <InputGroup.Prepend>
                                 <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}

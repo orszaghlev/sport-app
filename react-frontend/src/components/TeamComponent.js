@@ -13,7 +13,7 @@ class TeamComponent extends Component {
         this.state = {
             teams: [],
             currentPage: 1,
-            teamsPerPage: 5,
+            teamsPerPage: 10,
             search: '',
             sortToggle: true
         }
@@ -144,19 +144,13 @@ class TeamComponent extends Component {
                 </div>
                 <br></br>
                 <br></br>
-                <div className="row">
+                <div className="row" style={{width:"800px", marginLeft:"150px"}}>
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th onClick={this.sortData}>Team ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th>Full Name</th>
-                                <th>Short Name</th>
-                                <th>Founding Date</th>
-                                <th>Value</th>
-                                <th>Currency</th>
-                                <th>Image</th>
-                                <th>Home Place</th>
-                                <th>Actions</th>
+                                <th style={{width:"250px"}}></th>
+                                <th onClick={this.sortData} style={{width:"300px"}}><div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,16 +161,10 @@ class TeamComponent extends Component {
                                 currentTeams.map(
                                     team => 
                                     <tr key = {team.id}>
-                                        <td className="align-middle" width="10%">{team.id}</td>
-                                        <td className="align-middle" width="15%">{team.fullName}</td>
-                                        <td className="align-middle" width="12%">{team.shortName}</td>
-                                        <td className="align-middle" width="13%">{team.foundingDate}</td>
-                                        <td className="align-middle">{team.teamValue}</td>
-                                        <td className="align-middle">{team.valueCurrency}</td>
-                                        <td className="align-middle">{<img src={team.imageLink} alt="Team" width="100px" height="100px"/>}</td>
-                                        <td className="align-middle">{team.homePlace}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View</button>
+                                        <td className="text-center align-middle">{<img src={team.imageLink} alt="Team" height="80px"/>}</td>
+                                        <td className="text-left align-middle" style={{fontSize:"18px"}}>{team.fullName}</td>
+                                        <td className="text-center align-middle">
+                                            <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View details! &#62;&#62;</button>
                                         </td>
                                     </tr>
                                 )
