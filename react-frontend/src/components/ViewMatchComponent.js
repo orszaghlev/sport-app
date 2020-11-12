@@ -28,26 +28,24 @@ class ViewMatchComponent extends Component {
                 <div className="card col-md-6 offset-md-3">
                     <h2 className="text-center">Match details</h2>
                     <div className="card-body">
-                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"80px", horizontalAlign:"center", verticalAlign:"center"}}>
+                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"120px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
                                 <label style={{marginLeft: "25px"}}>Season:</label>
                                 <div style={{marginLeft: "5px"}}>{this.state.match.seasonId}</div>
                             </div>
-                            <table style={{marginLeft: "50px", marginTop:"0px", marginBottom:"10px", fontSize:"25px"}}>
-                                <tr style={{align:"center"}}>
-                                    <th style={{align:"center"}}>
-                                        <label className="text-center" style={{marginRight:"10px"}}>Home Team</label>
-                                        <div className="text-center" style={{marginRight:"10px"}}>{this.state.match.homeTeam}</div>
+                            <table style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"22px", width:"483px"}}>
+                                <tr style={{align:"center", height:"80px"}}>
+                                    <th style={{align:"center", width:"200px"}}>
+                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.match.homeTeam}</div>
                                     </th>
                                     <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px"}}>{this.state.match.homeScore}</div>
+                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
                                     </th>
                                     <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px"}}>{this.state.match.awayScore}</div>
+                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <label className="text-center" style={{marginLeft:"10px"}}>Away Team</label>
-                                        <div className="text-center" style={{marginLeft:"10px"}}>{this.state.match.awayTeam}</div>
+                                    <th style={{align:"center", width:"200px"}}>
+                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.match.awayTeam}</div>
                                     </th>
                                 </tr>
                             </table>

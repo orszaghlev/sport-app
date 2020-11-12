@@ -47,7 +47,7 @@ class ViewTeamComponent extends Component {
                             </div>
 
                             <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
-                                <label>The estimated value value of the team is</label>
+                                <label>The estimated value of the team is</label>
                                 <div style={{marginLeft: "5px"}}>{this.state.team.teamValue}</div>
                                 <div style={{marginLeft: "5px"}}>{this.state.team.valueCurrency}</div>
                                 <label>.</label>
