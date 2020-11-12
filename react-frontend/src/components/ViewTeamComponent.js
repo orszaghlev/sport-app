@@ -25,40 +25,39 @@ class ViewTeamComponent extends Component {
         return (
             <div>
                 <br></br>
-                <div className="card col-md-6 offset-md-3">
-                    <h3 className="text-center">View Team Details</h3>
+                <div className="card col-md-7 offset-md-2.5">
                     <div className="card-body">
-                        <div className="row">
-                            <label>Full Name:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.fullName}</div>
+                        <div className="row" >
+                            <div style={{marginLeft: "30px"}}>{<img src={this.state.team.imageLink} alt="Team" height="80px" />}</div>
+                            <div style={{fontSize:"35px", marginTop:"10px", marginLeft:"25px", FontWeight: "bold"}}>{this.state.team.fullName}</div>
                         </div>
-                        <div className="row">
-                            <label>Short Name:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.shortName}</div>
-                        </div>
-                        <div className="row">
-                            <label>Founding Date:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.foundingDate}</div>
-                        </div>
-                        <div className="row">
-                            <label>Value:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.teamValue}</div>
-                        </div>
-                        <div className="row">
-                            <label>Currency:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.valueCurrency}</div>
-                        </div>
-                        <div className="row">
-                            <label>Image:</label>
-                            <div style={{marginLeft: "5px"}}>{<img src={this.state.team.imageLink} alt="Team" width="200px" height="200px"/>}</div>
-                        </div>
-                        <div className="row">
-                            <label>Home Place:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.team.homePlace}</div>
-                        </div>
+
                         <br></br>
-                        <div className="row">
-                            <button className="btn btn-danger" onClick={this.return.bind(this)}>Return</button>
+                        <div style={{height:"80px" ,horizontalAlign:"center", verticalAlign:"center", backgroundColor:"#e0e0d1"}}>
+                            <div className="row" style={{marginLeft:"30px", paddingTop:"5px"}}>
+                                <label>The team was founded in </label>
+                                <div style={{marginLeft: "5px"}}>{this.state.team.foundingDate}</div>
+                                <label>.</label>
+                            </div>
+
+                            <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
+                                <label>They play their home matches in the</label>
+                                <div style={{marginLeft: "5px"}}>{this.state.team.homePlace}</div>
+                                <label>.</label>
+                            </div>
+
+                            <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
+                                <label>The estimated value value of the team is</label>
+                                <div style={{marginLeft: "5px"}}>{this.state.team.teamValue}</div>
+                                <div style={{marginLeft: "5px"}}>{this.state.team.valueCurrency}</div>
+                                <label>.</label>
+                            </div>
+                        </div>
+
+
+                        <br></br>
+                        <div className="row" style={{marginLeft:"10px"}}>
+                            <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Return</button>
                         </div>
                     </div>
                 </div>
