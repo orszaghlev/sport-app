@@ -26,7 +26,6 @@ class ViewMatchComponent extends Component {
             <div>
                 <br></br>
                 <div className="card col-md-6 offset-md-3">
-                    <h2 className="text-center">Match details</h2>
                     <div className="card-body">
                         <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"120px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
@@ -53,7 +52,7 @@ class ViewMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
 
-                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Statics:</div>
+                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
 
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
