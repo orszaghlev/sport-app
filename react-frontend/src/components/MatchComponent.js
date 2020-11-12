@@ -111,15 +111,14 @@ class MatchComponent extends Component {
 
         matches.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
-            return (isReversed * a.id.localeCompare(b.id));
+            return (isReversed * a.date.localeCompare(b.date));
         });
 
         const filteredMatches = matches.filter( match => {
-            return (match.id.indexOf(search) !== -1)
+            return (match.date.indexOf(search) !== -1)
             || (match.homeScore.toString().indexOf(search) !== -1)
             || (match.awayScore.toString().indexOf(search) !== -1)
-            || (match.place.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (match.date.indexOf(search) !== -1);
+            || (match.place.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
         })
 
         const currentMatches = filteredMatches.slice(firstIndex, lastIndex);
@@ -142,16 +141,17 @@ class MatchComponent extends Component {
                 <br></br>
                 <br></br>
                 <div className="row">
-                    <table className="table table-striped ">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th className="text-center align-middle" onClick={this.sortData}>Season<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th className="text-center align-middle">Date</th>
+                                <th className="text-center align-middle">Season</th>
+                                <th className="text-center align-middle" onClick={this.sortData}>Date<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th className="text-center align-middle">Home Team</th>
                                 <th className="text-center align-middle" style={{width:"40px"}}></th>
-                                <th style={{width:"20px"}}></th>
+                                <th className="text-center align-middle" style={{width:"20px"}}>Score</th>
                                 <th className="text-center align-middle" style={{width:"40px"}}></th>
                                 <th className="text-center align-middle">Away Team</th>
+                                <th className="text-center align-middle">Place</th>
                                 <th className="text-center align-middle"></th>
                             </tr>
                         </thead>
@@ -162,7 +162,7 @@ class MatchComponent extends Component {
                                 </tr>:
                                 currentMatches.map(
                                     match => 
-                                    <tr key = {match.seasonId}>
+                                    <tr key = {match.id}>
                                         <td className="text-center align-middle">{match.seasonId}</td>
                                         <td className="text-center align-middle">{match.date}</td>
                                         <td className="text-center align-middle">{match.homeTeam}</td>
@@ -170,6 +170,7 @@ class MatchComponent extends Component {
                                         <td className="text-center align-middle">-</td>
                                         <td className="text-center align-middle">{match.awayScore}</td>
                                         <td className="text-center align-middle">{match.awayTeam}</td>
+                                        <td className="text-center align-middle">{match.place}</td>
                                         <td className="text-center align-middle">
                                             <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View details! &#62;&#62;</button>
                                         </td>
