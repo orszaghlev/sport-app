@@ -111,18 +111,11 @@ class TeamComponent extends Component {
 
         teams.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
-            return (isReversed * a.id.localeCompare(b.id));
+            return (isReversed * a.fullName.localeCompare(b.fullName));
         });
 
         const filteredTeams = teams.filter( team => {
-            return (team.id.indexOf(search) !== -1) 
-            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (team.shortName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (team.foundingDate.indexOf(search) !== -1)
-            || (team.teamValue.toString().indexOf((search)) !== -1)
-            || (team.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (team.homePlace.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
+            return (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
         })
 
         const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
@@ -149,7 +142,7 @@ class TeamComponent extends Component {
                         <thead>
                             <tr>
                                 <th style={{width:"250px"}}></th>
-                                <th onClick={this.sortData} style={{width:"300px"}}><div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th onClick={this.sortData} className="text-center align-middle" style={{width:"300px"}}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th></th>
                             </tr>
                         </thead>
