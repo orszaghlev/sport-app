@@ -26,9 +26,8 @@ class ViewMatchComponent extends Component {
             <div>
                 <br></br>
                 <div className="card col-md-6 offset-md-3">
-                    <h3 className="text-center">About the Match</h3>
+                    <h2 className="text-center">Match details</h2>
                     <div className="card-body">
-
                         <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"80px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
                                 <label style={{marginLeft: "25px"}}>Season:</label>
@@ -58,17 +57,21 @@ class ViewMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Statics:</div>
 
-                        <div className="row">
-                            <div style={{marginLeft: "10px", marginTop: "20px"}}>{this.state.match.date}</div>
+                        <div style={{marginLeft:"10px"}}>
+                            <div className="row">
+                                <div style={{marginLeft: "10px", marginTop: "20px"}}>{this.state.match.date}</div>
+                            </div>
+
+                            <div className="row">
+                                <label style={{marginLeft: "10px"}}>Played in the </label>
+                                <div style={{marginLeft: "5px"}}>{this.state.match.place}</div>
+                            </div>
                         </div>
 
-                        <div className="row">
-                            <label style={{marginLeft: "10px"}}>Played in the </label>
-                            <div style={{marginLeft: "5px"}}>{this.state.match.place}</div>
-                        </div>
+
 
                         <br></br>
-                        <div className="row">
+                        <div className="row" style={{marginLeft:"10px"}}>
                             <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Return</button>
                         </div>
                     </div>
