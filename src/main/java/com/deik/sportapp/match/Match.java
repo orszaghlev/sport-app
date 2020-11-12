@@ -2,6 +2,10 @@ package com.deik.sportapp.match;
 
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,16 +19,25 @@ public class Match {
     @Column(name = "id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seasonId", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "seasonId", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("seasonId")
     private Season seasonId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "homeTeam", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "homeTeam", nullable = false)
+    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("homeTeam")
     private Team homeTeam;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "awayTeam", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "awayTeam", nullable = false)
+    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("awayTeam")
     private Team awayTeam;
 
     @Column(name = "homeScore")

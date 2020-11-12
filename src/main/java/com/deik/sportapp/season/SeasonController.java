@@ -1,5 +1,6 @@
 package com.deik.sportapp.season;
 
+import com.deik.sportapp.competition.CompetitionRepository;
 import com.deik.sportapp.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -17,9 +19,17 @@ public class SeasonController {
     @Autowired
     private SeasonRepository seasonRepository;
 
+    @Autowired
+    private CompetitionRepository competitionRepository;
+
     @GetMapping("/seasons")
     public List<Season> getAllSeasons() {
         return seasonRepository.findAll();
+    }
+
+    @GetMapping("/competitions/{competitionId}/seasons")
+    public Set<Season> getAllSeasonsByCompetitionId(@PathVariable(value = "competitionId") String competitionId) {
+        return seasonRepository.findByCompetitionId(competitionId);
     }
 
     @PostMapping("/seasons")

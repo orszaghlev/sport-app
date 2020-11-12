@@ -49,13 +49,13 @@ INSERT INTO competitions.team VALUES
 (12030,'San Francisco 49ers','SF','19440604',3500000000,'USD', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/San_Francisco_49ers_logo.svg/100px-San_Francisco_49ers_logo.svg.png','Levi´s Stadium'),
 (12031,'Seattle Seahawks','SEA','19740604',2780000000,'USD', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Seattle_Seahawks_logo.svg/100px-Seattle_Seahawks_logo.svg.png','CenturyLink Field'),
 (12032,'Tampa Bay Buccaneers','TB','19740424',2300000000,'USD', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Tampa_Bay_Buccaneers_logo.svg/100px-Tampa_Bay_Buccaneers_logo.svg.png','Raymond James Stadium'),
-(12033,'Tennsessee Titans','TEN','19590803',2050000000,'USD', 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Tennessee_Titans_logo.svg/100px-Tennessee_Titans_logo.svg.png','Nissan Stadium'),
+(12033,'Tennessee Titans','TEN','19590803',2050000000,'USD', 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Tennessee_Titans_logo.svg/100px-Tennessee_Titans_logo.svg.png','Nissan Stadium'),
 (12034,'Washington Football Team','WAS','19320709',3500000000,'USD', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Washington_football_team_wlogo.svg/100px-Washington_football_team_wlogo.svg.png','FedExField');
 
 
 INSERT INTO competitions.competition VALUES
 (21001,'Europe','Football','European Championship Qualification','https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/UEFA_Euro_2016_qualifying.png/220px-UEFA_Euro_2016_qualifying.png'),
-(22002,'USA','Amerian football','NFL','https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png');
+(22002,'USA','American Football','NFL','https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png');
 
 
 INSERT INTO competitions.season VALUES
