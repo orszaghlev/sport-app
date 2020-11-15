@@ -18,7 +18,6 @@ import CreateMatchComponent from './components/CreateMatchComponent';
 import CreateTeamComponent from './components/CreateTeamComponent';
 import CreateSeasonComponent from './components/CreateSeasonComponent';
 import CreateCompetitionComponent from './components/CreateCompetitionComponent';
-import ViewMatchComponent from './components/ViewMatchComponent';
 import ViewAmFootballMatchComponent from './components/ViewAmFootballMatchComponent';
 import ViewBasketballMatchComponent from './components/ViewBasketballMatchComponent';
 import ViewFootballMatchComponent from './components/ViewFootballMatchComponent';
@@ -187,7 +186,6 @@ class App extends Component {
             <Route path="/add-team/:id" component={CreateTeamComponent}></Route>
             <Route path="/add-season/:id" component={CreateSeasonComponent}></Route>
             <Route path="/add-competition/:id" component={CreateCompetitionComponent}></Route>
-            <Route path="/view-match/:id" component={ViewMatchComponent}></Route>
             <Route path="/view-amfootball-match/:id" component={ViewAmFootballMatchComponent}></Route>
             <Route path="/view-basketball-match/:id" component={ViewBasketballMatchComponent}></Route>
             <Route path="/view-football-match/:id" component={ViewFootballMatchComponent}></Route>

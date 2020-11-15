@@ -1,12 +1,15 @@
 package com.deik.sportapp.match.stats.amfootball;
 
 import com.deik.sportapp.match.Match;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "am_football_matchstats", schema = "competitions")
 public class AmFootballStats {
 

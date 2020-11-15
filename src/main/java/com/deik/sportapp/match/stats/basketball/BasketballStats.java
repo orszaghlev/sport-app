@@ -1,10 +1,13 @@
 package com.deik.sportapp.match.stats.basketball;
 
 import com.deik.sportapp.match.Match;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "basketball_matchstats", schema = "competitions")
 public class BasketballStats {
 

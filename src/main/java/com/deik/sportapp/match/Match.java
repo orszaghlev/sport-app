@@ -16,6 +16,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "match", schema = "competitions")
 public class Match {
 

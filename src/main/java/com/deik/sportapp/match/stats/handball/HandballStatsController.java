@@ -1,7 +1,6 @@
 package com.deik.sportapp.match.stats.handball;
 
 import com.deik.sportapp.exception.ResourceNotFoundException;
-import com.deik.sportapp.match.stats.amfootball.AmFootballStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

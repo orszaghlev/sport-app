@@ -1,11 +1,14 @@
 package com.deik.sportapp.match.stats.football;
 
 import com.deik.sportapp.match.Match;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "football_matchstats", schema = "competitions")
 public class FootballStats {
 
