@@ -1,10 +1,10 @@
 package com.deik.sportapp.match.stats.handball;
 
+import com.deik.sportapp.exception.ResourceNotFoundException;
+import com.deik.sportapp.match.stats.amfootball.AmFootballStats;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +19,13 @@ public class HandballStatsController {
     @GetMapping("/matches/handball")
     public List<HandballStats> getAllHandballStats() {
         return handballStatsRepository.findAll();
+    }
+
+    @GetMapping("/matches/handball/{id}")
+    public ResponseEntity<HandballStats> getHandballStatsById(@PathVariable String id) {
+        HandballStats handballStats = handballStatsRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Handball match doesn't exist with ID: " + id));
+        return ResponseEntity.ok(handballStats);
     }
 
 }

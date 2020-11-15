@@ -20,7 +20,21 @@ class MatchComponent extends Component {
     }
     
     viewMatch(id) {
-        this.props.history.push(`/view-match/${id}`);
+        if (id.substring(0, 2) === "41") {
+            this.props.history.push(`/view-football-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "42") {
+            this.props.history.push(`/view-amfootball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "43") {
+            this.props.history.push(`/view-basketball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "44") {
+            this.props.history.push(`/view-handball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "45") {
+            this.props.history.push(`/view-hockey-match/${id}`);
+        }
     }
 
     componentDidMount() {

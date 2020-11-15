@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 const MATCH_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches";
+const AMFOOTBALLSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/amfootball";
+const BASKETBALLSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/basketball";
+const FOOTBALLSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/football";
+const HANDBALLSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/handball";
+const HOCKEYSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/hockey";
 const TEAM_API_BASE_URL = "http://localhost:8080/api/auth/comp/teams";
 const COMPETITION_API_BASE_URL = "http://localhost:8080/api/auth/comp/competitions";
 const SEASON_API_BASE_URL = "http://localhost:8080/api/auth/comp/seasons";
@@ -41,6 +46,26 @@ class MatchService {
 
     getMatchById(matchId) {
         return axios.get(MATCH_API_BASE_URL + '/' + matchId);
+    }
+
+    getAmFootballStatsById(amFootballStatsId) {
+        return axios.get(AMFOOTBALLSTATS_API_BASE_URL + '/' + amFootballStatsId);
+    }
+
+    getBasketballStatsById(basketballStatsId) {
+        return axios.get(BASKETBALLSTATS_API_BASE_URL + '/' + basketballStatsId);
+    }
+
+    getFootballStatsById(footballStatsId) {
+        return axios.get(FOOTBALLSTATS_API_BASE_URL + '/' + footballStatsId);
+    }
+
+    getHandballStatsById(handballStatsId) {
+        return axios.get(HANDBALLSTATS_API_BASE_URL + '/' + handballStatsId);
+    }
+
+    getHockeyStatsById(hockeyStatsId) {
+        return axios.get(HOCKEYSTATS_API_BASE_URL + '/' + hockeyStatsId);
     }
 
     getTeamById(teamId) {
