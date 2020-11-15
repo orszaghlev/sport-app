@@ -1,4 +1,4 @@
-package com.deik.sportapp.match.stats;
+package com.deik.sportapp.match.stats.football;
 
 import com.deik.sportapp.match.Match;
 

@@ -1,6 +1,10 @@
 package com.deik.sportapp.match;
 
-import com.deik.sportapp.match.stats.*;
+import com.deik.sportapp.match.stats.amfootball.AmFootballStats;
+import com.deik.sportapp.match.stats.basketball.BasketballStats;
+import com.deik.sportapp.match.stats.football.FootballStats;
+import com.deik.sportapp.match.stats.handball.HandballStats;
+import com.deik.sportapp.match.stats.hockey.HockeyStats;
 import com.deik.sportapp.season.Season;
 import com.deik.sportapp.team.Team;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
