@@ -102,29 +102,34 @@ class ViewAmFootballMatchComponent extends Component {
                                 <td>{this.state.amFootballStats.aAvgYrdsPerPlay}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.amFootballStats.hFumbles}</td>
+                                <td>Fumbles</td>
+                                <td>{this.state.amFootballStats.aFumbles}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.amFootballStats.hInterceptions}</td>
+                                <td>Interceptions</td>
+                                <td>{this.state.amFootballStats.aInterceptions}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.amFootballStats.hPunts}</td>
+                                <td>Punts</td>
+                                <td>{this.state.amFootballStats.aPunts}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.amFootballStats.hTimeOfPossession}</td>
+                                <td>Time of possession</td>
+                                <td>{this.state.amFootballStats.aTimeOfPossession}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.amFootballStats.hPenalties}</td>
+                                <td>Penalties</td>
+                                <td>{this.state.amFootballStats.aPenalties}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.amFootballStats.hYardsPenalized}</td>
+                                <td>Yards penalized</td>
+                                <td>{this.state.amFootballStats.aYardsPenalized}</td>
                             </tr>
                         </table>
 
