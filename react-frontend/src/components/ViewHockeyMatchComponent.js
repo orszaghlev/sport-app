@@ -60,44 +60,44 @@ class ViewHockeyMatchComponent extends Component {
 
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
                             <tr>
-                                <td style={{width:"161px"}}></td>
-                                <td style={{width:"161px"}}></td>
-                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}>{this.state.hockeyStats.hShots}</td>
+                                <td style={{width:"161px"}}>Shots</td>
+                                <td style={{width:"161px"}}>{this.state.hockeyStats.aShots}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hGoalsInPowerplay}</td>
+                                <td>Power play goals</td>
+                                <td>{this.state.hockeyStats.aGoalsInPowerplay}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hShorthandedGoals}</td>
+                                <td>Shorthanded goals</td>
+                                <td>{this.state.hockeyStats.aShorthandedGoals}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hFaceoffsWon}</td>
+                                <td>Faceoffs won</td>
+                                <td>{this.state.hockeyStats.aFaceoffsWon}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hBlocked}</td>
+                                <td>Blocked</td>
+                                <td>{this.state.hockeyStats.aBlocked}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hTakeaways}</td>
+                                <td>Takeaways</td>
+                                <td>{this.state.hockeyStats.aTakeaways}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hGiveaways}</td>
+                                <td>Giveaways</td>
+                                <td>{this.state.hockeyStats.aGiveaways}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.hockeyStats.hPenaltyMinutes}</td>
+                                <td>Penalty minutes</td>
+                                <td>{this.state.hockeyStats.aPenaltyMinutes}</td>
                             </tr>
                         </table>
 
