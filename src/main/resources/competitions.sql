@@ -263,80 +263,40 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `competitions`.`AM_FOOTBALL_MATCHSTSAT`
+-- Table `competitions`.`AM_FOOTBALL_MATCHSTATS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_MATCHSTSAT` (
-  `match_id` INT NOT NULL,
-  `h_touchdowns` INT,
-  `a_touchdowns` INT,
-  `h_field_goals` INT,
-  `a_field_goals` INT,
-  `h_extra_point` INT,
-  `a_extra_point` INT,
-  `h_two_point` INT,
-  `a_two_point` INT,
-  `h_total_yards` INT,
-  `a_total_yards` INT,
-  `h_passing_yards` INT,
-  `a_passing_yards` INT,
-  `h_rushing_yards` INT,
-  `a_rushing_yards` INT,
-  `h_avg_yrds_per_play` DECIMAL,
-  `a_avg_yrds_per_play` DECIMAL,
-  `h_fumbles` INT,
-  `a_fumbles` INT,
-  `h_interceptions` INT,
-  `a_interceptions` INT,
-  `h_punts` INT,
-  `a_punts` INT,
-  `h_time_of_possession` DATETIME,
-  `a_time_of_possession` DATETIME,
-  `h_penalties` INT,
-  `a_penalties` INT,
-  `h_yards_penalized` INT,
-  `a_yards_penalized` INT,
-  PRIMARY KEY (`match_id`),
-  CONSTRAINT `afstat_match_id`
-    FOREIGN KEY (`match_id`)
-    REFERENCES `competitions`.`MATCH` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `competitions`.`HANDBALL_MATCHSTSAT`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTSAT` (
+CREATE TABLE IF NOT EXISTS `competitions`.`AM_FOOTBALL_MATCHSTATS` (
   `id` INT NOT NULL,
-  `h_shooting_efficiency` DECIMAL,
-  `a_shooting_efficiency` DECIMAL,
-  `h_wing_goals` INT,
-  `a_wing_goals` INT,
-  `h_fastbreak_goals` INT,
-  `a_fastbreak_goals` INT,
-  `h_seven_meters` INT,
-  `a_seven_meters` INT,
-  `h_saves` INT,
-  `a_saves` INT,
-  `h_two_min_penalty` INT,
-  `a_two_min_penalty` INT,
-  `h_yellow_cards` INT,
-  `a_yellow_cards` INT,
-  `h_goal_streak` INT,
-  `a_goal_streak` INT,
-  `h_goals_in_powerplay` INT,
-  `a_goals_in_powerplay` INT,
-  `h_shorthanded_goals` INT,
-  `a_shorthanded_goals` INT,
-  `h_steals` INT,
-  `a_steals` INT,
-  `h_technical_faults` INT,
-  `a_technical_faults` INT,
-  `h_timeouts` INT,
-  `a_timeouts` INT,
+  `hTouchdowns` INT,
+  `aTouchdowns` INT,
+  `hFieldGoals` INT,
+  `aFieldGoals` INT,
+  `hExtraPoint` INT,
+  `aExtraPoint` INT,
+  `hTwoPoint` INT,
+  `aTwoPoint` INT,
+  `hTotalYards` INT,
+  `aTotalYards` INT,
+  `hPassingYards` INT,
+  `aPassingYards` INT,
+  `hRushingYards` INT,
+  `aRushingYards` INT,
+  `hAvgYrdsPerPlay` DECIMAL,
+  `aAvgYrdsPerPlay` DECIMAL,
+  `hFumbles` INT,
+  `aFumbles` INT,
+  `hInterceptions` INT,
+  `aInterceptions` INT,
+  `hPunts` INT,
+  `aPunts` INT,
+  `hTimeOfPossession` DATETIME,
+  `aTimeOfPossession` DATETIME,
+  `hPenalties` INT,
+  `aPenalties` INT,
+  `hYardsPenalized` INT,
+  `aYardsPenalized` INT,
   PRIMARY KEY (`id`),
-  CONSTRAINT `hastat_match_id`
+  CONSTRAINT `afstatMatchId`
     FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
@@ -345,35 +305,39 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `competitions`.`FOOTBALL_MATCHSTSAT`
+-- Table `competitions`.`HANDBALL_MATCHSTATS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_MATCHSTSAT` (
-  `match_id` INT NOT NULL,
-  `h_attempts` INT,
-  `a_attempts` INT,
-  `h_on_target` INT,
-  `a_on_target` INT,
-  `h_corners` INT,
-  `a_corners` INT,
-  `h_offsides` INT,
-  `a_offsides` INT,
-  `h_possession` DECIMAL,
-  `a_possession` DECIMAL,
-  `h_passing_accuracy` DECIMAL,
-  `a_passing_accuracy` DECIMAL,
-  `h_passes` INT,
-  `a_passes` INT,
-  `h_passes_completed` INT,
-  `a_passes_completed` INT,
-  `h_yellow` INT,
-  `a_yellow` INT,
-  `h_red` INT,
-  `a_red` INT,
-  `h_fouls` INT,
-  `a_fouls` INT,
-  PRIMARY KEY (`match_id`),
-  CONSTRAINT `fstat_match_id`
-    FOREIGN KEY (`match_id`)
+CREATE TABLE IF NOT EXISTS `competitions`.`HANDBALL_MATCHSTATS` (
+  `id` INT NOT NULL,
+  `hShootingEfficiency` DECIMAL,
+  `aShootingEfficiency` DECIMAL,
+  `hWingGoals` INT,
+  `aWingGoals` INT,
+  `hFastbreakGoals` INT,
+  `aFastbreakGoals` INT,
+  `hSevenMeters` INT,
+  `aSevenMeters` INT,
+  `hSaves` INT,
+  `aSaves` INT,
+  `hTwoMinPenalty` INT,
+  `aTwoMinPenalty` INT,
+  `hYellowCards` INT,
+  `aYellowCards` INT,
+  `hGoalStreak` INT,
+  `aGoalStreak` INT,
+  `hGoalsInPowerplay` INT,
+  `aGoalsInPowerplay` INT,
+  `hShorthandedGoals` INT,
+  `aShorthandedGoals` INT,
+  `hSteals` INT,
+  `aSteals` INT,
+  `hTechnicalFaults` INT,
+  `aTechnicalFaults` INT,
+  `hTimeouts` INT,
+  `aTimeouts` INT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `hastatMatchId`
+    FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -381,33 +345,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `competitions`.`BASKETBALL_MATCHSTSAT`
+-- Table `competitions`.`FOOTBALL_MATCHSTATS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_MATCHSTSAT` (
-  `match_id` INT NOT NULL,
-  `h_free_throws` INT,
-  `a_free_throws` INT,
-  `h_two_pointers` INT,
-  `a_two_pointers` INT,
-  `h_three_pointers` INT,
-  `a_three_pointers` INT,
-  `h_field_goals` INT,
-  `a_field_goals` INT,
-  `h_rebounds` INT,
-  `a_rebounds` INT,
-  `h_turnovers` INT,
-  `a_turnovers` INT,
-  `h_steals` INT,
-  `a_steals` INT,
-  `h_blocks` INT,
-  `a_blocks` INT,
-  `h_fouls` INT,
-  `a_fouls` INT,
-  `h_timeouts` INT,
-  `a_timeouts` INT,
-  PRIMARY KEY (`match_id`),
-  CONSTRAINT `bstat_match_id`
-    FOREIGN KEY (`match_id`)
+CREATE TABLE IF NOT EXISTS `competitions`.`FOOTBALL_MATCHSTATS` (
+  `id` INT NOT NULL,
+  `hAttempts` INT,
+  `aAttempts` INT,
+  `hOnTarget` INT,
+  `aOnTarget` INT,
+  `hCorners` INT,
+  `aCorners` INT,
+  `hOffsides` INT,
+  `aOffsides` INT,
+  `hPossession` DECIMAL,
+  `aPossession` DECIMAL,
+  `hPassingAccuracy` DECIMAL,
+  `aPassingAccuracy` DECIMAL,
+  `hPasses` INT,
+  `aPasses` INT,
+  `hPassesCompleted` INT,
+  `aPassesCompleted` INT,
+  `hYellow` INT,
+  `aYellow` INT,
+  `hRed` INT,
+  `aRed` INT,
+  `hFouls` INT,
+  `aFouls` INT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fstatMatchId`
+    FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -415,29 +381,63 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `competitions`.`HOCKEY_MATCHSTSAT`
+-- Table `competitions`.`BASKETBALL_MATCHSTATS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_MATCHSTSAT` (
-  `match_id` INT NOT NULL,
-  `h_shots` INT,
-  `a_shots` INT,
-  `h_goals_in_powerplay` INT,
-  `a_goals_in_powerplay` INT,
-  `h_shorthanded_goals` INT,
-  `a_shorthanded_goals` INT,
-  `h_faceoffs_won`	INT,
-  `a_faceoffs_won` INT,
-  `h_blocked` INT,
-  `a_blocked` INT,
-  `h_takeaways` INT,
-  `a_takeaways` INT,
-  `h_giveaways` INT,
-  `a_giveaways` INT,
-  `h_penalty_minutes` INT,
-  `a_penalty_minutes` INT,
-  PRIMARY KEY (`match_id`),
-  CONSTRAINT `hostat_match_id`
-    FOREIGN KEY (`match_id`)
+CREATE TABLE IF NOT EXISTS `competitions`.`BASKETBALL_MATCHSTATS` (
+  `id` INT NOT NULL,
+  `hFreeThrows` INT,
+  `aFreeThrows` INT,
+  `hTwoPointers` INT,
+  `aTwoPointers` INT,
+  `hThreePointers` INT,
+  `aThreePointers` INT,
+  `hFieldGoals` INT,
+  `aFieldGoals` INT,
+  `hRebounds` INT,
+  `aRebounds` INT,
+  `hTurnovers` INT,
+  `aTurnovers` INT,
+  `hSteals` INT,
+  `aSteals` INT,
+  `hBlocks` INT,
+  `aBlocks` INT,
+  `hFouls` INT,
+  `aFouls` INT,
+  `hTimeouts` INT,
+  `aTimeouts` INT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `bstatMatchId`
+    FOREIGN KEY (`id`)
+    REFERENCES `competitions`.`MATCH` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `competitions`.`HOCKEY_MATCHSTATS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_MATCHSTATS` (
+  `id` INT NOT NULL,
+  `hShots` INT,
+  `aShots` INT,
+  `hGoalsInPowerplay` INT,
+  `aGoalsInPowerplay` INT,
+  `hShorthandedGoals` INT,
+  `aShorthandedGoals` INT,
+  `hFaceoffsWon` INT,
+  `aFaceoffsWon` INT,
+  `hBlocked` INT,
+  `aBlocked` INT,
+  `hTakeaways` INT,
+  `aTakeaways` INT,
+  `hGiveaways` INT,
+  `aGiveaways` INT,
+  `hPenaltyMinutes` INT,
+  `aPenaltyMinutes` INT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `hostatMatchId`
+    FOREIGN KEY (`id`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -555,9 +555,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `competitions`.`HOCEY_TABLE`
+-- Table `competitions`.`HOCKEY_TABLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `competitions`.`HOCEY_TABLE` (
+CREATE TABLE IF NOT EXISTS `competitions`.`HOCKEY_TABLE` (
   `season_id` INT NOT NULL,
   `team_id` INT NOT NULL,
   `position` INT,

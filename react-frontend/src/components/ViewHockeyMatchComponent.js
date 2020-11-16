@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import MatchService from '../services/MatchService';
 
-class ViewMatchComponent extends Component {
+class ViewHockeyMatchComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             id: this.props.match.params.id,
-            match: {}
+            match: {},
+            hockeyStats: {}
         }
     }
 
     componentDidMount() {
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
+        })
+        MatchService.getHockeyStatsById(this.state.id).then(res => {
+            this.setState({hockeyStats: res.data});
         })
     }
 
@@ -54,6 +58,47 @@ class ViewMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
 
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Shots:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShots}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShots}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Power Play Goals:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGoalsInPowerplay}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGoalsInPowerplay}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Shorthanded Goals:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShorthandedGoals}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShorthandedGoals}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Faceoffs Won:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hFaceoffsWon}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aFaceoffsWon}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Blocked:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hBlocked}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aBlocked}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Takeaways:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hTakeaways}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aTakeaways}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Giveaways:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGiveaways}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGiveaways}</div>
+                        </div>
+                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
+                            <label>Penalty Minutes:</label>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hPenaltyMinutes}</div>
+                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aPenaltyMinutes}</div>
+                        </div>
+
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
                                 <div style={{marginLeft: "10px", marginTop: "20px"}}>{this.state.match.date}</div>
@@ -64,8 +109,6 @@ class ViewMatchComponent extends Component {
                                 <div style={{marginLeft: "5px"}}>{this.state.match.place}</div>
                             </div>
                         </div>
-
-
 
                         <br></br>
                         <div className="row" style={{marginLeft:"10px"}}>
@@ -78,4 +121,4 @@ class ViewMatchComponent extends Component {
     }
 }
 
-export default ViewMatchComponent;
+export default ViewHockeyMatchComponent;
