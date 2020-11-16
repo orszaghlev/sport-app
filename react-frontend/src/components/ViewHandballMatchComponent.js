@@ -58,71 +58,75 @@ class ViewHandballMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
 
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shooting Efficiency:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hShootingEfficiency}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aShootingEfficiency}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Wing Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hWingGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aWingGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Fastbreak Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hFastbreakGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aFastbreakGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Seven Meters:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hSevenMeters}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aSevenMeters}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Saves:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hSaves}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aSaves}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Two Min Penalty:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hTwoMinPenalty}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aTwoMinPenalty}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Yellow Cards:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hYellowCards}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aYellowCards}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Goal Streak:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hGoalStreak}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aGoalStreak}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Power Play Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hGoalsInPowerplay}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aGoalsInPowerplay}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shorthanded Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hShorthandedGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aShorthandedGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Steals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hSteals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aSteals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Technical Faults:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hTechnicalFaults}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aTechnicalFaults}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Timeouts:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.hTimeouts}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.handballStats.aTimeouts}</div>
-                        </div>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
+                            <tr>
+                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+
                         
 
                         <div style={{marginLeft:"10px"}}>
