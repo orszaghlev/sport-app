@@ -60,54 +60,54 @@ class ViewBasketballMatchComponent extends Component {
 
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
                             <tr>
-                                <td>{this.state.basketballStats.hFreeThrows}</td>
-                                <td>Free throws</td>
-                                <td>{this.state.basketballStats.aFreeThrows}</td>
+                                <td style={{width:"161px"}}>{this.state.basketballStats.hFreeThrows}</td>
+                                <td style={{width:"161px"}}>Free throws</td>
+                                <td style={{width:"161px"}}>{this.state.basketballStats.aFreeThrows}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hTwoPointers}</td>
+                                <td>Two pointers</td>
+                                <td>{this.state.basketballStats.aTwoPointers}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hThreePointers}</td>
+                                <td>Three pointers</td>
+                                <td>{this.state.basketballStats.aThreePointers}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hFieldGoals}</td>
+                                <td>Field goals</td>
+                                <td>{this.state.basketballStats.aFieldGoals}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hRebounds}</td>
+                                <td>Rebounds</td>
+                                <td>{this.state.basketballStats.aRebounds}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hTurnovers}</td>
+                                <td>Turnovers</td>
+                                <td>{this.state.basketballStats.aTurnovers}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hSteals}</td>
+                                <td>Steals</td>
+                                <td>{this.state.basketballStats.aSteals}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hBlocks}</td>
+                                <td>Blocks</td>
+                                <td>{this.state.basketballStats.aBlocks}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hFouls}</td>
+                                <td>Fouls</td>
+                                <td>{this.state.basketballStats.aFouls}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.basketballStats.hTimeouts}</td>
+                                <td>Timeouts</td>
+                                <td>{this.state.basketballStats.aTimeouts}</td>
                             </tr>
                         </table>
 
