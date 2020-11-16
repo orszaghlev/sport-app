@@ -61,7 +61,7 @@ class ViewHandballMatchComponent extends Component {
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
                             <tr>
                                 <td style={{width:"161px"}}></td>
-                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}>Shooting efficiency</td>
                                 <td style={{width:"161px"}}></td>
                             </tr>
                             <tr>
