@@ -60,59 +60,59 @@ class ViewFootballMatchComponent extends Component {
 
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
                             <tr>
-                                <td style={{width:"161px"}}></td>
-                                <td style={{width:"161px"}}></td>
-                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}>{this.state.footballStats.hAttempts}</td>
+                                <td style={{width:"161px"}}>Attempts</td>
+                                <td style={{width:"161px"}}>{this.state.footballStats.aAttempts}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hOnTarget}</td>
+                                <td>On target</td>
+                                <td>{this.state.footballStats.aOnTarget}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hCorners}</td>
+                                <td>Corners</td>
+                                <td>{this.state.footballStats.aCorners}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hOffsides}</td>
+                                <td>Offsides</td>
+                                <td>{this.state.footballStats.aOffsides}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hPossession}</td>
+                                <td>Possession</td>
+                                <td>{this.state.footballStats.aPossession}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hPassingAccuracy}</td>
+                                <td>Passing accuracy</td>
+                                <td>{this.state.footballStats.aPassingAccuracy}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hPasses}</td>
+                                <td>Passes</td>
+                                <td>{this.state.footballStats.aPasses}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hPassesCompleted}</td>
+                                <td>Passes completed</td>
+                                <td>{this.state.footballStats.aPassesCompleted}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hYellow}</td>
+                                <td>Yellow</td>
+                                <td>{this.state.footballStats.aYellow}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hRed}</td>
+                                <td>Red</td>
+                                <td>{this.state.footballStats.aRed}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.state.footballStats.hFouls}</td>
+                                <td>Fouls</td>
+                                <td>{this.state.footballStats.aFouls}</td>
                             </tr>
                         </table>
 
