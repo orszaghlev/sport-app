@@ -58,46 +58,50 @@ class ViewHockeyMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
 
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shots:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShots}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShots}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Power Play Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGoalsInPowerplay}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGoalsInPowerplay}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shorthanded Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShorthandedGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShorthandedGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Faceoffs Won:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hFaceoffsWon}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aFaceoffsWon}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Blocked:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hBlocked}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aBlocked}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Takeaways:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hTakeaways}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aTakeaways}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Giveaways:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGiveaways}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGiveaways}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Penalty Minutes:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hPenaltyMinutes}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aPenaltyMinutes}</div>
-                        </div>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
+                            <tr>
+                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}></td>
+                                <td style={{width:"161px"}}></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+
 
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
