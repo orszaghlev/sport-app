@@ -58,56 +58,58 @@ class ViewBasketballMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
 
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Free Throws:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFreeThrows}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFreeThrows}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Two Pointers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTwoPointers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTwoPointers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Three Pointers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hThreePointers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aThreePointers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Field Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFieldGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFieldGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Rebounds:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hRebounds}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aRebounds}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Turnovers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTurnovers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTurnovers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Steals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hSteals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aSteals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Blocks:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hBlocks}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aBlocks}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Fouls:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFouls}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFouls}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Timeouts:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTimeouts}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTimeouts}</div>
-                        </div>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
+                            <tr>
+                                <td>{this.state.basketballStats.hFreeThrows}</td>
+                                <td>Free throws</td>
+                                <td>{this.state.basketballStats.aFreeThrows}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
 
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
