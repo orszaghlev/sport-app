@@ -8,6 +8,8 @@ class ViewAmFootballMatchComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             match: {},
+            homeTeam: {},
+            awayTeam: {},
             amFootballStats: {}
         }
     }
@@ -15,6 +17,12 @@ class ViewAmFootballMatchComponent extends Component {
     componentDidMount() {
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
+            MatchService.getTeamById(this.state.match.homeTeam).then(res => {
+                this.setState({homeTeam: res.data});
+            })
+            MatchService.getTeamById(this.state.match.awayTeam).then(res => {
+                this.setState({awayTeam: res.data});
+            })
         })
         MatchService.getAmFootballStatsById(this.state.id).then(res => {
             this.setState({amFootballStats: res.data});
@@ -39,7 +47,7 @@ class ViewAmFootballMatchComponent extends Component {
                             <table style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"22px", width:"483px"}}>
                                 <tr style={{align:"center", height:"80px"}}>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.match.homeTeam}</div>
+                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.homeTeam.fullName}</div>
                                     </th>
                                     <th style={{align:"center"}}>
                                         <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
@@ -48,7 +56,7 @@ class ViewAmFootballMatchComponent extends Component {
                                         <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
                                     </th>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.match.awayTeam}</div>
+                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.awayTeam.fullName}</div>
                                     </th>
                                 </tr>
                             </table>
