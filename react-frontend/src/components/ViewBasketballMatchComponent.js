@@ -8,7 +8,6 @@ class ViewBasketballMatchComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             match: {},
-            season: {},
             homeTeam: {},
             awayTeam: {},
             basketballStats: {},
