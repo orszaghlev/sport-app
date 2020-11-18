@@ -8,6 +8,10 @@ class ViewBasketballMatchComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             match: {},
+            home_Team: {},
+            away_Team: {},
+            seasn: {},
+            comp: {},
             basketballStats: {}
         }
     }
@@ -15,6 +19,18 @@ class ViewBasketballMatchComponent extends Component {
     componentDidMount() {
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
+            MatchService.getTeamById(this.state.match.homeTeam).then(res => {
+                this.setState({home_Team: res.data});
+            })
+            MatchService.getTeamById(this.state.match.awayTeam).then(res => {
+                this.setState({away_Team: res.data});
+            })
+            MatchService.getSeasonById(this.state.match.seasonId).then(res => {
+                this.setState({seasn: res.data});
+                MatchService.getCompetitionById(this.state.seasn.competitionId).then(res => {
+                    this.setState({comp: res.data});
+                })
+            })
         })
         MatchService.getBasketballStatsById(this.state.id).then(res => {
             this.setState({basketballStats: res.data});
@@ -31,24 +47,28 @@ class ViewBasketballMatchComponent extends Component {
                 <br></br>
                 <div className="card col-md-6 offset-md-3">
                     <div className="card-body">
-                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"120px", horizontalAlign:"center", verticalAlign:"center"}}>
+                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"140px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
-                                <label style={{marginLeft: "25px"}}>Season:</label>
-                                <div style={{marginLeft: "5px"}}>{this.state.match.seasonId}</div>
+                                <div style={{marginLeft: "25px"}}>{this.state.comp.sportType}</div>
+                                <label style={{marginLeft: "5px"}}>-</label>
+                                <div style={{marginLeft: "5px"}}>{<img src={this.state.comp.logoLink} alt="Competition_logo" height="18px" />}</div>
+                                <div style={{marginLeft: "5px", fontWeight:"bold"}}>{this.state.comp.name}</div>
                             </div>
-                            <table style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"22px", width:"483px"}}>
-                                <tr style={{align:"center", height:"80px"}}>
+                            <table style={{marginBottom:"10px", fontSize:"22px", width:"483px"}}>
+                                <tr className="align-top" style={{align:"center", height:"80px"}}>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.match.homeTeam}</div>
+                                        <div className="text-center">{<img src={this.state.home_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.home_Team.fullName}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
                                     </th>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.match.awayTeam}</div>
+                                        <div className="text-center">{<img src={this.state.away_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.away_Team.fullName}</div>
                                     </th>
                                 </tr>
                             </table>
@@ -56,13 +76,16 @@ class ViewBasketballMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
 
-                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
-
-                        <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"16px", width:"483px"}}>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
+                            <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
+                                <th style={{width:"61px"}}>{this.state.home_Team.shortName}</th>
+                                <th style={{width:"161px"}}>STATS</th>
+                                <th style={{width:"61px"}}>{this.state.away_Team.shortName}</th>
+                            </tr>
                             <tr>
-                                <td style={{width:"161px"}}>{this.state.basketballStats.hFreeThrows}</td>
-                                <td style={{width:"161px"}}>Free throws</td>
-                                <td style={{width:"161px"}}>{this.state.basketballStats.aFreeThrows}</td>
+                                <td>{this.state.basketballStats.hFreeThrows}</td>
+                                <td>Free throws</td>
+                                <td>{this.state.basketballStats.aFreeThrows}</td>
                             </tr>
                             <tr>
                                 <td>{this.state.basketballStats.hTwoPointers}</td>
