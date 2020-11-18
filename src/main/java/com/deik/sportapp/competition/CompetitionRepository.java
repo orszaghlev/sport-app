@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Qualifier("datasource2")
 @Repository
 public interface CompetitionRepository extends JpaRepository<Competition, String> {
-
+    public Competition findByName(String name);
 }
