@@ -88,4 +88,15 @@ public class Competition {
         this.seasons = seasons;
     }
 
+    @Override
+    public String toString() {
+        return "Competition{" +
+                "id='" + id + '\'' +
+                ", region='" + region + '\'' +
+                ", sportType='" + sportType + '\'' +
+                ", name='" + name + '\'' +
+                ", logoLink='" + logoLink + '\'' +
+                '}';
+    }
+
 }

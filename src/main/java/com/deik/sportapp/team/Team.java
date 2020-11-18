@@ -137,4 +137,18 @@ public class Team {
         this.awayMatches = awayMatches;
     }
 
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", foundingDate=" + foundingDate +
+                ", teamValue=" + teamValue +
+                ", valueCurrency='" + valueCurrency + '\'' +
+                ", imageLink='" + imageLink + '\'' +
+                ", homePlace='" + homePlace + '\'' +
+                '}';
+    }
+
 }

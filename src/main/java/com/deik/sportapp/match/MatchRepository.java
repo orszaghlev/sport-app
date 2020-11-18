@@ -14,4 +14,5 @@ public interface MatchRepository extends JpaRepository<Match, String> {
     Set<Match> findByHomeTeam(String homeTeam);
     Set<Match> findByAwayTeam(String awayTeam);
     Optional<Match> findByIdAndSeasonIdAndHomeTeamAndAwayTeam(String id, String seasonId, String homeTeam, String awayTeam);
+    public Match findByPlace(String place);
 }
