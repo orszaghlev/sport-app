@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -84,10 +85,10 @@ public class AmFootballStats {
     private int aPunts;
 
     @Column(name = "hTimeOfPossession")
-    private Timestamp hTimeOfPossession;
+    private Time hTimeOfPossession;
 
     @Column(name = "aTimeOfPossession")
-    private Timestamp aTimeOfPossession;
+    private Time aTimeOfPossession;
 
     @Column(name = "hPenalties")
     private int hPenalties;
@@ -109,7 +110,7 @@ public class AmFootballStats {
     public AmFootballStats() {
     }
 
-    public AmFootballStats(String id, int hTouchdowns, int aTouchdowns, int hFieldGoals, int aFieldGoals, int hExtraPoint, int aExtraPoint, int hTwoPoint, int aTwoPoint, int hTotalYards, int aTotalYards, int hPassingYards, int aPassingYards, int hRushingYards, int aRushingYards, BigDecimal hAvgYrdsPerPlay, BigDecimal aAvgYrdsPerPlay, int hFumbles, int aFumbles, int hInterceptions, int aInterceptions, int hPunts, int aPunts, Timestamp hTimeOfPossession, Timestamp aTimeOfPossession, int hPenalties, int aPenalties, int hYardsPenalized, int aYardsPenalized) {
+    public AmFootballStats(String id, int hTouchdowns, int aTouchdowns, int hFieldGoals, int aFieldGoals, int hExtraPoint, int aExtraPoint, int hTwoPoint, int aTwoPoint, int hTotalYards, int aTotalYards, int hPassingYards, int aPassingYards, int hRushingYards, int aRushingYards, BigDecimal hAvgYrdsPerPlay, BigDecimal aAvgYrdsPerPlay, int hFumbles, int aFumbles, int hInterceptions, int aInterceptions, int hPunts, int aPunts, Time hTimeOfPossession, Time aTimeOfPossession, int hPenalties, int aPenalties, int hYardsPenalized, int aYardsPenalized) {
         this.id = id;
         this.hTouchdowns = hTouchdowns;
         this.aTouchdowns = aTouchdowns;
@@ -325,19 +326,19 @@ public class AmFootballStats {
         this.aPunts = aPunts;
     }
 
-    public Timestamp gethTimeOfPossession() {
+    public Time gethTimeOfPossession() {
         return hTimeOfPossession;
     }
 
-    public void sethTimeOfPossession(Timestamp hTimeOfPossession) {
+    public void sethTimeOfPossession(Time hTimeOfPossession) {
         this.hTimeOfPossession = hTimeOfPossession;
     }
 
-    public Timestamp getaTimeOfPossession() {
+    public Time getaTimeOfPossession() {
         return aTimeOfPossession;
     }
 
-    public void setaTimeOfPossession(Timestamp aTimeOfPossession) {
+    public void setaTimeOfPossession(Time aTimeOfPossession) {
         this.aTimeOfPossession = aTimeOfPossession;
     }
 
