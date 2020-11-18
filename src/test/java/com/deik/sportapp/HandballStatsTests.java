@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HandballStatsTests {
 
     @Autowired
-    HandballStatsRepository handballStatsRepository;
+    private HandballStatsRepository handballStatsRepository;
 
     @Test
     public void createHandballStatsTest() {

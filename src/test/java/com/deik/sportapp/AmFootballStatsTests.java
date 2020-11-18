@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AmFootballStatsTests {
 
     @Autowired
-    AmFootballStatsRepository amFootballStatsRepository;
+    private AmFootballStatsRepository amFootballStatsRepository;
 
     @Test
     public void createAmFootballStatsTest() {
