@@ -23,7 +23,7 @@ public class HockeyStatsTests {
 
     @Test
     public void createHockeyStatsTest() {
-        HockeyStats hockeyStats = new HockeyStats("45019", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        HockeyStats hockeyStats = new HockeyStats("45001", 22, 29, 0, 1, 0, 0, 27, 31, 16, 22, 5, 5, 11, 9, 6, 6);
         HockeyStats savedHockeyStats = hockeyStatsRepository.save(hockeyStats);
 
         assertNotNull(savedHockeyStats);
@@ -41,7 +41,7 @@ public class HockeyStatsTests {
 
     @Test
     public void getHockeyStatsByIdTest() {
-        HockeyStats hockeyStats = new HockeyStats("45019", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        HockeyStats hockeyStats = new HockeyStats("45001", 22, 29, 0, 1, 0, 0, 27, 31, 16, 22, 5, 5, 11, 9, 6, 6);
         HockeyStats foundHockeyStats = hockeyStatsRepository.findById(hockeyStats.getId()).get();
         System.out.println(foundHockeyStats);
 

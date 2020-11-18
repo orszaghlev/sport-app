@@ -24,7 +24,7 @@ public class FootballStatsTests {
 
     @Test
     public void createFootballStatsTest() {
-        FootballStats footballStats = new FootballStats("41001", 1, 2, 3, 4, 5, 6, 7, 8, BigDecimal.valueOf(9.11), BigDecimal.valueOf(10.22), BigDecimal.valueOf(11.33), BigDecimal.valueOf(12.44), 13, 14, 15, 16, 17, 18, 19, 20, 21, 22);
+        FootballStats footballStats = new FootballStats("41001", 11, 9, 5, 4, 8, 4, 3, 2, BigDecimal.valueOf(46), BigDecimal.valueOf(54), BigDecimal.valueOf(82), BigDecimal.valueOf(79), 412, 485, 338, 385, 0, 2, 0, 0, 12, 17);
         FootballStats savedFootballStats = footballStatsRepository.save(footballStats);
 
         assertNotNull(savedFootballStats);
@@ -42,7 +42,7 @@ public class FootballStatsTests {
 
     @Test
     public void getFootballStatsByIdTest() {
-        FootballStats footballStats = new FootballStats("41001", 1, 2, 3, 4, 5, 6, 7, 8, BigDecimal.valueOf(9.11), BigDecimal.valueOf(10.22), BigDecimal.valueOf(11.33), BigDecimal.valueOf(12.44), 13, 14, 15, 16, 17, 18, 19, 20, 21, 22);
+        FootballStats footballStats = new FootballStats("41001", 11, 9, 5, 4, 8, 4, 3, 2, BigDecimal.valueOf(46), BigDecimal.valueOf(54), BigDecimal.valueOf(82), BigDecimal.valueOf(79), 412, 485, 338, 385, 0, 2, 0, 0, 12, 17);
         FootballStats foundFootballStats = footballStatsRepository.findById(footballStats.getId()).get();
         System.out.println(foundFootballStats);
 

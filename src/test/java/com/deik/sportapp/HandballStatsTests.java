@@ -24,7 +24,7 @@ public class HandballStatsTests {
 
     @Test
     public void createHandballStatsTest() {
-        HandballStats handballStats = new HandballStats("44018", BigDecimal.valueOf(1.11), BigDecimal.valueOf(2.22), 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
+        HandballStats handballStats = new HandballStats("44001", BigDecimal.valueOf(65), BigDecimal.valueOf(60), 1, 2, 6, 3, 1, 5, 11, 9, 4, 3, 1, 3, 5, 5, 4, 8, 4, 2, 2, 0, 1, 4, 3, 3);
         HandballStats savedHandballStats = handballStatsRepository.save(handballStats);
 
         assertNotNull(savedHandballStats);
@@ -42,7 +42,7 @@ public class HandballStatsTests {
 
     @Test
     public void getHandballStatsByIdTest() {
-        HandballStats handballStats = new HandballStats("44018", BigDecimal.valueOf(1.11), BigDecimal.valueOf(2.22), 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
+        HandballStats handballStats = new HandballStats("44001", BigDecimal.valueOf(65), BigDecimal.valueOf(60), 1, 2, 6, 3, 1, 5, 11, 9, 4, 3, 1, 3, 5, 5, 4, 8, 4, 2, 2, 0, 1, 4, 3, 3);
         HandballStats foundHandballStats = handballStatsRepository.findById(handballStats.getId()).get();
         System.out.println(foundHandballStats);
 

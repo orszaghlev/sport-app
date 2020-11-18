@@ -24,7 +24,7 @@ public class AmFootballStatsTests {
 
     @Test
     public void createAmFootballStatsTest() {
-        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, "05:05:05", "06:06:06", 23, 24, 25, 26);
+        AmFootballStats amFootballStats = new AmFootballStats("42001", 2, 3, 1, 2, 0, 0, 0, 0, 206, 466, 122, 221, 84, 245, BigDecimal.valueOf(4.1), BigDecimal.valueOf(6.4), 0, 2, 1, 0, 4, 2, "22:15", "37:45", 4, 8, 39, 68);
         AmFootballStats savedAmFootballStats = amFootballStatsRepository.save(amFootballStats);
 
         assertNotNull(savedAmFootballStats);
@@ -42,7 +42,7 @@ public class AmFootballStatsTests {
 
     @Test
     public void getAmFootballStatsByIdTest() {
-        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, "05:05:05", "06:06:06", 23, 24, 25, 26);
+        AmFootballStats amFootballStats = new AmFootballStats("42001", 2, 3, 1, 2, 0, 0, 0, 0, 206, 466, 122, 221, 84, 245, BigDecimal.valueOf(4.1), BigDecimal.valueOf(6.4), 0, 2, 1, 0, 4, 2, "22:15", "37:45", 4, 8, 39, 68);
         AmFootballStats foundAmFootballStats = amFootballStatsRepository.findById(amFootballStats.getId()).get();
         System.out.println(foundAmFootballStats);
 

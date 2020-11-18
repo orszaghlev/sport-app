@@ -23,7 +23,7 @@ public class BasketballStatsTests {
 
     @Test
     public void createBasketballStatsTest() {
-        BasketballStats basketballStats = new BasketballStats("43017", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+        BasketballStats basketballStats = new BasketballStats("43001", 13, 9, 25, 32, 10, 11, 35, 43, 41, 46, 13, 12, 4, 5, 4, 4, 18, 23, 6, 4);
         BasketballStats savedBasketballStats = basketballStatsRepository.save(basketballStats);
 
         assertNotNull(savedBasketballStats);
@@ -41,7 +41,7 @@ public class BasketballStatsTests {
 
     @Test
     public void getBasketballStatsByIdTest() {
-        BasketballStats basketballStats = new BasketballStats("43017", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+        BasketballStats basketballStats = new BasketballStats("43001", 13, 9, 25, 32, 10, 11, 35, 43, 41, 46, 13, 12, 4, 5, 4, 4, 18, 23, 6, 4);
         BasketballStats foundBasketballStats = basketballStatsRepository.findById(basketballStats.getId()).get();
         System.out.println(foundBasketballStats);
 
