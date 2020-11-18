@@ -99,10 +99,10 @@ class CreateCompetitionComponent extends Component {
                                     <label>Sport Type:</label>
                                     <div className="form-check">
                                         <label>
-                                        <input type="radio" name="sportType" value="American Football"
-                                            checked={this.state.sportType === "American Football"}
+                                        <input type="radio" name="sportType" value="American football"
+                                            checked={this.state.sportType === "American football"}
                                             onChange={this.changeSportTypeHandler} className="form-check-input"/>
-                                            American Football
+                                            American football
                                         </label>
                                     </div>
                                     <div className="form-check">
@@ -131,10 +131,10 @@ class CreateCompetitionComponent extends Component {
                                     </div>
                                     <div className="form-check">
                                         <label>
-                                        <input type="radio" name="sportType" value="Ice Hockey"
-                                            checked={this.state.sportType === "Ice Hockey"}
+                                        <input type="radio" name="sportType" value="Ice hockey"
+                                            checked={this.state.sportType === "Ice hockey"}
                                             onChange={this.changeSportTypeHandler} className="form-check-input"/>
-                                            Ice Hockey
+                                            Ice hockey
                                         </label>
                                     </div>
                                     <div className="form-group">
