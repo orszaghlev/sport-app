@@ -90,11 +90,6 @@ class ViewAmFootballMatchComponent extends Component {
                                 <td style={{width:"61px"}}>{this.state.amFootballStats.aTouchdowns}</td>
                             </tr>
                             <tr>
-                                <td>{this.state.amFootballStats.hExtraPoint}</td>
-                                <td>Extra points scored</td>
-                                <td>{this.state.amFootballStats.aExtraPoint}</td>
-                            </tr>
-                            <tr>
                                 <td>{this.state.amFootballStats.hFieldGoals}</td>
                                 <td>Field goals</td>
                                 <td>{this.state.amFootballStats.aFieldGoals}</td>
