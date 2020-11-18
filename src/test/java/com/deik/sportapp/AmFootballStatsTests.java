@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +24,7 @@ public class AmFootballStatsTests {
 
     @Test
     public void createAmFootballStatsTest() {
-        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, Time.valueOf("05:05:05"), Time.valueOf("06:06:06"), 23, 24, 25, 26);
+        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, "05:05:05", "06:06:06", 23, 24, 25, 26);
         AmFootballStats savedAmFootballStats = amFootballStatsRepository.save(amFootballStats);
 
         assertNotNull(savedAmFootballStats);
@@ -43,7 +42,7 @@ public class AmFootballStatsTests {
 
     @Test
     public void getAmFootballStatsByIdTest() {
-        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, Time.valueOf("05:05:05"), Time.valueOf("06:06:06"), 23, 24, 25, 26);
+        AmFootballStats amFootballStats = new AmFootballStats("42002", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, BigDecimal.valueOf(15.11), BigDecimal.valueOf(16.22), 17, 18, 19, 20, 21, 22, "05:05:05", "06:06:06", 23, 24, 25, 26);
         AmFootballStats foundAmFootballStats = amFootballStatsRepository.findById(amFootballStats.getId()).get();
         System.out.println(foundAmFootballStats);
 
