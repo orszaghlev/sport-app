@@ -18,6 +18,7 @@ class ViewAmFootballMatchComponent extends Component {
 
     componentDidMount() {
         MatchService.getMatchById(this.state.id).then(res => {
+
             this.setState({playedmatch: res.data});
             MatchService.getTeamById(this.state.playedmatch.homeTeam).then(res => {
                 this.setState({home_Team: res.data});

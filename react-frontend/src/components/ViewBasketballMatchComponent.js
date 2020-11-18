@@ -35,6 +35,7 @@ class ViewBasketballMatchComponent extends Component {
         MatchService.getBasketballStatsById(this.state.id).then(res => {
             this.setState({basketballStats: res.data});
         })
+
     }
 
     return() {

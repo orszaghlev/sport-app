@@ -7,13 +7,17 @@ class ViewSeasonComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            season: {}
+            season: {},
+            competition: {}
         }
     }
 
     componentDidMount() {
         MatchService.getSeasonById(this.state.id).then(res => {
             this.setState({season: res.data});
+            MatchService.getCompetitionById(this.state.season.competitionId).then(res => {
+                this.setState({competition: res.data});
+            })
         })
     }
 
@@ -28,8 +32,8 @@ class ViewSeasonComponent extends Component {
                 <div className="card col-md-6 offset-md-3">
                     <div className="card-body">
                         <div className="row">
-                            <label>Competition ID:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.season.competitionId}</div>
+                            <label>Competition:</label>
+                            <div style={{marginLeft: "5px"}}>{this.state.competition.name}</div>
                         </div>
                         <div className="row">
                             <label>Started:</label>
