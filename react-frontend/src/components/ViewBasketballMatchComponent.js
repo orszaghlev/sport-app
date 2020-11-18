@@ -8,9 +8,11 @@ class ViewBasketballMatchComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             match: {},
-            homeTeam: {},
-            awayTeam: {},
-            basketballStats: {},
+            home_Team: {},
+            away_Team: {},
+            seasn: {},
+            comp: {},
+            basketballStats: {}
         }
     }
 
@@ -18,10 +20,16 @@ class ViewBasketballMatchComponent extends Component {
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
             MatchService.getTeamById(this.state.match.homeTeam).then(res => {
-                this.setState({homeTeam: res.data});
+                this.setState({home_Team: res.data});
             })
             MatchService.getTeamById(this.state.match.awayTeam).then(res => {
-                this.setState({awayTeam: res.data});
+                this.setState({away_Team: res.data});
+            })
+            MatchService.getSeasonById(this.state.match.seasonId).then(res => {
+                this.setState({seasn: res.data});
+                MatchService.getCompetitionById(this.state.seasn.competitionId).then(res => {
+                    this.setState({comp: res.data});
+                })
             })
         })
         MatchService.getBasketballStatsById(this.state.id).then(res => {
@@ -40,24 +48,28 @@ class ViewBasketballMatchComponent extends Component {
                 <br></br>
                 <div className="card col-md-6 offset-md-3">
                     <div className="card-body">
-                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"120px", horizontalAlign:"center", verticalAlign:"center"}}>
+                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"140px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
-                                <label style={{marginLeft: "25px"}}>Season:</label>
-                                <div style={{marginLeft: "5px"}}>{this.state.match.seasonId}</div>
+                                <div style={{marginLeft: "25px"}}>{this.state.comp.sportType}</div>
+                                <label style={{marginLeft: "5px"}}>-</label>
+                                <div style={{marginLeft: "5px"}}>{<img src={this.state.comp.logoLink} alt="Competition_logo" height="18px" />}</div>
+                                <div style={{marginLeft: "5px", fontWeight:"bold"}}>{this.state.comp.name}</div>
                             </div>
-                            <table style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"22px", width:"483px"}}>
-                                <tr style={{align:"center", height:"80px"}}>
+                            <table style={{marginBottom:"10px", fontSize:"22px", width:"483px"}}>
+                                <tr className="align-top" style={{align:"center", height:"80px"}}>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.homeTeam.fullName}</div>
+                                        <div className="text-center">{<img src={this.state.home_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.home_Team.fullName}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
                                     </th>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.awayTeam.fullName}</div>
+                                        <div className="text-center">{<img src={this.state.away_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.away_Team.fullName}</div>
                                     </th>
                                 </tr>
                             </table>
@@ -65,58 +77,63 @@ class ViewBasketballMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
 
-                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
-
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Free Throws:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFreeThrows}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFreeThrows}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Two Pointers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTwoPointers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTwoPointers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Three Pointers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hThreePointers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aThreePointers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Field Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFieldGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFieldGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Rebounds:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hRebounds}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aRebounds}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Turnovers:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTurnovers}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTurnovers}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Steals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hSteals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aSteals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Blocks:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hBlocks}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aBlocks}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Fouls:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hFouls}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aFouls}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Timeouts:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.hTimeouts}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.basketballStats.aTimeouts}</div>
-                        </div>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
+                            <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
+                                <th style={{width:"61px"}}>{this.state.home_Team.shortName}</th>
+                                <th style={{width:"161px"}}>STATS</th>
+                                <th style={{width:"61px"}}>{this.state.away_Team.shortName}</th>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hFreeThrows}</td>
+                                <td>Free throws</td>
+                                <td>{this.state.basketballStats.aFreeThrows}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hTwoPointers}</td>
+                                <td>Two pointers</td>
+                                <td>{this.state.basketballStats.aTwoPointers}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hThreePointers}</td>
+                                <td>Three pointers</td>
+                                <td>{this.state.basketballStats.aThreePointers}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hFieldGoals}</td>
+                                <td>Field goals</td>
+                                <td>{this.state.basketballStats.aFieldGoals}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hRebounds}</td>
+                                <td>Rebounds</td>
+                                <td>{this.state.basketballStats.aRebounds}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hTurnovers}</td>
+                                <td>Turnovers</td>
+                                <td>{this.state.basketballStats.aTurnovers}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hSteals}</td>
+                                <td>Steals</td>
+                                <td>{this.state.basketballStats.aSteals}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hBlocks}</td>
+                                <td>Blocks</td>
+                                <td>{this.state.basketballStats.aBlocks}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hFouls}</td>
+                                <td>Fouls</td>
+                                <td>{this.state.basketballStats.aFouls}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.basketballStats.hTimeouts}</td>
+                                <td>Timeouts</td>
+                                <td>{this.state.basketballStats.aTimeouts}</td>
+                            </tr>
+                        </table>
 
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">

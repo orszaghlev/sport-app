@@ -8,8 +8,10 @@ class ViewHockeyMatchComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             match: {},
-            homeTeam: {},
-            awayTeam: {},
+            home_Team: {},
+            away_Team: {},
+            seasn: {},
+            comp: {},
             hockeyStats: {}
         }
     }
@@ -18,10 +20,16 @@ class ViewHockeyMatchComponent extends Component {
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
             MatchService.getTeamById(this.state.match.homeTeam).then(res => {
-                this.setState({homeTeam: res.data});
+                this.setState({home_Team: res.data});
             })
             MatchService.getTeamById(this.state.match.awayTeam).then(res => {
-                this.setState({awayTeam: res.data});
+                this.setState({away_Team: res.data});
+            })
+            MatchService.getSeasonById(this.state.match.seasonId).then(res => {
+                this.setState({seasn: res.data});
+                MatchService.getCompetitionById(this.state.seasn.competitionId).then(res => {
+                    this.setState({comp: res.data});
+                })
             })
         })
         MatchService.getHockeyStatsById(this.state.id).then(res => {
@@ -39,24 +47,28 @@ class ViewHockeyMatchComponent extends Component {
                 <br></br>
                 <div className="card col-md-6 offset-md-3">
                     <div className="card-body">
-                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"120px", horizontalAlign:"center", verticalAlign:"center"}}>
+                        <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"140px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
-                                <label style={{marginLeft: "25px"}}>Season:</label>
-                                <div style={{marginLeft: "5px"}}>{this.state.match.seasonId}</div>
+                                <div style={{marginLeft: "25px"}}>{this.state.comp.sportType}</div>
+                                <label style={{marginLeft: "5px"}}>-</label>
+                                <div style={{marginLeft: "5px"}}>{<img src={this.state.comp.logoLink} alt="Competition_logo" height="18px" />}</div>
+                                <div style={{marginLeft: "5px", fontWeight:"bold"}}>{this.state.comp.name}</div>
                             </div>
-                            <table style={{marginLeft: "0px", marginTop:"0px", marginBottom:"10px", fontSize:"22px", width:"483px"}}>
-                                <tr style={{align:"center", height:"80px"}}>
+                            <table style={{marginBottom:"10px", fontSize:"22px", width:"483px"}}>
+                                <tr className="align-top" style={{align:"center", height:"80px"}}>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginRight:"0px"}}>{this.state.homeTeam.fullName}</div>
+                                        <div className="text-center">{<img src={this.state.home_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.home_Team.fullName}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.homeScore}</div>
                                     </th>
-                                    <th style={{align:"center"}}>
-                                        <div className="text-center" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
+                                    <th style={{align:"center", paddingTop:"30px"}}>
+                                        <div className="text-center align-middle" style={{FontWeight: "bold", backgroundColor:"#1f7a1f", width:"40px", height:"40px"}}>{this.state.match.awayScore}</div>
                                     </th>
                                     <th style={{align:"center", width:"200px"}}>
-                                        <div className="text-center" style={{marginLeft:"0px"}}>{this.state.awayTeam.fullName}</div>
+                                        <div className="text-center">{<img src={this.state.away_Team.imageLink} alt="Team" height="30px" />}</div>
+                                        <div className="text-center" style={{marginLeft:"10px", width:"180px"}}>{this.state.away_Team.fullName}</div>
                                     </th>
                                 </tr>
                             </table>
@@ -64,48 +76,55 @@ class ViewHockeyMatchComponent extends Component {
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
 
-                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Statistics:</div>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
+                            <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
+                                <th style={{width:"61px"}}>{this.state.home_Team.shortName}</th>
+                                <th style={{width:"161px"}}>STATS</th>
+                                <th style={{width:"61px"}}>{this.state.away_Team.shortName}</th>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hShots}</td>
+                                <td>Shots</td>
+                                <td>{this.state.hockeyStats.aShots}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hGoalsInPowerplay}</td>
+                                <td>Power play goals</td>
+                                <td>{this.state.hockeyStats.aGoalsInPowerplay}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hShorthandedGoals}</td>
+                                <td>Shorthanded goals</td>
+                                <td>{this.state.hockeyStats.aShorthandedGoals}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hFaceoffsWon}</td>
+                                <td>Faceoffs won</td>
+                                <td>{this.state.hockeyStats.aFaceoffsWon}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hBlocked}</td>
+                                <td>Blocked</td>
+                                <td>{this.state.hockeyStats.aBlocked}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hTakeaways}</td>
+                                <td>Takeaways</td>
+                                <td>{this.state.hockeyStats.aTakeaways}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hGiveaways}</td>
+                                <td>Giveaways</td>
+                                <td>{this.state.hockeyStats.aGiveaways}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.hockeyStats.hPenaltyMinutes}</td>
+                                <td>Penalty minutes</td>
+                                <td>{this.state.hockeyStats.aPenaltyMinutes}</td>
+                            </tr>
+                        </table>
 
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shots:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShots}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShots}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Power Play Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGoalsInPowerplay}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGoalsInPowerplay}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Shorthanded Goals:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hShorthandedGoals}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aShorthandedGoals}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Faceoffs Won:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hFaceoffsWon}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aFaceoffsWon}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Blocked:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hBlocked}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aBlocked}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Takeaways:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hTakeaways}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aTakeaways}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Giveaways:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hGiveaways}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aGiveaways}</div>
-                        </div>
-                        <div className="row" style={{marginLeft: "20px", marginTop: "10px"}}>
-                            <label>Penalty Minutes:</label>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.hPenaltyMinutes}</div>
-                            <div style={{marginLeft: "10px"}}>{this.state.hockeyStats.aPenaltyMinutes}</div>
-                        </div>
+
 
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
