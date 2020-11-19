@@ -356,4 +356,37 @@ public class HandballStats {
         this.match = match;
     }
 
+    @Override
+    public String toString() {
+        return "HandballStats{" +
+                "id='" + id + '\'' +
+                ", hShootingEfficiency=" + hShootingEfficiency +
+                ", aShootingEfficiency=" + aShootingEfficiency +
+                ", hWingGoals=" + hWingGoals +
+                ", aWingGoals=" + aWingGoals +
+                ", hFastbreakGoals=" + hFastbreakGoals +
+                ", aFastbreakGoals=" + aFastbreakGoals +
+                ", hSevenMeters=" + hSevenMeters +
+                ", aSevenMeters=" + aSevenMeters +
+                ", hSaves=" + hSaves +
+                ", aSaves=" + aSaves +
+                ", hTwoMinPenalty=" + hTwoMinPenalty +
+                ", aTwoMinPenalty=" + aTwoMinPenalty +
+                ", hYellowCards=" + hYellowCards +
+                ", aYellowCards=" + aYellowCards +
+                ", hGoalStreak=" + hGoalStreak +
+                ", aGoalStreak=" + aGoalStreak +
+                ", hGoalsInPowerplay=" + hGoalsInPowerplay +
+                ", aGoalsInPowerplay=" + aGoalsInPowerplay +
+                ", hShorthandedGoals=" + hShorthandedGoals +
+                ", aShorthandedGoals=" + aShorthandedGoals +
+                ", hSteals=" + hSteals +
+                ", aSteals=" + aSteals +
+                ", hTechnicalFaults=" + hTechnicalFaults +
+                ", aTechnicalFaults=" + aTechnicalFaults +
+                ", hTimeouts=" + hTimeouts +
+                ", aTimeouts=" + aTimeouts +
+                '}';
+    }
+
 }

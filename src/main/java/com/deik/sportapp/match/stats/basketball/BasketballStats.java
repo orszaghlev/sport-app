@@ -283,4 +283,31 @@ public class BasketballStats {
         this.match = match;
     }
 
+    @Override
+    public String toString() {
+        return "BasketballStats{" +
+                "id='" + id + '\'' +
+                ", hFreeThrows=" + hFreeThrows +
+                ", aFreeThrows=" + aFreeThrows +
+                ", hTwoPointers=" + hTwoPointers +
+                ", aTwoPointers=" + aTwoPointers +
+                ", hThreePointers=" + hThreePointers +
+                ", aThreePointers=" + aThreePointers +
+                ", hFieldGoals=" + hFieldGoals +
+                ", aFieldGoals=" + aFieldGoals +
+                ", hRebounds=" + hRebounds +
+                ", aRebounds=" + aRebounds +
+                ", hTurnovers=" + hTurnovers +
+                ", aTurnovers=" + aTurnovers +
+                ", hSteals=" + hSteals +
+                ", aSteals=" + aSteals +
+                ", hBlocks=" + hBlocks +
+                ", aBlocks=" + aBlocks +
+                ", hFouls=" + hFouls +
+                ", aFouls=" + aFouls +
+                ", hTimeouts=" + hTimeouts +
+                ", aTimeouts=" + aTimeouts +
+                '}';
+    }
+
 }

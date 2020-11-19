@@ -308,4 +308,33 @@ public class FootballStats {
         this.match = match;
     }
 
+    @Override
+    public String toString() {
+        return "FootballStats{" +
+                "id='" + id + '\'' +
+                ", hAttempts=" + hAttempts +
+                ", aAttempts=" + aAttempts +
+                ", hOnTarget=" + hOnTarget +
+                ", aOnTarget=" + aOnTarget +
+                ", hCorners=" + hCorners +
+                ", aCorners=" + aCorners +
+                ", hOffsides=" + hOffsides +
+                ", aOffsides=" + aOffsides +
+                ", hPossession=" + hPossession +
+                ", aPossession=" + aPossession +
+                ", hPassingAccuracy=" + hPassingAccuracy +
+                ", aPassingAccuracy=" + aPassingAccuracy +
+                ", hPasses=" + hPasses +
+                ", aPasses=" + aPasses +
+                ", hPassesCompleted=" + hPassesCompleted +
+                ", aPassesCompleted=" + aPassesCompleted +
+                ", hYellow=" + hYellow +
+                ", aYellow=" + aYellow +
+                ", hRed=" + hRed +
+                ", aRed=" + aRed +
+                ", hFouls=" + hFouls +
+                ", aFouls=" + aFouls +
+                '}';
+    }
+
 }

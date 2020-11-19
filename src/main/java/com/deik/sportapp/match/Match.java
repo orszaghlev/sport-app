@@ -196,4 +196,18 @@ public class Match {
         this.hockeyStats = hockeyStats;
     }
 
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id='" + id + '\'' +
+                ", seasonId=" + seasonId +
+                ", homeTeam=" + homeTeam +
+                ", awayTeam=" + awayTeam +
+                ", homeScore=" + homeScore +
+                ", awayScore=" + awayScore +
+                ", place='" + place + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
 }

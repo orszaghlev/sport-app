@@ -103,4 +103,14 @@ public class Season {
         this.teams = teams;
     }
 
+    @Override
+    public String toString() {
+        return "Season{" +
+                "id='" + id + '\'' +
+                ", competitionId=" + competitionId +
+                ", started=" + started +
+                ", finished=" + finished +
+                '}';
+    }
+
 }

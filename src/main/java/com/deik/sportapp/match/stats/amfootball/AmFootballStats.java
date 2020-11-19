@@ -380,4 +380,39 @@ public class AmFootballStats {
         this.match = match;
     }
 
+    @Override
+    public String toString() {
+        return "AmFootballStats{" +
+                "id='" + id + '\'' +
+                ", hTouchdowns=" + hTouchdowns +
+                ", aTouchdowns=" + aTouchdowns +
+                ", hFieldGoals=" + hFieldGoals +
+                ", aFieldGoals=" + aFieldGoals +
+                ", hExtraPoint=" + hExtraPoint +
+                ", aExtraPoint=" + aExtraPoint +
+                ", hTwoPoint=" + hTwoPoint +
+                ", aTwoPoint=" + aTwoPoint +
+                ", hTotalYards=" + hTotalYards +
+                ", aTotalYards=" + aTotalYards +
+                ", hPassingYards=" + hPassingYards +
+                ", aPassingYards=" + aPassingYards +
+                ", hRushingYards=" + hRushingYards +
+                ", aRushingYards=" + aRushingYards +
+                ", hAvgYrdsPerPlay=" + hAvgYrdsPerPlay +
+                ", aAvgYrdsPerPlay=" + aAvgYrdsPerPlay +
+                ", hFumbles=" + hFumbles +
+                ", aFumbles=" + aFumbles +
+                ", hInterceptions=" + hInterceptions +
+                ", aInterceptions=" + aInterceptions +
+                ", hPunts=" + hPunts +
+                ", aPunts=" + aPunts +
+                ", hTimeOfPossession='" + hTimeOfPossession + '\'' +
+                ", aTimeOfPossession='" + aTimeOfPossession + '\'' +
+                ", hPenalties=" + hPenalties +
+                ", aPenalties=" + aPenalties +
+                ", hYardsPenalized=" + hYardsPenalized +
+                ", aYardsPenalized=" + aYardsPenalized +
+                '}';
+    }
+
 }

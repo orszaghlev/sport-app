@@ -235,4 +235,27 @@ public class HockeyStats {
         this.match = match;
     }
 
+    @Override
+    public String toString() {
+        return "HockeyStats{" +
+                "id='" + id + '\'' +
+                ", hShots=" + hShots +
+                ", aShots=" + aShots +
+                ", hGoalsInPowerplay=" + hGoalsInPowerplay +
+                ", aGoalsInPowerplay=" + aGoalsInPowerplay +
+                ", hShorthandedGoals=" + hShorthandedGoals +
+                ", aShorthandedGoals=" + aShorthandedGoals +
+                ", hFaceoffsWon=" + hFaceoffsWon +
+                ", aFaceoffsWon=" + aFaceoffsWon +
+                ", hBlocked=" + hBlocked +
+                ", aBlocked=" + aBlocked +
+                ", hTakeaways=" + hTakeaways +
+                ", aTakeaways=" + aTakeaways +
+                ", hGiveaways=" + hGiveaways +
+                ", aGiveaways=" + aGiveaways +
+                ", hPenaltyMinutes=" + hPenaltyMinutes +
+                ", aPenaltyMinutes=" + aPenaltyMinutes +
+                '}';
+    }
+
 }
