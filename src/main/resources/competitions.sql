@@ -21,15 +21,15 @@ USE `competitions` ;
 -- Table `competitions`.`ATHLETE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`ATHLETE` (
-  `id` VARCHAR(6) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(250) NOT NULL,
-  `date_of_birth` DATE,
-  `value` INT,
-  `value_currency` VARCHAR(20),
+  `dateOfBirth` DATE,
+  `value` BIGINT,
+  `valueCurrency` VARCHAR(20),
   `position` VARCHAR(250),
-  `nationaity` VARCHAR(250),
+  `nationality` VARCHAR(250),
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB AUTO_INCREMENT=1;
 
 
 -- -----------------------------------------------------
@@ -52,7 +52,7 @@ ENGINE = InnoDB AUTO_INCREMENT=1;
 -- Table `competitions`.`PLAYS_IN`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`PLAYS_IN` (
-  `athlete_id` VARCHAR(6) NOT NULL,
+  `athlete_id` INT NOT NULL,
   `team_id` INT NOT NULL,
   `jersey_number` INT,
   `start_of_contract` DATE NOT NULL,
@@ -197,19 +197,19 @@ ENGINE = InnoDB AUTO_INCREMENT=1;
 -- Table `competitions`.`PLAYED_MATCH`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`PLAYED_MATCH` (
-  `athlete_id` VARCHAR(6) NOT NULL,
-  `match_id` INT NOT NULL,
-  `time_played` DATETIME,
-  `playing_started` DATETIME,
-  PRIMARY KEY (`athlete_id`, `match_id`),
-  INDEX `match_id_idx` (`match_id` ASC) VISIBLE,
-  CONSTRAINT `pm_athlete_id`
-    FOREIGN KEY (`athlete_id`)
+  `athleteId` INT NOT NULL,
+  `matchId` INT NOT NULL,
+  `timePlayed` DATETIME,
+  `playingStarted` DATETIME,
+  PRIMARY KEY (`athleteId`, `matchId`),
+  INDEX `matchIdIdx` (`matchId` ASC) VISIBLE,
+  CONSTRAINT `pmAthleteId`
+    FOREIGN KEY (`athleteId`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `pm_match_id`
-    FOREIGN KEY (`match_id`)
+  CONSTRAINT `pmMatchId`
+    FOREIGN KEY (`matchId`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -220,7 +220,7 @@ ENGINE = InnoDB;
 -- Table `competitions`.`EVENT_TYPES`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT_TYPES` (
-  `id` VARCHAR(6) NOT NULL,
+  `id` INT NOT NULL,
   `type` VARCHAR(250),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -230,32 +230,32 @@ ENGINE = InnoDB;
 -- Table `competitions`.`EVENT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
-  `athlete_id` VARCHAR(6) NOT NULL,
-  `team_id` INT NOT NULL,
-  `match_id` INT NOT NULL,
-  `event_type` VARCHAR(6) NOT NULL,
-  `time` INT NOT NULL,
-  PRIMARY KEY (`athlete_id`, `team_id`, `match_id`, `time`),
-  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  INDEX `match_id_idx` (`match_id` ASC) VISIBLE,
-  INDEX `event_type_idx` (`event_type` ASC) VISIBLE,
-  CONSTRAINT `ev_athlete_id`
-    FOREIGN KEY (`athlete_id`)
+  `athleteId` INT NOT NULL,
+  `teamId` INT NOT NULL,
+  `matchId` INT NOT NULL,
+  `eventType` INT NOT NULL,
+  `time` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`athleteId`, `teamId`, `matchId`, `time`),
+  INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
+  INDEX `matchIdIdx` (`matchId` ASC) VISIBLE,
+  INDEX `eventTypeIdx` (`eventType` ASC) VISIBLE,
+  CONSTRAINT `evAthleteId`
+    FOREIGN KEY (`athleteId`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `ev_team_id`
-    FOREIGN KEY (`team_id`)
+  CONSTRAINT `evTeamId`
+    FOREIGN KEY (`teamId`)
     REFERENCES `competitions`.`TEAM` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `ev_match_id`
-    FOREIGN KEY (`match_id`)
+  CONSTRAINT `evMatchId`
+    FOREIGN KEY (`matchId`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `ev_event_type`
-    FOREIGN KEY (`event_type`)
+  CONSTRAINT `evEventType`
+    FOREIGN KEY (`eventType`)
     REFERENCES `competitions`.`EVENT_TYPES` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
