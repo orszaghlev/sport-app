@@ -6,25 +6,42 @@ import MatchService from '../services/MatchService';
 import UserService from "../services/UserService";
 import './Style.css';
 
-class TeamComponent extends Component {
+class AdminAthleteComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            teams: [],
+            athletes: [],
             currentPage: 1,
-            teamsPerPage: 10,
+            athletesPerPage: 5,
             search: '',
             sortToggle: true
         }
+        this.addAthlete = this.addAthlete.bind(this);
+        this.editAthlete = this.editAthlete.bind(this);
+        this.deleteAthlete = this.deleteAthlete.bind(this);
     }
 
-    viewTeam(id) {
-        this.props.history.push(`/view-team/${id}`);
+    addAthlete() {
+        this.props.history.push(`/add-athlete/_add`);
+    }
+
+    editAthlete(id) {
+        this.props.history.push(`/add-athlete/${id}`);
+    }
+
+    deleteAthlete(id) {
+        MatchService.deleteAthlete(id).then(res => {
+            this.setState({athletes: this.state.athletes.filter(athlete => athlete.id !== id)});
+        });
+    }
+
+    viewAthlete(id) {
+        this.props.history.push(`/view-athlete/${id}`);
     }
 
     componentDidMount() {
-        UserService.getUserBoard().then(
+        UserService.getAdminBoard().then (
             response => {
                 this.setState({
                     content: response.data
@@ -33,17 +50,17 @@ class TeamComponent extends Component {
             error => {
                 this.setState({
                     content:
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString()
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString()
                 });
             }
         );
 
-        MatchService.getTeams().then((res) => {
-            this.setState({teams: res.data});
+        MatchService.getAthletes().then((res) => {
+            this.setState({athletes: res.data});
         });
     }
 
@@ -70,15 +87,15 @@ class TeamComponent extends Component {
     };
 
     lastPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.athletes.length / this.state.athletesPerPage)) {
             this.setState({
-                currentPage: Math.ceil(this.state.teams.length / this.state.teamsPerPage)
+                currentPage: Math.ceil(this.state.athletes.length / this.state.athletesPerPage)
             });
         }
     }
 
     nextPage = () => {
-        if (this.state.currentPage < Math.ceil(this.state.teams.length / this.state.teamsPerPage)) {
+        if (this.state.currentPage < Math.ceil(this.state.athletes.length / this.state.athletesPerPage)) {
             this.setState({
                 currentPage: this.state.currentPage + 1
             });
@@ -93,8 +110,8 @@ class TeamComponent extends Component {
 
     cancelSearch = () => {
         this.setState({"search": ''})
-        MatchService.getTeams().then((res) => {
-            this.setState({currentTeams: res.data});
+        MatchService.getAthletes().then((res) => {
+            this.setState({currentAthletes: res.data});
         });
     }
 
@@ -105,25 +122,33 @@ class TeamComponent extends Component {
     }
 
     render() {
-        const {teams, currentPage, teamsPerPage, search} = this.state;
-        const lastIndex = currentPage * teamsPerPage;
-        const firstIndex = lastIndex - teamsPerPage;
+        const {athletes, currentPage, athletesPerPage, search} = this.state;
+        const lastIndex = currentPage * athletesPerPage;
+        const firstIndex = lastIndex - athletesPerPage;
 
-        teams.sort((a, b) => {
+        athletes.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
-            return (isReversed * a.fullName.localeCompare(b.fullName));
+            return (isReversed * a.id.localeCompare(b.id));
         });
 
-        const filteredTeams = teams.filter( team => {
-            return (team.fullName.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+        const filteredAthletes = athletes.filter( athlete => {
+            return (athlete.id.indexOf(search) !== -1) 
+            || (athlete.name.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (athlete.dateOfBirth.indexOf(search) !== -1)
+            || (athlete.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (athlete.position.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            || (athlete.nationality.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
         })
-
-        const currentTeams = filteredTeams.slice(firstIndex, lastIndex);
-        const totalPages = filteredTeams.length / teamsPerPage;
+        
+        const currentAthletes = filteredAthletes.slice(firstIndex, lastIndex);
+        const totalPages = filteredAthletes.length / athletesPerPage;
 
         return (
             <div>
-                <h2 className="text-center">Teams</h2>
+                <h2 className="text-center">Athletes</h2>
+                <div style={{"float": "left"}} className="row">
+                    <button className="btn btn-primary" onClick={this.addAthlete}>Add Athlete</button>
+                </div>
                 <div style={{"float": "right"}}>
                     <InputGroup size="sm">
                         <FormControl placeholder="Search" name="search" value={search} className={"info-border bg-white"}
@@ -137,27 +162,39 @@ class TeamComponent extends Component {
                 </div>
                 <br></br>
                 <br></br>
-                <div className="row" style={{width:"800px", marginLeft:"150px"}}>
+                <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th style={{width:"250px"}}></th>
-                                <th onClick={this.sortData} className="text-center align-middle" style={{width:"300px"}}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th></th>
+                                <th onClick={this.sortData}>Athlete ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th>Name</th>
+                                <th>Birth Date</th>
+                                <th>Value</th>
+                                <th>Currency</th>
+                                <th>Position</th>
+                                <th>Nationality</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {teams.length === 0 ?
+                            {athletes.length === 0 ?
                                 <tr align="center">
-                                    <td colSpan="3">No Teams Available</td>
+                                    <td colSpan="8">No Athletes Available</td>
                                 </tr>:
-                                currentTeams.map(
-                                    team => 
-                                    <tr key = {team.id}>
-                                        <td className="text-center align-middle">{<img src={team.imageLink} alt="Team" height="80px"/>}</td>
-                                        <td className="text-left align-middle" style={{fontSize:"18px"}}>{team.fullName}</td>
-                                        <td className="text-center align-middle">
-                                            <button onClick={ () => this.viewTeam(team.id)} className="btn btn-info">View details! &#62;&#62;</button>
+                                currentAthletes.map(
+                                    athlete => 
+                                    <tr key = {athlete.id}>
+                                        <td className="align-middle" width="11%">{athlete.id}</td>
+                                        <td className="align-middle" width="11%">{athlete.name}</td>
+                                        <td className="align-middle" width="11%">{athlete.dateOfBirth}</td>
+                                        <td className="align-middle" width="11%">{athlete.value}</td>
+                                        <td className="align-middle" width="11%">{athlete.valueCurrency}</td>
+                                        <td className="align-middle" width="11%">{athlete.position}</td>
+                                        <td className="align-middle" width="11%">{athlete.nationality}</td>
+                                        <td className="align-middle">
+                                            <button onClick={ () => this.editAthlete(athlete.id)} className="btn btn-info">Update</button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteAthlete(athlete.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewAthlete(athlete.id)} className="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )
@@ -201,4 +238,4 @@ class TeamComponent extends Component {
     }
 }
 
-export default TeamComponent;
+export default AdminAthleteComponent;

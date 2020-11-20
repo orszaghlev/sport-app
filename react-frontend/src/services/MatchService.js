@@ -9,6 +9,9 @@ const HOCKEYSTATS_API_BASE_URL = "http://localhost:8080/api/auth/comp/matches/ho
 const TEAM_API_BASE_URL = "http://localhost:8080/api/auth/comp/teams";
 const COMPETITION_API_BASE_URL = "http://localhost:8080/api/auth/comp/competitions";
 const SEASON_API_BASE_URL = "http://localhost:8080/api/auth/comp/seasons";
+const ATHLETE_API_BASE_URL = "http://localhost:8080/api/auth/comp/athletes";
+const EVENT_API_BASE_URL = "http://localhost:8080/api/auth/comp/events";
+const EVENTTYPES_API_BASE_URL = "http://localhost:8080/api/auth/comp/events/types";
 
 class MatchService {
 
@@ -28,6 +31,10 @@ class MatchService {
         return axios.get(SEASON_API_BASE_URL);
     }
 
+    getAthletes() {
+        return axios.get(ATHLETE_API_BASE_URL);
+    }
+
     createMatch(match) {
         return axios.post(MATCH_API_BASE_URL, match);
     }
@@ -42,6 +49,10 @@ class MatchService {
 
     createSeason(season) {
         return axios.post(SEASON_API_BASE_URL, season);
+    }
+
+    createAthlete(athlete) {
+        return axios.post(ATHLETE_API_BASE_URL, athlete);
     }
 
     getMatchById(matchId) {
@@ -80,6 +91,18 @@ class MatchService {
         return axios.get(SEASON_API_BASE_URL + '/' + seasonId);
     }
 
+    getAthleteById(athleteId) {
+        return axios.get(ATHLETE_API_BASE_URL + '/' + athleteId);
+    }
+
+    getEventById(eventId) {
+        return axios.get(EVENT_API_BASE_URL + '/' + eventId);
+    }
+
+    getEventTypesById(eventTypesId) {
+        return axios.get(EVENTTYPES_API_BASE_URL + '/' + eventTypesId)
+    }
+
     updateMatch(match, matchId) {
         return axios.put(MATCH_API_BASE_URL + '/' + matchId, match);
     }
@@ -96,6 +119,10 @@ class MatchService {
         return axios.put(SEASON_API_BASE_URL + '/' + seasonId, season);
     }
 
+    updateAthlete(athlete, athleteId) {
+        return axios.put(ATHLETE_API_BASE_URL + '/' + athleteId, athlete);
+    }
+
     deleteMatch(matchId) {
         return axios.delete(MATCH_API_BASE_URL + '/' + matchId);
     }
@@ -110,6 +137,10 @@ class MatchService {
 
     deleteSeason(seasonId) {
         return axios.delete(SEASON_API_BASE_URL + '/' + seasonId);
+    }
+
+    deleteAthlete(athleteId) {
+        return axios.delete(ATHLETE_API_BASE_URL + '/' + athleteId);
     }
 
 }

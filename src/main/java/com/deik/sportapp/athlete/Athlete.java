@@ -3,7 +3,6 @@ package com.deik.sportapp.athlete;
 import com.deik.sportapp.event.Event;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.sql.Date;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class Athlete {
     private Date dateOfBirth;
 
     @Column(name = "value")
-    private BigInteger value;
+    private long value;
 
     @Column(name = "valueCurrency")
     private String valueCurrency;
@@ -39,7 +38,7 @@ public class Athlete {
     public Athlete() {
     }
 
-    public Athlete(String id, String name, Date dateOfBirth, BigInteger value, String valueCurrency, String position, String nationality) {
+    public Athlete(String id, String name, Date dateOfBirth, long value, String valueCurrency, String position, String nationality) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -73,11 +72,11 @@ public class Athlete {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public BigInteger getValue() {
+    public long getValue() {
         return value;
     }
 
-    public void setValue(BigInteger value) {
+    public void setValue(long value) {
         this.value = value;
     }
 
