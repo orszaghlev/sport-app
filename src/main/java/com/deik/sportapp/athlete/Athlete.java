@@ -1,8 +1,11 @@
 package com.deik.sportapp.athlete;
 
+import com.deik.sportapp.event.Event;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "athlete", schema = "competitions")
@@ -30,8 +33,10 @@ public class Athlete {
     @Column(name = "nationality")
     private String nationality;
 
-    public Athlete() {
+    @OneToMany(mappedBy = "athleteId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Event> events;
 
+    public Athlete() {
     }
 
     public Athlete(String id, String name, Date dateOfBirth, BigInteger value, String valueCurrency, String position, String nationality) {
@@ -98,6 +103,14 @@ public class Athlete {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     @Override

@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "competitionsEntityManagerFactory", basePackages = {"com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition", "com.deik.sportapp.athlete"}, transactionManagerRef = "competitionsTransactionManager")
+@EnableJpaRepositories(entityManagerFactoryRef = "competitionsEntityManagerFactory", basePackages = {"com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition", "com.deik.sportapp.athlete", "com.deik.sportapp.event"}, transactionManagerRef = "competitionsTransactionManager")
 public class SecondaryDatasourceConfiguration {
 
     @Bean(name = "datasource2")
@@ -33,7 +33,7 @@ public class SecondaryDatasourceConfiguration {
         Map<String, Object> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        return builder.dataSource(dataSource).properties(properties).packages("com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition", "com.deik.sportapp.athlete").persistenceUnit("Competitions").build();
+        return builder.dataSource(dataSource).properties(properties).packages("com.deik.sportapp.match", "com.deik.sportapp.season", "com.deik.sportapp.team", "com.deik.sportapp.competition", "com.deik.sportapp.athlete", "com.deik.sportapp.event").persistenceUnit("Competitions").build();
     }
 
     @Bean(name = "competitionsTransactionManager")
