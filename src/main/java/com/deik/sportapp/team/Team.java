@@ -43,7 +43,7 @@ public class Team {
     @OneToMany(mappedBy = "awayTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Match> awayMatches;
 
-    @OneToMany(mappedBy = "teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id.teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Event> events;
 
     public Team() {

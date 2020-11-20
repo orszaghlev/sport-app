@@ -222,12 +222,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT_TYPES` (
   `id` INT NOT NULL,
   `type` VARCHAR(250),
-  PRIMARY KEY (`id`),
-  CONSTRAINT `eventId`
-    FOREIGN KEY (`id`)
-    REFERENCES `competitions`.`EVENT` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -235,14 +230,15 @@ ENGINE = InnoDB;
 -- Table `competitions`.`EVENT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `athleteId` INT NOT NULL,
   `teamId` INT NOT NULL,
   `matchId` INT NOT NULL,
+  `eventType` INT NOT NULL,
   `time` VARCHAR(6) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`athleteId`, `teamId`, `matchId`, `time`),
   INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
   INDEX `matchIdIdx` (`matchId` ASC) VISIBLE,
+  INDEX `eventTypeIdx` (`eventType` ASC) VISIBLE,
   CONSTRAINT `evAthleteId`
     FOREIGN KEY (`athleteId`)
     REFERENCES `competitions`.`ATHLETE` (`id`)
@@ -257,8 +253,13 @@ CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
     FOREIGN KEY (`matchId`)
     REFERENCES `competitions`.`MATCH` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `evEventType`
+    FOREIGN KEY (`eventType`)
+    REFERENCES `competitions`.`EVENT_TYPES` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB AUTO_INCREMENT=1;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

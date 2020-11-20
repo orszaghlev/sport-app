@@ -61,7 +61,7 @@ INSERT INTO competitions.team VALUES
 
 INSERT INTO competitions.competition VALUES
 (21001,'Europe','Football','European Championship Qualification','https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/UEFA_Euro_2016_qualifying.png/220px-UEFA_Euro_2016_qualifying.png'),
-(22001,'USA','American Football','NFL','https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png'),
+(22001,'USA','American football','NFL','https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png'),
 (23001,'USA','Basketball','NBA','https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/105px-National_Basketball_Association_logo.svg.png'),
 (24001,'Europe','Handball','EHF Champions League','https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EHF_Champions_League_Logo_2020.svg/220px-EHF_Champions_League_Logo_2020.svg.png'),
 (25001,'USA','Ice hockey','NHL','https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/05_NHL_Shield.svg/190px-05_NHL_Shield.svg.png');

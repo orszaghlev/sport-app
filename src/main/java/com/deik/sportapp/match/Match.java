@@ -80,7 +80,7 @@ public class Match {
     @PrimaryKeyJoinColumn
     private HockeyStats hockeyStats;
 
-    @OneToMany(mappedBy = "matchId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id.matchId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Event> events;
 
     public Match() {

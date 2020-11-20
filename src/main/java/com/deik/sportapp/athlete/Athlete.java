@@ -32,7 +32,7 @@ public class Athlete {
     @Column(name = "nationality")
     private String nationality;
 
-    @OneToMany(mappedBy = "athleteId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id.athleteId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Event> events;
 
     public Athlete() {

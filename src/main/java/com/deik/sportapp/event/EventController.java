@@ -21,7 +21,7 @@ public class EventController {
     }
 
     @GetMapping("/events/{id}")
-    public ResponseEntity<Event> getEventsById(@PathVariable String id) {
+    public ResponseEntity<Event> getEventsById(@PathVariable EventIdentity id) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event doesn't exist with ID: " + id));
         return ResponseEntity.ok(event);

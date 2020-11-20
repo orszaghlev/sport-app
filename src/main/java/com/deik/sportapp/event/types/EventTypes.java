@@ -1,13 +1,11 @@
 package com.deik.sportapp.event.types;
 
 import com.deik.sportapp.event.Event;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "event_types", schema = "competitions")
 public class EventTypes {
 
@@ -18,10 +16,8 @@ public class EventTypes {
     @Column(name = "type")
     private String type;
 
-    @MapsId
-    @OneToOne(mappedBy = "eventTypes")
-    @JoinColumn(name = "id")
-    private Event event;
+    @OneToMany(mappedBy = "eventType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Event> events;
 
     public EventTypes() {
     }
@@ -47,12 +43,12 @@ public class EventTypes {
         this.type = type;
     }
 
-    public Event getEvent() {
-        return event;
+    public Set<Event> getEvent() {
+        return events;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvent(Set<Event> events) {
+        this.events = events;
     }
 
     @Override

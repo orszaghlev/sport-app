@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Qualifier("datasource2")
 @Repository
-public interface EventRepository extends JpaRepository<Event, String> {
+public interface EventRepository extends JpaRepository<Event, EventIdentity> {
 
 }
