@@ -10,15 +10,15 @@ class ViewAmFootballMatchComponent extends Component {
             playedmatch: {},
             home_Team: {},
             away_Team: {},
-            seasn: {},
+            season: {},
             comp: {},
-            amFootballStats: {}
+            amFootballStats: {},
+            matchEvents: []
         }
     }
 
     componentDidMount() {
         MatchService.getMatchById(this.state.id).then(res => {
-
             this.setState({playedmatch: res.data});
             MatchService.getTeamById(this.state.playedmatch.homeTeam).then(res => {
                 this.setState({home_Team: res.data});
@@ -27,17 +27,20 @@ class ViewAmFootballMatchComponent extends Component {
                 this.setState({away_Team: res.data});
             })
             MatchService.getSeasonById(this.state.playedmatch.seasonId).then(res => {
-                this.setState({seasn: res.data});
-                MatchService.getCompetitionById(this.state.seasn.competitionId).then(res => {
+                this.setState({season: res.data});
+                MatchService.getCompetitionById(this.state.season.competitionId).then(res => {
                     this.setState({comp: res.data});
                 })
             })
         })
+
+        MatchService.getEventsByMatchId(this.state.id).then((res) => {
+            this.setState({matchEvents: res.data});
+        });
+
         MatchService.getAmFootballStatsById(this.state.id).then(res => {
             this.setState({amFootballStats: res.data});
         })
-        /**/
-            
     }
 
     return() {
@@ -78,6 +81,32 @@ class ViewAmFootballMatchComponent extends Component {
                         </div>
 
                         <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
+                        <table className="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Athlete</th>
+                                    <th>Team</th>
+                                    <th>Time</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {this.state.matchEvents.length === 0 ?
+                                <tr align="center">
+                                    <td colSpan="4">No Events Available</td>
+                                </tr>:
+                                this.state.matchEvents.map(
+                                    matchEvent =>
+                                    <tr key = {matchEvent.id}>
+                                        <td>{matchEvent.id.athleteId}</td>
+                                        <td>{matchEvent.id.teamId}</td>
+                                        <td>{matchEvent.id.time}</td>
+                                        <td>{matchEvent.eventType}</td>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </table>
 
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
                             <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>

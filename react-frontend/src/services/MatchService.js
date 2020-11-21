@@ -95,8 +95,8 @@ class MatchService {
         return axios.get(ATHLETE_API_BASE_URL + '/' + athleteId);
     }
 
-    getEventById(eventId) {
-        return axios.get(EVENT_API_BASE_URL + '/' + eventId);
+    getEventsByMatchId(matchId) {
+        return axios.get(EVENT_API_BASE_URL + '/' + matchId);
     }
 
     getEventTypesById(eventTypesId) {
