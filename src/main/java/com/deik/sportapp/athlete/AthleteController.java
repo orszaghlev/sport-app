@@ -1,6 +1,5 @@
 package com.deik.sportapp.athlete;
 
-import com.deik.sportapp.competition.Competition;
 import com.deik.sportapp.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
