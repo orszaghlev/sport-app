@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import MatchService from '../services/MatchService';
+import AuthService from "../services/AuthService";
 
 class ViewHandballMatchComponent extends Component {
     constructor(props) {
@@ -7,6 +9,9 @@ class ViewHandballMatchComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
+            redirect: null,
+            userReady: false,
+            currentUser: {username: ""},
             match: {},
             home_Team: {},
             away_Team: {},
@@ -18,6 +23,11 @@ class ViewHandballMatchComponent extends Component {
     }
 
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+
+        if (!currentUser) this.setState({redirect: "/home"});
+        this.setState({currentUser: currentUser, userReady: true})
+
         MatchService.getMatchById(this.state.id).then(res => {
             this.setState({match: res.data});
             MatchService.getTeamById(this.state.match.homeTeam).then(res => {
@@ -48,6 +58,10 @@ class ViewHandballMatchComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         return (
             <div>
                 <br></br>
