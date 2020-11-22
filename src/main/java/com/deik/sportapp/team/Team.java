@@ -1,5 +1,6 @@
 package com.deik.sportapp.team;
 
+import com.deik.sportapp.event.Event;
 import com.deik.sportapp.match.Match;
 
 import javax.persistence.*;
@@ -41,6 +42,9 @@ public class Team {
 
     @OneToMany(mappedBy = "awayTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Match> awayMatches;
+
+    @OneToMany(mappedBy = "id.teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Event> events;
 
     public Team() {
 
@@ -135,6 +139,14 @@ public class Team {
 
     public void setAwayMatches(Set<Match> awayMatches) {
         this.awayMatches = awayMatches;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     @Override

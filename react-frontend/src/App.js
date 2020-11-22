@@ -6,18 +6,22 @@ import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
+import AthleteComponent from './components/AthleteComponent';
 import MatchComponent from './components/MatchComponent';
 import TeamComponent from './components/TeamComponent';
 import SeasonComponent from './components/SeasonComponent';
 import CompetitionComponent from './components/CompetitionComponent';
+import AdminAthleteComponent from './components/AdminAthleteComponent';
 import AdminMatchComponent from './components/AdminMatchComponent';
 import AdminTeamComponent from './components/AdminTeamComponent';
 import AdminSeasonComponent from './components/AdminSeasonComponent';
 import AdminCompetitionComponent from './components/AdminCompetitionComponent';
+import CreateAthleteComponent from './components/CreateAthleteComponent';
 import CreateMatchComponent from './components/CreateMatchComponent';
 import CreateTeamComponent from './components/CreateTeamComponent';
 import CreateSeasonComponent from './components/CreateSeasonComponent';
 import CreateCompetitionComponent from './components/CreateCompetitionComponent';
+import ViewAthleteComponent from './components/ViewAthleteComponent';
 import ViewAmFootballMatchComponent from './components/ViewAmFootballMatchComponent';
 import ViewBasketballMatchComponent from './components/ViewBasketballMatchComponent';
 import ViewFootballMatchComponent from './components/ViewFootballMatchComponent';
@@ -80,6 +84,22 @@ class App extends Component {
                 GitHub
               </a>
             </li>
+            
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/athletes-admin"} className="nav-link">
+                  Athletes (A)
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to ={"/athletes"} className="nav-link">
+                  Athletes
+                </Link>
+              </li>
+            )}
 
             {showAdminBoard && (
               <li className="nav-item">
@@ -182,10 +202,12 @@ class App extends Component {
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={ProfileComponent} />
+            <Route path="/add-athlete/:id" component={CreateAthleteComponent}></Route>
             <Route path="/add-match/:id" component={CreateMatchComponent}></Route>
             <Route path="/add-team/:id" component={CreateTeamComponent}></Route>
             <Route path="/add-season/:id" component={CreateSeasonComponent}></Route>
             <Route path="/add-competition/:id" component={CreateCompetitionComponent}></Route>
+            <Route path="/view-athlete/:id" component={ViewAthleteComponent}></Route>
             <Route path="/view-amfootball-match/:id" component={ViewAmFootballMatchComponent}></Route>
             <Route path="/view-basketball-match/:id" component={ViewBasketballMatchComponent}></Route>
             <Route path="/view-football-match/:id" component={ViewFootballMatchComponent}></Route>
@@ -194,10 +216,12 @@ class App extends Component {
             <Route path="/view-team/:id" component={ViewTeamComponent}></Route>
             <Route path="/view-season/:id" component={ViewSeasonComponent}></Route>
             <Route path="/view-competition/:id" component={ViewCompetitionComponent}></Route>
+            <Route path="/athletes" component={AthleteComponent} />
             <Route path="/matches" component={MatchComponent} />
             <Route path="/teams" component={TeamComponent} />
             <Route path="/seasons" component={SeasonComponent} />
             <Route path="/competitions" component={CompetitionComponent} />
+            <Route path="/athletes-admin" component={AdminAthleteComponent}/>
             <Route path="/matches-admin" component={AdminMatchComponent}/>
             <Route path="/teams-admin" component={AdminTeamComponent}/>
             <Route path="/seasons-admin" component={AdminSeasonComponent}/>

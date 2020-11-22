@@ -1,5 +1,6 @@
 package com.deik.sportapp.match;
 
+import com.deik.sportapp.event.Event;
 import com.deik.sportapp.match.stats.amfootball.AmFootballStats;
 import com.deik.sportapp.match.stats.basketball.BasketballStats;
 import com.deik.sportapp.match.stats.football.FootballStats;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -77,6 +79,9 @@ public class Match {
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private HockeyStats hockeyStats;
+
+    @OneToMany(mappedBy = "id.matchId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Event> events;
 
     public Match() {
     }
@@ -194,6 +199,14 @@ public class Match {
 
     public void setHockeyStats(HockeyStats hockeyStats) {
         this.hockeyStats = hockeyStats;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     @Override
