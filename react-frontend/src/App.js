@@ -39,7 +39,7 @@ class App extends Component {
 
     this.state = {
       showAdminBoard: false,
-      currentUser: undefined,
+      currentUser: undefined
     };
   }
 
@@ -49,7 +49,7 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN")
       });
     }
   }
