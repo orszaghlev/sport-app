@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import MatchService from '../services/MatchService';
+import AuthService from '../services/AuthService';
 
 class CreateMatchComponent extends Component {
     constructor(props) {
@@ -7,6 +9,9 @@ class CreateMatchComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
+            redirect: null,
+            userReady: false,
+            user: undefined,
             seasonId: '',
             homeTeam: '',
             awayTeam: '',
@@ -27,6 +32,14 @@ class CreateMatchComponent extends Component {
     }
 
     componentDidMount() {
+        const user = AuthService.getCurrentUser();
+
+        if (!user) this.setState({redirect: "/home"});
+        if (user) {
+            if (!user.roles.includes("ROLE_ADMIN")) this.setState({redirect: "/home"});
+            this.setState({user: user, userReady: true, isAdmin: true})
+        }
+
         if(this.state.id === '_add') {
             return
         } else {
@@ -101,6 +114,10 @@ class CreateMatchComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         return (
             <div>
                 <br></br>

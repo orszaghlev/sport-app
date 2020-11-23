@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
-import UserService from '../services/UserService';
+import AuthService from '../services/AuthService';
 import './Style.css';
 
 class AdminTeamComponent extends Component {
@@ -11,6 +12,9 @@ class AdminTeamComponent extends Component {
         super(props)
 
         this.state = {
+            redirect: null,
+            userReady: false,
+            user: undefined,
             teams: [],
             currentPage: 1,
             teamsPerPage: 5,
@@ -41,23 +45,13 @@ class AdminTeamComponent extends Component {
     }
 
     componentDidMount() {
-        UserService.getAdminBoard().then (
-            response => {
-                this.setState({
-                    content: response.data
-                });
-            },
-            error => {
-                this.setState({
-                    content:
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString()
-                });
-            }
-        );
+        const user = AuthService.getCurrentUser();
+
+        if (!user) this.setState({redirect: "/home"});
+        if (user) {
+            if (!user.roles.includes("ROLE_ADMIN")) this.setState({redirect: "/home"});
+            this.setState({user: user, userReady: true, isAdmin: true})
+        }
 
         MatchService.getTeams().then((res) => {
             this.setState({teams: res.data});
@@ -122,6 +116,10 @@ class AdminTeamComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         const {teams, currentPage, teamsPerPage, search} = this.state;
         const lastIndex = currentPage * teamsPerPage;
         const firstIndex = lastIndex - teamsPerPage;

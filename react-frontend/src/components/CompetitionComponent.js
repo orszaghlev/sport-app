@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
-import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 import './Style.css';
 
 class CompetitionComponent extends Component {
@@ -11,6 +12,9 @@ class CompetitionComponent extends Component {
         super(props)
 
         this.state = {
+            redirect: null,
+            userReady: false,
+            currentUser: {username: ""},
             competitions: [],
             currentPage: 1,
             competitionsPerPage: 5,
@@ -24,23 +28,10 @@ class CompetitionComponent extends Component {
     }
 
     componentDidMount() {
-        UserService.getUserBoard().then(
-            response => {
-                this.setState({
-                    content: response.data
-                });
-            },
-            error => {
-                this.setState({
-                    content:
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString()
-                });
-            }
-        );
+        const currentUser = AuthService.getCurrentUser();
+
+        if (!currentUser) this.setState({redirect: "/home"});
+        this.setState({currentUser: currentUser, userReady: true})
 
         MatchService.getCompetitions().then((res) => {
             this.setState({competitions: res.data});
@@ -105,6 +96,10 @@ class CompetitionComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         const {competitions, currentPage, competitionsPerPage, search} = this.state;
         const lastIndex = currentPage * competitionsPerPage;
         const firstIndex = lastIndex - competitionsPerPage;

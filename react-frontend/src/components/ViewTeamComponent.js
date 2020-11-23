@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import MatchService from '../services/MatchService';
+import AuthService from "../services/AuthService";
 
 class ViewTeamComponent extends Component {
     constructor(props) {
@@ -7,11 +9,19 @@ class ViewTeamComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
+            redirect: null,
+            userReady: false,
+            currentUser: {username: ""},
             team: {}
         }
     }
 
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+
+        if (!currentUser) this.setState({redirect: "/home"});
+        this.setState({currentUser: currentUser, userReady: true})
+
         MatchService.getTeamById(this.state.id).then(res => {
             this.setState({team: res.data});
         })
@@ -22,6 +32,10 @@ class ViewTeamComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         return (
             <div>
                 <br></br>

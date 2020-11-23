@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import {Redirect} from "react-router-dom";
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward, faTimes} from '@fortawesome/free-solid-svg-icons';
 import MatchService from '../services/MatchService';
-import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 import './Style.css';
 
 class AthleteComponent extends Component {
@@ -11,6 +12,9 @@ class AthleteComponent extends Component {
         super(props)
 
         this.state = {
+            redirect: null,
+            userReady: false,
+            currentUser: {username: ""},
             athletes: [],
             currentPage: 1,
             athletesPerPage: 5,
@@ -24,23 +28,10 @@ class AthleteComponent extends Component {
     }
 
     componentDidMount() {
-        UserService.getUserBoard().then(
-            response => {
-                this.setState({
-                    content: response.data
-                });
-            },
-            error => {
-                this.setState({
-                    content:
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString()
-                });
-            }
-        );
+        const currentUser = AuthService.getCurrentUser();
+
+        if (!currentUser) this.setState({redirect: "/home"});
+        this.setState({currentUser: currentUser, userReady: true})
 
         MatchService.getAthletes().then((res) => {
             this.setState({athletes: res.data});
@@ -105,6 +96,10 @@ class AthleteComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+
         const {athletes, currentPage, athletesPerPage, search} = this.state;
         const lastIndex = currentPage * athletesPerPage;
         const firstIndex = lastIndex - athletesPerPage;
