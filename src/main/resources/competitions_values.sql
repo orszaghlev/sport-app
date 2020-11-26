@@ -4,8 +4,8 @@ x.... table
     2 = COMPETITION
     3 = SEASON
     4 = MATCH
-    5 =
-    6 =
+    5 = ATHLETE
+    6 = EVENT_TYPES
     7 =
 
 .x... sport
@@ -172,3 +172,57 @@ INSERT INTO competitions.handball_matchstats values
 
 INSERT INTO competitions.hockey_matchstats values
 (45001,22,29,0,1,0,0,27,31,16,22,5,5,11,9,6,6);
+
+INSERT INTO competitions.athlete values
+(51001,'Ádám Lang','19930117',1000000,'EUR','Cenre-Back','HUN'),
+(51002,'Adám Nagy','19950617',1600000,'EUR','Defensive Midfield','HUN'),
+(51003,'Ádám Szalai','19871209',750000,'EUR','Centre-Forward','HUN'),
+(51004,'Attila Fiola','19900217',500000,'EUR','Right-Back','HUN'),
+(51005,'Dániel Gazdag','19960302',1000000,'EUR','Central Midfield','HUN'),
+(51006,'Endre Botka','19940825',900000,'EUR','Right-Back','HUN'),
+(51007,'Filip Holender','19940727',550000,'EUR','Centre-Forward','HUN'),
+(51008,'Loic Négo','19910115',1800000,'EUR','Right-Back','HUN'),
+(51009,'Nemanja Nikolics','19871231',1500000,'EUR','Centre-Forward','HUN'),
+(51010,'Szilveszter Hangya','19940102',450000,'EUR','Left-Back','HUN'),
+(51011,'Willi Orbán','19921103',12000000,'EUR','Centre-Back','HUN'),
+(51012,'Zsolt Kalmár','19950609',900000,'EUR','Attacking Midfield','HUN'),
+(51013,'Birsent Karagaren','19921206',525000,'EUR','Left Winger','BGR'),
+(51014,'Bozhidar Kraev','19970623',2000000,'EUR','Attacking Midfield','BGR'),
+(51015,'Dominik Yankov','20000628',350000,'EUR','Central Midfield','BGR'),
+(51016,'Galin Ivanov','19880415',300000,'EUR','Attacking Midfield','BGR'),
+(51017,'Georgi Yomov','19970606',300000,'EUR','Right Winger','BGR'),
+(51018,'Ismail Issa','19890626',400000,'EUR','Centre-Forward','BGR'),
+(51019,'Kiril Despodov','19961111',3200000,'EUR','Right Winger','BGR'),
+(51020,'Todor Nedelev','19930207',1600000,'EUR','Right Winger','BGR');
+
+INSERT INTO competitions.event_types values
+(61001,'Goal'),
+(61002,'Substitution out'),
+(61003,'Substitution in'),
+(61004,'Yellow card');
+
+INSERT INTO competitions.event values
+(51011,11001,41001,61001,'17'),
+(51016,11002,41001,61002,'31'),
+(51017,11002,41001,61003,'31'),
+(51012,11001,41001,61001,'47'),
+(51001,11001,41001,61004,'55'),
+(51013,11002,41001,61002,'58'),
+(51019,11002,41001,61003,'58'),
+(51003,11001,41001,61002,'59'),
+(51009,11001,41001,61003,'59'),
+(51012,11001,41001,61002,'70'),
+(51010,11001,41001,61003,'70'),
+(51007,11001,41001,61002,'70'),
+(51008,11001,41001,61003,'70'),
+(51009,11001,41001,61001,'75'),
+(51014,11002,41001,61002,'79'),
+(51018,11002,41001,61003,'79'),
+(51020,11002,41001,61002,'79'),
+(51015,11002,41001,61003,'79'),
+(51002,11001,41001,61002,'82'),
+(51005,11001,41001,61003,'82'),
+(51004,11001,41001,61002,'82'),
+(51006,11001,41001,61003,'82'),
+(51005,11001,41001,61004,'88'),
+(51017,11002,41001,61001,'89');
