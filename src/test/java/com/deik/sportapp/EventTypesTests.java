@@ -23,7 +23,7 @@ public class EventTypesTests {
 
     @Test
     public void createEventTypesTest() {
-        EventTypes eventTypes = new EventTypes("1", "goal");
+        EventTypes eventTypes = new EventTypes("61001", "Goal");
         EventTypes savedEventTypes = eventTypesRepository.save(eventTypes);
 
         assertNotNull(savedEventTypes);
@@ -41,7 +41,7 @@ public class EventTypesTests {
 
     @Test
     public void getEventTypeByIdTest() {
-        EventTypes eventTypes = new EventTypes("1", "goal");
+        EventTypes eventTypes = new EventTypes("61001", "Goal");
         EventTypes foundEventTypes = eventTypesRepository.findById(eventTypes.getId()).get();
         System.out.println(foundEventTypes);
 

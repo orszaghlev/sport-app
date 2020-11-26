@@ -24,7 +24,7 @@ public class AthleteTests {
 
     @Test
     public void createAthleteTest() {
-        Athlete athlete = new Athlete("1", "Puskas Ferenc", Date.valueOf("1927-04-01"), 3243251, "EUR", "centre-forward", "Hungarian");
+        Athlete athlete = new Athlete("51003", "Ádám Szalai", Date.valueOf("1987-12-09"), 750000, "EUR", "Centre-Forward", "HUN");
         Athlete savedAthlete = athleteRepository.save(athlete);
 
         assertNotNull(savedAthlete);
@@ -32,23 +32,23 @@ public class AthleteTests {
 
     @Test
     public void findAthleteByNameTest() {
-        String name = "Puskas Ferenc";
-        Athlete foundAthlete = athleteRepository.findByName("Puskas Ferenc");
+        String name = "Ádám Szalai";
+        Athlete foundAthlete = athleteRepository.findByName("Ádám Szalai");
 
         assertEquals(name, foundAthlete.getName());
     }
 
     @Test
     public void findAthleteByNameDoesntExistTest() {
-        Athlete foundAthlete = athleteRepository.findByName("P. Ferenc");
+        Athlete foundAthlete = athleteRepository.findByName("Á. Szalai");
 
         assertNull(foundAthlete);
     }
 
     @Test
     public void updateAthleteTest() {
-        String newName = "Ferenc Puskas";
-        Athlete athlete = new Athlete("1", "Puskas Ferenc", Date.valueOf("1927-04-01"), 3243251, "EUR", "centre-forward", "Hungarian");
+        String newName = "Adam Szalai";
+        Athlete athlete = new Athlete("51003", "Ádám Szalai", Date.valueOf("1987-12-09"), 750000, "EUR", "Centre-Forward", "HUN");
         athlete.setName(newName);
         athleteRepository.save(athlete);
         Athlete updatedAthlete = athleteRepository.findByName(athlete.getName());
@@ -68,7 +68,7 @@ public class AthleteTests {
 
     @Test
     public void getAthleteByIdTest() {
-        Athlete athlete = new Athlete("1", "Puskas Ferenc", Date.valueOf("1927-04-01"), 3243251, "EUR", "centre-forward", "Hungarian");
+        Athlete athlete = new Athlete("51003", "Ádám Szalai", Date.valueOf("1987-12-09"), 750000, "EUR", "Centre-Forward", "HUN");
         Athlete foundAthlete = athleteRepository.findById(athlete.getId()).get();
         System.out.println(foundAthlete);
 
@@ -77,9 +77,9 @@ public class AthleteTests {
 
     @Test
     public void deleteAthleteTest() {
-        boolean doesAthleteExistBeforeDeletion = athleteRepository.findById("1").isPresent();
-        athleteRepository.deleteById("1");
-        boolean doesAthleteExistAfterDeletion = athleteRepository.findById("1").isPresent();
+        boolean doesAthleteExistBeforeDeletion = athleteRepository.findById("51003").isPresent();
+        athleteRepository.deleteById("51003");
+        boolean doesAthleteExistAfterDeletion = athleteRepository.findById("51003").isPresent();
 
         assertTrue(doesAthleteExistBeforeDeletion);
         assertFalse(doesAthleteExistAfterDeletion);

@@ -49,22 +49,22 @@ public class EventTests {
 
     @Test
     public void createEventTest() {
-        Athlete athlete = new Athlete("1", "Puskas Ferenc", Date.valueOf("1927-04-01"), 3243251, "EUR", "centre-forward", "Hungarian");
+        Athlete athlete = new Athlete("51003", "Ádám Szalai", Date.valueOf("1987-12-09"), 750000, "EUR", "Centre-Forward", "HUN");
         Athlete savedAthlete = athleteRepository.save(athlete);
-        Team homeTeam = new Team("12004", "Buffalo Bills", "BUF", Date.valueOf("1959-10-28"), 2150000000L, "USD", "https://upload.wikimedia.org/wikipedia/en/thumb/7/77/Buffalo_Bills_logo.svg/100px-Buffalo_Bills_logo.svg.png", "Bills Stadium");
+        Team homeTeam = new Team("11002", "Bulgaria", "BGR", Date.valueOf("1923-01-01"), 23200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Bulgarian_Football_Union_logo.svg/150px-Bulgarian_Football_Union_logo.svg.png", "Vasil Lecski National Stadium");
         Team savedHomeTeam = teamRepository.save(homeTeam);
-        Team awayTeam = new Team("12016", "Kansas City Chiefs", "KC", Date.valueOf("1959-08-14"), 3000000000L, "USD", "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Kansas_City_Chiefs_logo.svg/100px-Kansas_City_Chiefs_logo.svg.png", "Arrowhead Stadium");
+        Team awayTeam = new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
         Team savedAwayTeam = teamRepository.save(awayTeam);
-        Competition competition = new Competition("22001", "USA", "American football", "NFL", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png");
+        Competition competition = new Competition("21001", "Europe", "Football", "European Championship Qualification", "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/UEFA_Euro_2016_qualifying.png/220px-UEFA_Euro_2016_qualifying.png");
         Competition savedCompetition = competitionRepository.save(competition);
-        Season season = new Season("32001", competitionRepository.findById("22001").get(), Date.valueOf("2020-09-11"), Date.valueOf("2021-02-07"));
+        Season season = new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
         Season savedSeason = seasonRepository.save(season);
-        Match match = new Match("42001", seasonRepository.findById("32001").get(), teamRepository.findById("12004").get(), teamRepository.findById("12016").get(), 17, 26, "Bills Stadium", Date.valueOf("2020-10-19"));
+        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         Match savedMatch = matchRepository.save(match);
-        EventTypes eventTypes = new EventTypes("1", "goal");
+        EventTypes eventTypes = new EventTypes("61002", "Substitution out");
         EventTypes savedEventTypes = eventTypesRepository.save(eventTypes);
-        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("1").get(), teamRepository.findById("12004").get(), matchRepository.findById("42001").get(), "08:14");
-        Event event = new Event(eventIdentity, eventTypesRepository.findById("1").get());
+        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(), teamRepository.findById("11001").get(), matchRepository.findById("41001").get(), "59");
+        Event event = new Event(eventIdentity, eventTypesRepository.findById("61002").get());
         Event savedEvent = eventRepository.save(event);
 
         assertNotNull(savedAthlete);
@@ -89,15 +89,15 @@ public class EventTests {
 
     @Test
     public void getEventByIdTest() {
-        new Athlete("1", "Puskas Ferenc", Date.valueOf("1927-04-01"), 3243251, "EUR", "centre-forward", "Hungarian");
-        new Team("12004", "Buffalo Bills", "BUF", Date.valueOf("1959-10-28"), 2150000000L, "USD", "https://upload.wikimedia.org/wikipedia/en/thumb/7/77/Buffalo_Bills_logo.svg/100px-Buffalo_Bills_logo.svg.png", "Bills Stadium");
-        new Team("12016", "Kansas City Chiefs", "KC", Date.valueOf("1959-08-14"), 3000000000L, "USD", "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Kansas_City_Chiefs_logo.svg/100px-Kansas_City_Chiefs_logo.svg.png", "Arrowhead Stadium");
-        new Competition("22001", "USA", "American football", "NFL", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/188px-National_Football_League_logo.svg.png");
-        new Season("32001", competitionRepository.findById("22001").get(), Date.valueOf("2020-09-11"), Date.valueOf("2021-02-07"));
-        new Match("42001", seasonRepository.findById("32001").get(), teamRepository.findById("12004").get(), teamRepository.findById("12016").get(), 17, 26, "Bills Stadium", Date.valueOf("2020-10-19"));
-        new EventTypes("1", "goal");
-        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("1").get(), teamRepository.findById("12004").get(), matchRepository.findById("42001").get(), "08:14");
-        Event event = new Event(eventIdentity, eventTypesRepository.findById("1").get());
+        new Athlete("51003", "Ádám Szalai", Date.valueOf("1987-12-09"), 750000, "EUR", "Centre-Forward", "HUN");
+        new Team("11002", "Bulgaria", "BGR", Date.valueOf("1923-01-01"), 23200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Bulgarian_Football_Union_logo.svg/150px-Bulgarian_Football_Union_logo.svg.png", "Vasil Lecski National Stadium");
+        new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
+        new Competition("21001", "Europe", "Football", "European Championship Qualification", "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/UEFA_Euro_2016_qualifying.png/220px-UEFA_Euro_2016_qualifying.png");
+        new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
+        new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        new EventTypes("61002", "Substitution out");
+        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(), teamRepository.findById("11001").get(), matchRepository.findById("41001").get(), "59");
+        Event event = new Event(eventIdentity, eventTypesRepository.findById("61002").get());
         Event foundEvent = eventRepository.findById(event.getId()).get();
         System.out.println(foundEvent);
 
