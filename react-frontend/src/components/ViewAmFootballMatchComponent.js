@@ -94,33 +94,35 @@ class ViewAmFootballMatchComponent extends Component {
                             </table>
                         </div>
 
-                        <div style={{marginLeft: "10px", marginTop: "10px"}}>Events:</div>
+
+                        <div className="text-center align-middle" style={{height:"40px" , marginTop: "30px", paddingTop:"5px", backgroundColor:"#33cc33", color:"#ffffff", fontSize:"18px", fontWeight:"bold"}}>
+                            EVENTS
+                        </div>
                         <table className="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Athlete</th>
-                                    <th>Team</th>
-                                    <th>Time</th>
-                                    <th>Type</th>
+                                    <th className="text-center align-middle">Player</th>
+                                    <th className="text-center align-middle">Type</th>
+                                    <th className="text-center align-middle">Time</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {this.state.matchEvents.length === 0 ?
-                                <tr align="center">
-                                    <td colSpan="4">No Events Available</td>
-                                </tr>:
-                                this.state.matchEvents.map(
-                                    matchEvent =>
-                                    <tr key = {matchEvent.id}>
-                                        <td>{matchEvent.id.athleteId}</td>
-                                        <td>{matchEvent.id.teamId}</td>
-                                        <td>{matchEvent.id.time}</td>
-                                        <td>{matchEvent.eventType}</td>
-                                    </tr>
-                                )
-                            }
+                                {this.state.matchEvents.length === 0 ?
+                                    <tr align="center">
+                                        <td colSpan="4">No Events Available</td>
+                                    </tr>:
+                                    this.state.matchEvents.map(
+                                        matchEvent =>
+                                            <tr key = {matchEvent.id}>
+                                                <td className="text-center align-middle">{matchEvent.id.athleteId} ({matchEvent.id.teamId})</td>
+                                                <td className="text-center align-middle">{matchEvent.eventType}</td>
+                                                <td className="text-center align-middle">{matchEvent.id.time}'</td>
+                                            </tr>
+                                    )
+                                }
                             </tbody>
                         </table>
+
 
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
                             <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
