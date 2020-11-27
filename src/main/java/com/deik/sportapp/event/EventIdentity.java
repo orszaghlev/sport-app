@@ -3,10 +3,7 @@ package com.deik.sportapp.event;
 import com.deik.sportapp.athlete.Athlete;
 import com.deik.sportapp.match.Match;
 import com.deik.sportapp.team.Team;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +14,7 @@ public class EventIdentity implements Serializable {
 
     private static final long SerialVersionUID = 1L;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "athleteId", nullable = false)
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
@@ -31,7 +28,7 @@ public class EventIdentity implements Serializable {
     @JsonProperty("teamId")
     private Team teamId;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "matchId", nullable = false)
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
@@ -86,17 +83,17 @@ public class EventIdentity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof EventIdentity)) return false;
         EventIdentity that = (EventIdentity) o;
-        return athleteId.equals(that.athleteId) &&
-                teamId.equals(that.teamId) &&
-                matchId.equals(that.matchId) &&
-                time.equals(that.time);
+        return getAthleteId().equals(that.getAthleteId()) &&
+                getTeamId().equals(that.getTeamId()) &&
+                getMatchId().equals(that.getMatchId()) &&
+                getTime().equals(that.getTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(athleteId, teamId, matchId, time);
+        return Objects.hash(getAthleteId(), getTeamId(), getMatchId(), getTime());
     }
 
 }
