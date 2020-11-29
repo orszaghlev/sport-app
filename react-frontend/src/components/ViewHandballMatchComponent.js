@@ -109,7 +109,7 @@ class ViewHandballMatchComponent extends Component {
                             <tbody>
                                 {this.state.matchEvents.length === 0 ?
                                     <tr align="center">
-                                        <td colSpan="4">No Events Available</td>
+                                        <td colSpan="3">No Events Available</td>
                                     </tr>:
                                     this.state.matchEvents.map(
                                         matchEvent =>
