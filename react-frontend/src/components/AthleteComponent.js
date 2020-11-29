@@ -17,7 +17,7 @@ class AthleteComponent extends Component {
             currentUser: {username: ""},
             athletes: [],
             currentPage: 1,
-            athletesPerPage: 5,
+            athletesPerPage: 10,
             search: '',
             sortToggle: true
         }
@@ -106,7 +106,7 @@ class AthleteComponent extends Component {
 
         athletes.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
-            return (isReversed * a.id.localeCompare(b.id));
+            return (isReversed * a.name.localeCompare(b.name));
         });
 
         const filteredAthletes = athletes.filter( athlete => {
@@ -141,8 +141,8 @@ class AthleteComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th onClick={this.sortData}>Athlete ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th>Name</th>
+                                <th>Athlete ID</th>
+                                <th onClick={this.sortData}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th>Birth Date</th>
                                 <th>Value</th>
                                 <th>Currency</th>
