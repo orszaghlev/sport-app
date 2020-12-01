@@ -18,7 +18,8 @@ class ViewFootballMatchComponent extends Component {
             season: {},
             comp: {},
             footballStats: {},
-            matchEvents: []
+            matchEvents: [],
+            sortToggle: true
         }
     }
 
@@ -53,20 +54,35 @@ class ViewFootballMatchComponent extends Component {
         })
     }
 
+    sortData = () => {
+        this.setState(state => ({
+            sortToggle: !state.sortToggle
+        }));
+    }
+
     return() {
         this.props.history.push('/matches');
     }
 
     render() {
+        const {matchEvents} = this.state;
+
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect}/>
         }
 
+        matchEvents.sort((a, b) => {
+            const isReversed = (this.state.sortToggle === true) ? 1 : -1;
+            return (isReversed * a.id.time.localeCompare(b.id.time));
+        });
+
         return (
             <div>
                 <br></br>
-                <div className="card col-md-6 offset-md-3">
+                <div className="card col-md-10 offset-md-1">
                     <div className="card-body">
+
+
                         <div className="text-center" style={{backgroundColor:"#33cc33", color:"#ffffff", height:"140px", horizontalAlign:"center", verticalAlign:"center"}}>
                             <div className="row">
                                 <div style={{marginLeft: "25px"}}>{this.state.comp.sportType}</div>
@@ -95,40 +111,12 @@ class ViewFootballMatchComponent extends Component {
                         </div>
 
 
-                        <div className="text-center align-middle" style={{height:"40px" , marginTop: "30px", paddingTop:"5px", backgroundColor:"#33cc33", color:"#ffffff", fontSize:"18px", fontWeight:"bold"}}>
-                            EVENTS
-                        </div>
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th className="text-center align-middle">Player</th>
-                                    <th className="text-center align-middle">Type</th>
-                                    <th className="text-center align-middle">Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {this.state.matchEvents.length === 0 ?
-                                <tr align="center">
-                                    <td colSpan="4">No Events Available</td>
-                                </tr>:
-                                this.state.matchEvents.map(
-                                    matchEvent =>
-                                    <tr key = {matchEvent.id}>
-                                        <td className="text-center align-middle">{matchEvent.id.athleteId} ({matchEvent.id.teamId})</td>
-                                        <td className="text-center align-middle">{matchEvent.eventType}</td>
-                                        <td className="text-center align-middle">{matchEvent.id.time}'</td>
-                                    </tr>
-                                )
-                            }
-                            </tbody>
-                        </table>
-
-
-                        <table className="text-center align-middle table table-striped" style={{marginLeft: "40px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
-                            <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
-                                <th style={{width:"61px"}}>{this.state.home_Team.shortName}</th>
-                                <th style={{width:"161px"}}>STATS</th>
-                                <th style={{width:"61px"}}>{this.state.away_Team.shortName}</th>
+                        <div style={{float:"left"}}>
+                        <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
+                            <tr style={{height:"40px" , backgroundColor:"#33cc33", color:"#ffffff"}}>
+                                <th style={{height:"40px" , width:"61px"}}>{this.state.home_Team.shortName}</th>
+                                <th style={{height:"40px" , width:"161px"}}>STATS</th>
+                                <th style={{height:"40px" , width:"61px"}}>{this.state.away_Team.shortName}</th>
                             </tr>
                             <tr>
                                 <td>{this.state.footballStats.hAttempts}</td>
@@ -187,11 +175,9 @@ class ViewFootballMatchComponent extends Component {
                             </tr>
                         </table>
 
-
-
                         <div style={{marginLeft:"10px"}}>
                             <div className="row">
-                                <div style={{marginLeft: "10px", marginTop: "20px"}}>{this.state.match.date}</div>
+                                <div style={{marginLeft: "10px", marginTop: "50px"}}>{this.state.match.date}</div>
                             </div>
 
                             <div className="row">
@@ -203,6 +189,35 @@ class ViewFootballMatchComponent extends Component {
                         <br></br>
                         <div className="row" style={{marginLeft:"10px"}}>
                             <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Return</button>
+                        </div>
+                        </div>
+
+
+
+                        <div style={{float:"left", marginLeft: "40px", marginTop: "30px"}}>
+
+                            <table className="table table-striped" style={{width:"403px"}}>
+                                <thead>
+                                    <tr style={{ backgroundColor:"#33cc33", color:"#ffffff", fontSize:"16px", fontWeight:"bold"}}>
+                                        <th onClick={this.sortData} className="text-center align-middle" style={{width:"0px"}}></th>
+                                        <th className="text-left align-middle" style={{paddingLeft:"123px"}}>EVENTS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.matchEvents.length === 0 ?
+                                        <tr align="center">
+                                            <td colSpan="4">No Events Available</td>
+                                        </tr>:
+                                        this.state.matchEvents.map(
+                                            matchEvent =>
+                                                <tr key = {matchEvent.id}>
+                                                    <td className="text-center align-middle">{matchEvent.id.time}'</td>
+                                                    <td className="text-left align-middle">{matchEvent.id.eventTypeName}: {matchEvent.id.athleteName} ({matchEvent.id.teamShortName})</td>
+                                                </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
