@@ -59,11 +59,11 @@ public class EventTests {
         Competition savedCompetition = competitionRepository.save(competition);
         Season season = new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
         Season savedSeason = seasonRepository.save(season);
-        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(),"Bulgaria", teamRepository.findById("11001").get(),"Hungary", 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         Match savedMatch = matchRepository.save(match);
         EventTypes eventTypes = new EventTypes("61002", "Substitution out");
         EventTypes savedEventTypes = eventTypesRepository.save(eventTypes);
-        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(), teamRepository.findById("11001").get(), matchRepository.findById("41001").get(), "59");
+        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(),"Ádám Szalai", teamRepository.findById("11001").get(),"HUN", matchRepository.findById("41001").get(),"Substitution out", "59");
         Event event = new Event(eventIdentity, eventTypesRepository.findById("61002").get());
         Event savedEvent = eventRepository.save(event);
 
@@ -94,9 +94,9 @@ public class EventTests {
         new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
         new Competition("21001", "Europe", "Football", "European Championship Qualification", "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/UEFA_Euro_2016_qualifying.png/220px-UEFA_Euro_2016_qualifying.png");
         new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
-        new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(),"Bulgaria", teamRepository.findById("11001").get(),"Hungary", 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         new EventTypes("61002", "Substitution out");
-        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(), teamRepository.findById("11001").get(), matchRepository.findById("41001").get(), "59");
+        EventIdentity eventIdentity = new EventIdentity(athleteRepository.findById("51003").get(),"Ádám Szalai", teamRepository.findById("11001").get(),"HUN", matchRepository.findById("41001").get(),"Substitution out","59");
         Event event = new Event(eventIdentity, eventTypesRepository.findById("61002").get());
         Event foundEvent = eventRepository.findById(event.getId()).get();
         System.out.println(foundEvent);

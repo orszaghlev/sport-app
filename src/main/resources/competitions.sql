@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
   `teamShortName` VARCHAR(250),
   `matchId` INT NOT NULL,
   `eventType` INT NOT NULL,
-  `evenTypeName` VARCHAR(250),
+  `eventTypeName` VARCHAR(250),
   `time` VARCHAR(6) NOT NULL,
   PRIMARY KEY (`athleteId`, `teamId`, `matchId`, `time`),
   INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,

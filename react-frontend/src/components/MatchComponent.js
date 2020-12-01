@@ -158,9 +158,7 @@ class MatchComponent extends Component {
                                 <th className="text-center align-middle">Season</th>
                                 <th className="text-center align-middle" onClick={this.sortData}>Date<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th className="text-center align-middle">Home Team</th>
-                                <th className="text-center align-middle" style={{width:"40px"}}></th>
-                                <th className="text-center align-middle" style={{width:"20px"}}>Score</th>
-                                <th className="text-center align-middle" style={{width:"40px"}}></th>
+                                <th className="text-center align-middle" style={{width:"100px"}}>Score</th>
                                 <th className="text-center align-middle">Away Team</th>
                                 <th className="text-center align-middle">Place</th>
                                 <th className="text-center align-middle"></th>
@@ -176,11 +174,9 @@ class MatchComponent extends Component {
                                     <tr key = {match.id}>
                                         <td className="text-center align-middle">{match.seasonId}</td>
                                         <td className="text-center align-middle">{match.date}</td>
-                                        <td className="text-center align-middle">{match.homeTeam}</td>
-                                        <td className="text-center align-middle">{match.homeScore}</td>
-                                        <td className="text-center align-middle">-</td>
-                                        <td className="text-center align-middle">{match.awayScore}</td>
-                                        <td className="text-center align-middle">{match.awayTeam}</td>
+                                        <td className="text-center align-middle">{match.homeName}</td>
+                                        <td className="text-center align-middle">{match.homeScore} - {match.awayScore}</td>
+                                        <td className="text-center align-middle">{match.awayName}</td>
                                         <td className="text-center align-middle">{match.place}</td>
                                         <td className="text-center align-middle">
                                             <button onClick={ () => this.viewMatch(match.id)} className="btn btn-info">View details! &#62;&#62;</button>

@@ -248,7 +248,7 @@ set e.teamShortName = (select shortName
                      where t.id = e.teamId);
 
 update competitions.event e
-set e.evenTypeName = (select et.type
+set e.eventTypeName = (select et.type
                       from competitions.event_types et
                       where et.id = e.eventType);
 
