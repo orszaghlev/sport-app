@@ -16,6 +16,7 @@ class MatchComponent extends Component {
             userReady: false,
             currentUser: {username: ""},
             matches: [],
+            teams: [],
             currentPage: 1,
             matchesPerPage: 10,
             search: '',
@@ -51,6 +52,7 @@ class MatchComponent extends Component {
             this.setState({matches: res.data});
         });
     }
+
 
     changePage = event => {
         this.setState({

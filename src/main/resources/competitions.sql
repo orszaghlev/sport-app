@@ -166,7 +166,9 @@ CREATE TABLE IF NOT EXISTS `competitions`.`MATCH` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `seasonId` INT,
   `homeTeam` INT NOT NULL,
+  `homeName` VARCHAR(250),
   `awayTeam` INT NOT NULL,
+  `awayName` VARCHAR(250),
   `homeScore` INT,
   `awayScore` INT,
   `place` VARCHAR(250),
@@ -231,9 +233,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `competitions`.`EVENT` (
   `athleteId` INT NOT NULL,
+  `athleteName` VARCHAR(250),
   `teamId` INT NOT NULL,
+  `teamShortName` VARCHAR(250),
   `matchId` INT NOT NULL,
   `eventType` INT NOT NULL,
+  `evenTypeName` VARCHAR(250),
   `time` VARCHAR(6) NOT NULL,
   PRIMARY KEY (`athleteId`, `teamId`, `matchId`, `time`),
   INDEX `teamIdIdx` (`teamId` ASC) VISIBLE,
