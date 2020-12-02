@@ -18,8 +18,8 @@ class ViewSeasonComponent extends Component {
             season: {},
             competition: {},
             start: "",
-            finish:"",
-            name:"",
+            finish: "",
+            name: "",
             matches: [],
             currentPage: 1,
             matchesPerPage: 10,
@@ -57,7 +57,7 @@ class ViewSeasonComponent extends Component {
                 this.setState({competition: res.data});
                 this.setState({start: this.state.season.started.substring(2,4)});
                 this.setState({finish: this.state.season.finished.substring(2,4)});
-                if (this.state.start == this.state.finish){
+                if (this.state.start === this.state.finish){
                     this.setState({name: this.state.season.started.substring(0,4)});
                 }
                 else {
@@ -72,7 +72,7 @@ class ViewSeasonComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/competitions');
+        this.props.history.push(`/view-competition/${this.state.season.competitionId}`);
     }
 
     changePage = event => {
