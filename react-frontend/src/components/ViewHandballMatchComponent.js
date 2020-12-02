@@ -111,6 +111,7 @@ class ViewHandballMatchComponent extends Component {
                             </table>
                         </div>
                         </div>
+          
 
                         <div style={{float:"left"}}>
                             <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
