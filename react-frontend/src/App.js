@@ -141,14 +141,6 @@ class App extends Component {
               </li>
             )}
 
-            {currentUser && (
-              <li className="nav-item">
-                <Link to ={"/seasons"} className="nav-link">
-                  Seasons
-                </Link>
-              </li>
-            )}
-
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/competitions-admin"} className="nav-link">

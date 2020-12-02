@@ -27,7 +27,23 @@ class ViewSeasonComponent extends Component {
         }
     }
 
-    //viewMatch(id)...
+    viewMatch(id) {
+        if (id.substring(0, 2) === "41") {
+            this.props.history.push(`/view-football-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "42") {
+            this.props.history.push(`/view-amfootball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "43") {
+            this.props.history.push(`/view-basketball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "44") {
+            this.props.history.push(`/view-handball-match/${id}`);
+        }
+        else if (id.substring(0, 2) === "45") {
+            this.props.history.push(`/view-hockey-match/${id}`);
+        }
+    }
 
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
@@ -56,7 +72,7 @@ class ViewSeasonComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/seasons');
+        this.props.history.push('/competitions');
     }
 
     changePage = event => {

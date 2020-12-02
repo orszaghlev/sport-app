@@ -158,7 +158,7 @@ class SeasonComponent extends Component {
                                         <td className="align-middle" width="29.5%">{season.started}</td>
                                         <td className="align-middle" width="29.5%">{season.finished}</td>
                                         <td className="align-middle">
-                                            <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View</button>
+                                            <button onClick={ () => this.viewSeason(season.id)} className="btn btn-info">View &#62;&#62;</button>
                                         </td>
                                     </tr>
                                 )
