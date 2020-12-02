@@ -39,35 +39,34 @@ class ViewAthleteComponent extends Component {
         return (
             <div>
                 <br></br>
-                <div className="card col-md-6 offset-md-3">
+                <div className="card col-md-7 offset-md-2.5">
                     <div className="card-body">
-                        <div className="row">
-                            <label>Name:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.name}</div>
+                        <div className="row" >
+                            <div style={{fontSize:"30px", marginTop:"10px", marginLeft:"25px", FontWeight: "bold"}}>{this.state.athlete.name} ({this.state.athlete.nationality})</div>
                         </div>
-                        <div className="row">
-                            <label>Date of Birth:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.dateOfBirth}</div>
-                        </div>
-                        <div className="row">
-                            <label>Value:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.value}</div>
-                        </div>
-                        <div className="row">
-                            <label>Value Currency:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.valueCurrency}</div>
-                        </div>
-                        <div className="row">
-                            <label>Position:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.position}</div>
-                        </div>
-                        <div className="row">
-                            <label>Nationality:</label>
-                            <div style={{marginLeft: "5px"}}>{this.state.athlete.nationality}</div>
+
+                        <br></br>
+                        <div style={{height:"80px" ,horizontalAlign:"center", verticalAlign:"center", backgroundColor:"#e0e0d1"}}>
+                            <div className="row" style={{marginLeft:"30px", paddingTop:"5px"}}>
+                                <label>The athlete was born in</label>
+                                <div style={{marginLeft: "5px"}}>{this.state.athlete.dateOfBirth}</div>
+                                <label>.</label>
+                            </div>
+                            <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
+                                <label>He/she plays as a(n) </label>
+                                <div style={{marginLeft: "5px"}}>{this.state.athlete.position}</div>
+                                <label>.</label>
+                            </div>
+                            <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
+                                <label>His/her estimated value is</label>
+                                <div style={{marginLeft: "5px"}}>{this.state.athlete.value}</div>
+                                <div style={{marginLeft: "5px"}}>{this.state.athlete.valueCurrency}</div>
+                                <label>.</label>
+                            </div>
                         </div>
                         <br></br>
-                        <div className="row">
-                            <button className="btn btn-danger" onClick={this.return.bind(this)}>Return</button>
+                        <div className="row" style={{marginLeft:"10px"}}>
+                            <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Return</button>
                         </div>
                     </div>
                 </div>
