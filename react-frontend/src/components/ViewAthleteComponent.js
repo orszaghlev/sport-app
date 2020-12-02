@@ -53,7 +53,7 @@ class ViewAthleteComponent extends Component {
                                 <label>.</label>
                             </div>
                             <div className="row" style={{marginLeft:"30px", marginTop:"-10px"}}>
-                                <label>He/she plays as a </label>
+                                <label>He/she plays as a(n) </label>
                                 <div style={{marginLeft: "5px"}}>{this.state.athlete.position}</div>
                                 <label>.</label>
                             </div>

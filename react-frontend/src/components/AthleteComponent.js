@@ -110,10 +110,7 @@ class AthleteComponent extends Component {
         });
 
         const filteredAthletes = athletes.filter( athlete => {
-            return (athlete.id.indexOf(search) !== -1) 
-            || (athlete.name.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
-            || (athlete.dateOfBirth.indexOf(search) !== -1)
-            || (athlete.valueCurrency.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
+            return (athlete.name.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (athlete.position.toLowerCase().indexOf(search.toLowerCase() ) !== -1)
             || (athlete.nationality.toLowerCase().indexOf(search.toLowerCase() ) !== -1);
         })
@@ -141,33 +138,25 @@ class AthleteComponent extends Component {
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Athlete ID</th>
-                                <th onClick={this.sortData}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th>Birth Date</th>
-                                <th>Value</th>
-                                <th>Currency</th>
-                                <th>Position</th>
-                                <th>Nationality</th>
-                                <th>Actions</th>
+                                <th className="text-center align-middle" onClick={this.sortData} style={{width:"200px"}}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th className="text-center align-middle" style={{width:"150px"}}>Position</th>
+                                <th className="text-center align-middle" style={{width:"100px"}}>Nationality</th>
+                                <th style={{width:"150px"}}></th>
                             </tr>
                         </thead>
                         <tbody>
                             {athletes.length === 0 ?
                                 <tr align="center">
-                                    <td colSpan="8">No Athletes Available</td>
+                                    <td colSpan="4">No Athletes Available</td>
                                 </tr>:
                                 currentAthletes.map(
                                     athlete => 
                                     <tr key = {athlete.id}>
-                                        <td className="align-middle">{athlete.id}</td>
-                                        <td className="align-middle">{athlete.name}</td>
-                                        <td className="align-middle">{athlete.dateOfBirth}</td>
-                                        <td className="align-middle">{athlete.value}</td>
-                                        <td className="align-middle">{athlete.valueCurrency}</td>
-                                        <td className="align-middle">{athlete.position}</td>
-                                        <td className="align-middle">{athlete.nationality}</td>
-                                        <td className="align-middle">
-                                            <button onClick={ () => this.viewAthlete(athlete.id)} className="btn btn-info">View</button>
+                                        <td className="align-middle" style={{fontSize:"18px"}}>{athlete.name}</td>
+                                        <td className="align-middle" style={{fontSize:"18px"}}>{athlete.position}</td>
+                                        <td className="align-middle" style={{fontSize:"18px"}}>{athlete.nationality}</td>
+                                        <td className="text-center align-middle">
+                                            <button onClick={ () => this.viewAthlete(athlete.id)} className="btn btn-info">View details! &#62;&#62;</button>
                                         </td>
                                     </tr>
                                 )
