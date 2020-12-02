@@ -61,7 +61,11 @@ class ViewFootballMatchComponent extends Component {
     }
 
     return() {
-        this.props.history.push('/matches');
+        this.props.history.push(`/view-season/${this.state.season.id}`);
+    }
+
+    matches() {
+        this.props.history.push(`/matches`);
     }
 
     render() {
@@ -191,7 +195,10 @@ class ViewFootballMatchComponent extends Component {
 
                         <br></br>
                         <div className="row" style={{marginLeft:"10px"}}>
-                            <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Return</button>
+                            <button className="btn btn-danger" onClick={this.return.bind(this)}>&#60;&#60; Go to season</button>
+                        </div>
+                        <div className="row" style={{marginLeft:"10px", marginBottom:"10px"}}>
+                            <button className="btn btn-info" onClick={this.matches.bind(this)}>&#60;&#60; Show all matches</button>
                         </div>
                         </div>
 
