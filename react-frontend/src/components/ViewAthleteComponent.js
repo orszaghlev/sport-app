@@ -42,7 +42,7 @@ class ViewAthleteComponent extends Component {
                 <div className="card col-md-7 offset-md-2.5">
                     <div className="card-body">
                         <div className="row" >
-                            <div style={{fontSize:"35px", marginTop:"10px", marginLeft:"25px", FontWeight: "bold"}}>{this.state.athlete.name} ({this.state.athlete.nationality})</div>
+                            <div style={{fontSize:"30px", marginTop:"10px", marginLeft:"25px", FontWeight: "bold"}}>{this.state.athlete.name} ({this.state.athlete.nationality})</div>
                         </div>
 
                         <br></br>

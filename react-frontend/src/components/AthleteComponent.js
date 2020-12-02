@@ -152,7 +152,7 @@ class AthleteComponent extends Component {
                                 currentAthletes.map(
                                     athlete => 
                                     <tr key = {athlete.id}>
-                                        <td className="align-middle" style={{fontSize:"18px"}}>{athlete.name}</td>
+                                        <td className="text-center align-middle" style={{fontSize:"18px", fontWeight: "bold"}}>{athlete.name}</td>
                                         <td className="align-middle" style={{fontSize:"18px"}}>{athlete.position}</td>
                                         <td className="align-middle" style={{fontSize:"18px"}}>{athlete.nationality}</td>
                                         <td className="text-center align-middle">
