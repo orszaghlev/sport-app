@@ -106,7 +106,7 @@ class CompetitionComponent extends Component {
 
         competitions.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
-            return (isReversed * a.id.localeCompare(b.id));
+            return (isReversed * a.sportType.localeCompare(b.sportType));
         });
 
         const filteredCompetitions = competitions.filter( competition => {
@@ -136,15 +136,14 @@ class CompetitionComponent extends Component {
                 <br></br>
                 <br></br>
                 <div className="row">
-                    <table className="table table-striped table-bordered">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th onClick={this.sortData}>Competition ID<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                <th>Region</th>
-                                <th>Sport Type</th>
-                                <th>Name</th>
-                                <th>Logo</th>
-                                <th>Actions</th>
+                                <th onClick={this.sortData} className="text-center">Sport Type<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                <th className="text-center">Region</th>
+                                <th></th>
+                                <th>Competition</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -155,13 +154,12 @@ class CompetitionComponent extends Component {
                                 currentCompetitions.map(
                                     competition => 
                                     <tr key = {competition.id}>
-                                        <td className="align-middle" width="15%">{competition.id}</td>
-                                        <td className="align-middle" width="14%">{competition.region}</td>
-                                        <td className="align-middle" width="19%">{competition.sportType}</td>
+                                        <td className="align-middle text-center" width="19%">{competition.sportType}</td>
+                                        <td className="align-middle text-center" width="14%">{competition.region}</td>
+                                        <td className="text-center align-middle" width="13%">{<img src={competition.logoLink} alt="Logo" height="100px"/>}</td>
                                         <td className="align-middle" width="28.5%">{competition.name}</td>
-                                        <td className="align-middle" width="13%">{<img src={competition.logoLink} alt="Logo" width="100px" height="100px"/>}</td>
                                         <td className="align-middle">
-                                            <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View</button>
+                                            <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View &#62;&#62;</button>
                                         </td>
                                     </tr>
                                 )
