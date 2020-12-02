@@ -65,7 +65,9 @@ public class MatchController {
 
         match.setSeasonId(matchDetails.getSeasonId());
         match.setHomeTeam(matchDetails.getHomeTeam());
+        match.setHomeName(matchDetails.getHomeName());
         match.setAwayTeam(matchDetails.getAwayTeam());
+        match.setAwayName(matchDetails.getAwayName());
         match.setHomeScore(matchDetails.getHomeScore());
         match.setAwayScore(matchDetails.getAwayScore());
         match.setPlace(matchDetails.getPlace());

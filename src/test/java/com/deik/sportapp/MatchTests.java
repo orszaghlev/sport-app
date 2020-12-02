@@ -47,7 +47,7 @@ public class MatchTests {
         Team savedHomeTeam = teamRepository.save(homeTeam);
         Team awayTeam = new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
         Team savedAwayTeam = teamRepository.save(awayTeam);
-        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(),"Bulgaria", teamRepository.findById("11001").get(),"Hungary", 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         Match savedMatch = matchRepository.save(match);
 
         assertNotNull(savedCompetition);
@@ -79,7 +79,7 @@ public class MatchTests {
         new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
         new Team("11002", "Bulgaria", "BGR", Date.valueOf("1923-01-01"), 23200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Bulgarian_Football_Union_logo.svg/150px-Bulgarian_Football_Union_logo.svg.png", "Vasil Lecski National Stadium");
         new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
-        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        Match match = new Match("41001", seasonRepository.findById("31001").get(),teamRepository.findById("11002").get(),"Bulgaria",  teamRepository.findById("11001").get(),"Hungary", 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         match.setPlace(newPlace);
         matchRepository.save(match);
         Match updatedMatch = matchRepository.findByPlace(match.getPlace());
@@ -103,7 +103,7 @@ public class MatchTests {
         new Season("31001", competitionRepository.findById("21001").get(), Date.valueOf("2019-03-21"), Date.valueOf("2020-11-12"));
         new Team("11002", "Bulgaria", "BGR", Date.valueOf("1923-01-01"), 23200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Bulgarian_Football_Union_logo.svg/150px-Bulgarian_Football_Union_logo.svg.png", "Vasil Lecski National Stadium");
         new Team("11001", "Hungary", "HUN", Date.valueOf("1901-01-01"), 72200000, "EUR", "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Hungarian_Football_Federation_logo.svg/200px-Hungarian_Football_Federation_logo.svg.png", "Puskas Arena");
-        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(), teamRepository.findById("11001").get(), 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
+        Match match = new Match("41001", seasonRepository.findById("31001").get(), teamRepository.findById("11002").get(),"Bulgaria", teamRepository.findById("11001").get(),"Hungary", 1, 3, "Vasil Lecski National Stadium", Date.valueOf("2020-10-08"));
         Match foundMatch = matchRepository.findById(match.getId()).get();
         System.out.println(foundMatch);
 

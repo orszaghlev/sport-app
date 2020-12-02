@@ -41,12 +41,18 @@ public class Match {
     @JsonProperty("homeTeam")
     private Team homeTeam;
 
+    @Column(name = "homeName")
+    private String homeName;
+
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "awayTeam", nullable = false)
     @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
     @JsonProperty("awayTeam")
     private Team awayTeam;
+
+    @Column(name = "awayName")
+    private String awayName;
 
     @Column(name = "homeScore")
     private int homeScore;
@@ -86,11 +92,13 @@ public class Match {
     public Match() {
     }
 
-    public Match(String id, Season seasonId, Team homeTeam, Team awayTeam, int homeScore, int awayScore, String place, Date date) {
+    public Match(String id, Season seasonId, Team homeTeam, String homeName, Team awayTeam, String awayName, int homeScore, int awayScore, String place, Date date) {
         this.id = id;
         this.seasonId = seasonId;
         this.homeTeam = homeTeam;
+        this.homeName = homeName;
         this.awayTeam = awayTeam;
+        this.awayName = awayName;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.place = place;
@@ -121,12 +129,28 @@ public class Match {
         this.homeTeam = homeTeam;
     }
 
+    public String getHomeName() {
+        return homeName;
+    }
+
+    public void setHomeName(String homeName) {
+        this.homeName = homeName;
+    }
+
     public Team getAwayTeam() {
         return awayTeam;
     }
 
     public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
+    }
+
+    public String getAwayName() {
+        return awayName;
+    }
+
+    public void setAwayName(String awayName) {
+        this.awayName = awayName;
     }
 
     public int getHomeScore() {
@@ -215,7 +239,9 @@ public class Match {
                 "id='" + id + '\'' +
                 ", seasonId=" + seasonId +
                 ", homeTeam=" + homeTeam +
+                ", homeName=" + homeName +
                 ", awayTeam=" + awayTeam +
+                ", awayName=" + awayName +
                 ", homeScore=" + homeScore +
                 ", awayScore=" + awayScore +
                 ", place='" + place + '\'' +
