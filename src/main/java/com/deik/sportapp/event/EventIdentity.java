@@ -41,7 +41,7 @@ public class EventIdentity implements Serializable {
     @JsonProperty("matchId")
     private Match matchId;
 
-    @Column(name = "evenTypeName")
+    @Column(name = "eventTypeName")
     private String eventTypeName;
 
     @Column(name = "time")

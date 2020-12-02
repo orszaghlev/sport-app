@@ -65,11 +65,11 @@ class ViewFootballMatchComponent extends Component {
     }
 
     render() {
-        const {matchEvents} = this.state;
-
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect}/>
         }
+
+        const {matchEvents} = this.state;
 
         matchEvents.sort((a, b) => {
             const isReversed = (this.state.sortToggle === true) ? 1 : -1;
@@ -90,6 +90,7 @@ class ViewFootballMatchComponent extends Component {
                                 <div style={{marginLeft: "5px"}}>{<img src={this.state.comp.logoLink} alt="Competition_logo" height="18px" />}</div>
                                 <div style={{marginLeft: "5px", fontWeight:"bold"}}>{this.state.comp.name}</div>
                             </div>
+                        <div style={{marginLeft:"auto", marginRight:"auto",display:"inline-block"}}>
                             <table style={{marginBottom:"10px", fontSize:"22px", width:"483px"}}>
                                 <tr className="align-top" style={{align:"center", height:"80px"}}>
                                     <th style={{align:"center", width:"200px"}}>
@@ -109,11 +110,12 @@ class ViewFootballMatchComponent extends Component {
                                 </tr>
                             </table>
                         </div>
+                        </div>
 
 
                         <div style={{float:"left"}}>
                         <table className="text-center align-middle table table-striped" style={{marginLeft: "0px", marginTop:"30px", marginBottom:"10px", fontSize:"16px", width:"403px"}}>
-                            <tr style={{height:"40px" , backgroundColor:"#33cc33", color:"#ffffff"}}>
+                            <tr style={{backgroundColor:"#33cc33", color:"#ffffff"}}>
                                 <th style={{height:"40px" , width:"61px"}}>{this.state.home_Team.shortName}</th>
                                 <th style={{height:"40px" , width:"161px"}}>STATS</th>
                                 <th style={{height:"40px" , width:"61px"}}>{this.state.away_Team.shortName}</th>
@@ -160,17 +162,17 @@ class ViewFootballMatchComponent extends Component {
                             </tr>
                             <tr>
                                 <td>{this.state.footballStats.hYellow}</td>
-                                <td>Yellow</td>
+                                <td>Yellow cards</td>
                                 <td>{this.state.footballStats.aYellow}</td>
                             </tr>
                             <tr>
                                 <td>{this.state.footballStats.hRed}</td>
-                                <td>Red</td>
+                                <td>Red cards</td>
                                 <td>{this.state.footballStats.aRed}</td>
                             </tr>
                             <tr>
                                 <td>{this.state.footballStats.hFouls}</td>
-                                <td>Fouls</td>
+                                <td>Fouls committed</td>
                                 <td>{this.state.footballStats.aFouls}</td>
                             </tr>
                         </table>
@@ -194,8 +196,7 @@ class ViewFootballMatchComponent extends Component {
 
 
 
-                        <div style={{float:"left", marginLeft: "40px", marginTop: "30px"}}>
-
+                        <div style={{float:"left", marginLeft: "45px", marginTop: "30px"}}>
                             <table className="table table-striped" style={{width:"403px"}}>
                                 <thead>
                                     <tr style={{ backgroundColor:"#33cc33", color:"#ffffff", fontSize:"16px", fontWeight:"bold"}}>
@@ -212,13 +213,14 @@ class ViewFootballMatchComponent extends Component {
                                             matchEvent =>
                                                 <tr key = {matchEvent.id}>
                                                     <td className="text-center align-middle">{matchEvent.id.time}'</td>
-                                                    <td className="text-left align-middle">{matchEvent.id.eventTypeName}: {matchEvent.id.athleteName} ({matchEvent.id.teamShortName})</td>
+                                                    <td className="text-left align-middle"><div style={{fontWeight:"bold", float:"left"}}>{matchEvent.id.eventTypeName}</div>: {matchEvent.id.athleteName} ({matchEvent.id.teamShortName})</td>
                                                 </tr>
                                         )
                                     }
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
