@@ -135,12 +135,12 @@ class AthleteComponent extends Component {
                 <br></br>
                 <br></br>
                 <div className="row">
-                    <table className="table table-striped table-bordered">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th className="text-center align-middle" onClick={this.sortData} style={{width:"200px"}}>Name<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th className="text-center align-middle" style={{width:"150px"}}>Position</th>
-                                <th className="text-center align-middle" style={{width:"100px"}}>Nationality</th>
+                                <th className="text-left align-middle" style={{width:"100px"}}>Nationality</th>
                                 <th style={{width:"150px"}}></th>
                             </tr>
                         </thead>
@@ -155,7 +155,7 @@ class AthleteComponent extends Component {
                                         <td className="text-center align-middle" style={{fontSize:"18px", fontWeight: "bold"}}>{athlete.name}</td>
                                         <td className="align-middle" style={{fontSize:"18px"}}>{athlete.position}</td>
                                         <td className="align-middle" style={{fontSize:"18px"}}>{athlete.nationality}</td>
-                                        <td className="text-center align-middle">
+                                        <td className="text-left align-middle">
                                             <button onClick={ () => this.viewAthlete(athlete.id)} className="btn btn-info">View details! &#62;&#62;</button>
                                         </td>
                                     </tr>
@@ -167,7 +167,7 @@ class AthleteComponent extends Component {
                     <div style={{"margin-left": "auto"}}>
                         Showing Page {currentPage} of {Math.ceil(totalPages)}
                     </div>
-                    <div style={{"margin-right": "0"}}>
+                    <div style={{"margin-right": "0", marginTop:"5px"}}>
                         <InputGroup size="sm">
                             <InputGroup.Prepend>
                                 <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
