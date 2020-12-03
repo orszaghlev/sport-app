@@ -137,7 +137,7 @@ class CompetitionComponent extends Component {
                 <br></br>
                 <div className="row">
                     <table className="table table-striped">
-                        <thead>
+                        <thead style={{fontSize:"18px"}}>
                             <tr>
                                 <th onClick={this.sortData} className="text-center">Sport Type<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
                                 <th className="text-center">Region</th>
@@ -146,7 +146,7 @@ class CompetitionComponent extends Component {
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{fontSize:"18px"}}>
                             {competitions.length === 0 ?
                                 <tr align="center">
                                     <td colSpan="6">No Competitions Available</td>
@@ -157,7 +157,7 @@ class CompetitionComponent extends Component {
                                         <td className="align-middle text-center" width="19%">{competition.sportType}</td>
                                         <td className="align-middle text-center" width="14%">{competition.region}</td>
                                         <td className="text-center align-middle" width="13%">{<img src={competition.logoLink} alt="Logo" height="100px"/>}</td>
-                                        <td className="align-middle" width="28.5%">{competition.name}</td>
+                                        <td className="align-middle" width="28.5%" style={{fontWeight:"bold"}}>{competition.name}</td>
                                         <td className="align-middle">
                                             <button onClick={ () => this.viewCompetition(competition.id)} className="btn btn-info">View &#62;&#62;</button>
                                         </td>
@@ -170,7 +170,7 @@ class CompetitionComponent extends Component {
                     <div style={{"margin-left": "auto"}}>
                         Showing Page {currentPage} of {Math.ceil(totalPages)}
                     </div>
-                    <div style={{"margin-right": "0"}}>
+                    <div style={{"margin-right": "0", marginTop:"5px"}}>
                         <InputGroup size="sm">
                             <InputGroup.Prepend>
                                 <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
