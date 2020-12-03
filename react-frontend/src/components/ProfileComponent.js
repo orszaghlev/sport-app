@@ -36,29 +36,29 @@ export default class Profile extends Component {
                             <strong>{currentUser.username}</strong> Profile
                         </h3>
                     </header>
-                    <p>
+                    <p style={{marginLeft:"40px"}}>
                         <strong>Token:</strong>{" "}
                         {currentUser.accessToken.substring(0, 20)} ...{" "}
                         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
                     </p>
-                    <p>
+                    <p style={{marginLeft:"40px"}}>
                         <strong>ID:</strong>{" "}
                         {currentUser.id}
                     </p>
-                    <p>
+                    <p style={{marginLeft:"40px"}}>
                         <strong>First Name:</strong>{" "}
                         {currentUser.firstName}
                     </p>
-                    <p>
+                    <p style={{marginLeft:"40px"}}>
                         <strong>Last Name:</strong>{" "}
                         {currentUser.lastName}
                     </p>
-                    <p>
+                    <p style={{marginLeft:"40px"}}>
                         <strong>E-Mail:</strong>{" "}
                         {currentUser.email}
                     </p>
-                    <strong>Authorities:</strong>
-                    <ul>
+                    <strong style={{marginLeft:"40px"}}>Authorities:</strong>
+                    <ul style={{marginLeft:"40px"}}>
                         {currentUser.roles && currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
                     </ul>
                 </div>: null}
