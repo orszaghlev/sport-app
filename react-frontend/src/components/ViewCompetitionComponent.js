@@ -141,8 +141,8 @@ class ViewCompetitionComponent extends Component {
                                 <thead>
                                     <tr>
                                         <th className="text-center">Season</th>
-                                        <th className="text-center" onClick={this.sortData}>Competition start<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
-                                        <th className="text-center">Competition finish</th>
+                                        <th className="text-center" onClick={this.sortData}>Season start<div className={this.state.sortToggle ? "arrow arrow-up" : "arrow arrow-down"}></div></th>
+                                        <th className="text-center">Season finish</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -165,11 +165,11 @@ class ViewCompetitionComponent extends Component {
                                     }
                                 </tbody>
                             </table>
-                            <Card.Footer>
+                            <Card.Footer style={{marginTop:"10px"}}>
                                 <div style={{"margin-left": "auto"}}>
                                     Showing Page {currentPage} of {Math.ceil(totalPages)}
                                 </div>
-                                <div style={{"margin-right": "0"}}>
+                                <div style={{"margin-right": "0", marginTop:"5px"}}>
                                     <InputGroup size="sm">
                                         <InputGroup.Prepend>
                                             <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
