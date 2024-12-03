@@ -9,15 +9,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.20.0",
-    "bootstrap": "^4.5.3",
+    "axios": "^0.28.0",
+    "bootstrap": "^5.0.0",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "5.0.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start": "set PORT=8081 && react-scripts start",
